@@ -1,22 +1,101 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + Vite" />
+  <v-app>
+    <v-system-bar app >
+      DEV VERSION
+    </v-system-bar>
+    <v-navigation-drawer v-model="drawer" temporary app>
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title grey--text text--darken-2">
+            CHUNITHM CN Tools
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list density="compact" nav v-for="nav_list in nav_lists">
+        <v-list-item :prepend-icon="nav_list.icon" :title="nav_list.name" :to="nav_list.link" :key="nav_list.name" />
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar color="yellow lighten-4" density="comfortable">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-title>CHUNITHM 国服工具箱 - {{$route.meta.title}}</v-app-bar-title>
+      <v-spacer/>
+      <v-btn variant="text" icon="mdi-magnify"></v-btn>
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item-content>
+            <v-list-item title="切换深色模式" prepend-icon="mdi-theme-light-dark" @click="this.toggleTheme()"/>
+          </v-list-item-content>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+    <v-main>
+      <v-container fluid>
+        <router-view />
+      </v-container>
+    </v-main>
+    <!--<v-bottom-navigation>
+      <v-btn value="recent">
+        <v-icon>mdi-content-save-all</v-icon>
+        Save All
+      </v-btn>
+      <v-btn value="favorites">
+        <v-icon>mdi-heart</v-icon>
+        Favorites
+      </v-btn>
+    </v-bottom-navigation>-->
+  </v-app>
 </template>
 
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
+<script>
+import { useTheme } from 'vuetify'
+export default {
+  setup() {
+    const theme = useTheme()
+    return {
+      theme,
+      toggleTheme: () => theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+    }
+  },
+  data() {
+    return {
+      drawer: false,
+      nav_lists: [
+        {
+          name: '主页',
+          icon: 'mdi-home-outline',
+          link: '/',
+        },
+        {
+          name: '牌子列表',
+          icon: 'mdi-list-box-outline',
+          link: '/brand',
+        },
+        {
+          name: 'OP 计算器',
+          icon: 'mdi-calculator',
+          link: '/op',
+        },
+        {
+          name: '歌曲列表',
+          icon: 'mdi-music-note',
+          link: '/song',
+        },
+        {
+          name: '关于',
+          icon: 'mdi-information',
+          link: '/about',
+        },
+      ],
+    }
+  },
+  methods:{},
+}
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

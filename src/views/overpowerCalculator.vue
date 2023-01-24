@@ -18,17 +18,16 @@
           <v-radio label="已达成 ALL JUSTICE" value="all_justice"></v-radio>
           <v-radio label="已理论" value="all_justice_critical"></v-radio>
         </v-radio-group>
-        <v-row>
-          <v-col cols="2">
+        <v-row class="d-flex justify-center" style="margin-bottom: 10px">
+          <v-col>
             <v-btn color="primary" @click="calculateOP" block>计算</v-btn>
           </v-col>
-          <v-col cols="2">
+          <v-col>
             <v-btn @click="clear" block>清空</v-btn>
           </v-col>
         </v-row>
-        <v-row>
-          <v-text-field label="结果" v-model="calc_result" readonly></v-text-field>
-        </v-row>
+        <v-divider/>
+        <v-text-field label="结果" v-model="calc_result" readonly></v-text-field>
       </v-container>
     </v-container>
   </v-card-title>

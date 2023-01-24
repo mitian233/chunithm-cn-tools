@@ -16,7 +16,7 @@
         <v-list-item :prepend-icon="nav_list.icon" :title="nav_list.name" :to="nav_list.link" :key="nav_list.name" />
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar color="yellow lighten-4" density="comfortable">
+    <v-app-bar color="primary" density="comfortable">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-app-bar-title>CHUNITHM 国服工具箱 - {{$route.meta.title}}</v-app-bar-title>
       <v-spacer/>
@@ -25,7 +25,6 @@
         <template v-slot:activator="{ props }">
           <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
         </template>
-
         <v-list>
           <v-list-item-content>
             <v-list-item title="切换深色模式" prepend-icon="mdi-theme-light-dark" @click="this.toggleTheme()"/>

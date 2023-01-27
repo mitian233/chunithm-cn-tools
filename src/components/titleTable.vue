@@ -6,7 +6,7 @@
 export default {
   props: {
     search: String,
-    brandList: Object,
+    titleList: Object,
   },
   data: () => {
     return {
@@ -22,28 +22,28 @@ export default {
   },
   created() {
     let idNumber = 1;
-    for (let j = 0; j < this.brandList.music.length; j++) {
+    for (let j = 0; j < this.titleList.music.length; j++) {
       this.items.push({
         id: idNumber,
-        title: this.brandList.music[j].title,
-        color: this.brandList.music[j].color,
-        obtain: this.brandList.music[j].obtain,
+        title: this.titleList.music[j].title,
+        color: this.titleList.music[j].color,
+        obtain: this.titleList.music[j].obtain,
         type: "乐曲称号",
       })
       idNumber++
     }
-    for (let i = 0; i < this.brandList.nonmusic.length; i++) {
+    for (let i = 0; i < this.titleList.nonmusic.length; i++) {
       this.items.push({
         id: idNumber,
-        title: this.brandList.nonmusic[i].title,
-        color: this.brandList.nonmusic[i].color,
-        obtain: this.brandList.nonmusic[i].obtain,
+        title: this.titleList.nonmusic[i].title,
+        color: this.titleList.nonmusic[i].color,
+        obtain: this.titleList.nonmusic[i].obtain,
         type: "非乐曲称号",
       })
       idNumber++
     }
   },
-  name: "brandTable"
+  name: "titleTable"
 }
 </script>
 

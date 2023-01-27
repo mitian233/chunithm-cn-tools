@@ -77,7 +77,7 @@ export default {
         {
           name: '称号列表',
           icon: 'mdi-list-box-outline',
-          link: '/brand',
+          link: '/title',
         },
         {
           name: 'OP 计算器',

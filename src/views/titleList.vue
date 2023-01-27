@@ -5,25 +5,25 @@
     <v-container>
       <v-spacer />
       <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找名称" single-line hide-details class="mb-4"/>
-      <brand-table :search="searchKey" :brand-list="listItem"/>
+      <title-table :search="searchKey" :title-list="listItem"/>
     </v-container>
   </v-card>
 </template>
 
 <script>
-import brandList from "../assets/brandList.js";
-import brandTable from "../components/brandTable.vue";
+import titleList from "../assets/titleList.js";
+import titleTable from "../components/titleTable.vue";
 export default {
   components: {
-    brandTable,
+    titleTable,
   },
   data: () =>{
     return {
       searchKey: "",
-      listItem: brandList,
+      listItem: titleList,
     }
   },
-  name: "brandList"
+  name: "titleList"
 }
 </script>
 

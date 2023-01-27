@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <v-system-bar app >
-      DEV VERSION
-    </v-system-bar>
+    <div v-if="ISDEV===true">
+      <v-system-bar>DEV VERSION</v-system-bar>
+    </div>
     <v-navigation-drawer v-model="drawer" temporary app>
       <v-list-item>
         <v-list-item-title class="title grey--text text--darken-2">
@@ -47,6 +47,7 @@
 </template>
 
 <script>
+const ISDEV = false
 import { useTheme } from 'vuetify'
 export default {
   setup() {
@@ -60,6 +61,7 @@ export default {
   },
   data() {
     return {
+      ISDEV:ISDEV,
       drawer: false,
       nav_lists: [
         {

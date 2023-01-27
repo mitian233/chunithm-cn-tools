@@ -1,0 +1,709 @@
+POPS&ANIME
+天空カフェテリア
+    [一般]冷やしコーヒーはじめました。（乐曲游玩）
+ヒバリ
+    [银]心ってモノを量って切って　売れば幸せですか？（MASTER难度及以下进行游玩）
+永遠のAria
+    [银]残飯処理騎士団団長（MASTER难度及以下进行游玩）
+    [银]それが お前の罪だぜ（2人以上店内联机1MISS）
+キズナミュージック♪
+    [银]絆　また深まってた（MASTER难度及以下进行游玩）
+    [银]ポピパ！ピポパ！ポピパパピポパ～！（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+FIRE BIRD
+    [金]飛べよ鵬翼のヴァイオレット（MASTER难度评分达到SS）
+夜に駆ける
+    [银]2人でいよう（2人店内联机达成FULL CHAIN）
+廻廻奇譚
+    [金]領域展開（MASTER难度评分达到SSS）
+ベースラインやってる？笑
+    [银]はい…本当に申し訳ないと思っています…反省文も書きます…（2人以上店内联机1MISS）
+ごまかし
+    [银]チームみかづき荘（2人以上店内联机达成FULL CHAIN）
+だから僕は音楽を辞めた
+    [白金]だから僕はチュウニズムを極めた（MASTER难度及以下达成ALL JUSTICE）
+真赤な誓い
+    [一般]真っ赤な誓いいいいいいいいいいいい（1局内全部游玩同一首乐曲）
+インドア系ならトラックメイカー
+    [一般]エビデイ　エビナイ　トラックメイカー（1局内全部游玩同一首乐曲）
+野良猫ハート
+    [一般]カニコロの闇は深い！！（触发即死技能）
+碧き孤島のアングゥィス
+    [金]この世界よ甦れ大地よ龍の名の下に（MASTER难度评分达到SSS）
+ネ！コ！
+    [银]肘が確定する（3人店内联机达成第一名）
+    [白金]太平洋（MASTER难度及以下达成ALL JUSTICE）
+終わりなき物語
+    [白金]目を閉じれば聴こえる鼓動（索尼克速达成ALL JUSTICE）
+Vampire
+    [一般]愚者の末路（MASTER难度游玩1MISS）
+    [白金]支配者の宴（MASTER难度达成ALL JUSTICE）
+前前前世
+    [一般]お前は誰だ？（2人以上店内联机游玩该乐曲）
+    [金]もしかして、私たち、入れ替わってる！？（2人店内联机从BASIC难度到MASTER难度评分达到SSS并取得胜利）
+Face of Fact
+    [金]Believe Your Justice（EXPERT难度达成ALL JUSTICE）
+true my heart -Lovable mix-
+    [一般]きしめええええええええええええええん（1局内全部游玩同一首乐曲）
+ラブリー☆えんじぇる!!
+    [银]Let's Go Fever Time !（2人店内联机达成FULL CHAIN）
+若い力 -SEGA HARD GIRLS MIX-
+    [银]創造は生命（MASTER难度及以下进行游玩）
+Daydream café
+    [白金]ラビットハウス（ULTIMA难度评分达到SSS）
+ジングルベル
+    [铜]シングルヘル（EXPERT难度评分达到SSS）
+    [白金][H.]（4人店内联机MASTER难度达成FULL CHAIN）
+
+
+niconico
+ヴァンパイア
+    [铜]あたしヴァンパイア（EXPERT难度评分达到S）
+クーネル・エンゲイザー
+    [一般]電気止まっちゃった（触发即死技能）
+    [银]ここに歌詞ファイルをドロップ（2人店内联机游玩该乐曲）
+グッバイ宣言
+    [铜]あと1クレで帰ります（游玩3回该乐曲）
+テレキャスタービーボーイ
+    [金]ま（EXPERT难度达成ALL JUSTICE）
+心予報
+    [银]ピンクバレンタイン（2人店内联机达成FULL CHAIN）
+ローリンガール
+    [一般]もう一回、もう一回。（1局内全部游玩同一首乐曲）
+サイバーサンダーサイダー
+    [银]ヽ(　・ω・)ゝ（EXPERT难度评分达到SSS）
+高音厨音域テスト
+    [白金]チュウニズマーのお前らならば朝飯前だよね（MASTER难度及以下达成ALL JUSTICE）
+ポジティブ・パレード
+    [银]僕ら止まれない（2人店内联机达成FULL CHAIN）
+ラグトレイン
+    [白金]各駅停車で旅をして（1速MASTER难度达成FULL COMBO）
+惑星ループ
+    [一般]トゥットゥルルットゥルットゥットゥル（1局内全部游玩同一首乐曲）
+永遠にゲームで対戦したいキリタン
+    [银]対戦ありがとうございました（2人以上店内联机并取得胜利）
+    [金]ボコボコに煽ろうと思います（2人以上店内联机从MASTER难度到BASIC难度评分达到SSS并取得胜利）
+アンヘル
+    [铜]照らせ照らせ 晒せ晒せ 壊せ壊せ（EXPERT难度评分达到SS）
+こちら、幸福安心委員会です。
+    [银]幸福なのは義務なんです（MASTER难度及以下进行游玩）
+アンクローズ・ヒューマン
+    [铜]敬愛。（EXPERT难度评分达到S）
+ベノム
+    [银]めっ！（2人以上店内联机1MISS）
+命に嫌われている
+    [一般]ノーツに嫌われている。（任意难度游玩中1MISS）
+グリーンライツ・セレナーデ
+    [白金]虹色に輝く マジカルミライへと！（MASTER难度及以下达成ALL JUSTICE）
+ブレス・ユア・ブレス
+    [银]生まれてしまったあなたへ（EXPERT难度达成FULL COMBO）
+絶対にチョコミントを食べるアオイチャン
+    [银]チョコミントアイスエイヤッ↑(/>_<)/（2人以上店内联机达成FULL CHAIN）
+結んで開いて羅刹と骸
+    [银]他人の不幸は知らんぷり（2人以上店内联机并取得胜利）
+ダブルラリアット
+    [白金]チャーハン作るよ！（MASTER难度达成ALL JUSTICE）
+magnet
+    [银]ネギトロ（2人以上店内联机达成FULL CHAIN）
+幾望の月
+    [一般]ノリづらいから4拍子に戻して（任意难度达成FULL COMBO）
+アカリがやってきたぞっ
+    [铜]ｶﾞﾀﾝｺﾞﾄﾝ　ｶﾞﾀﾝｺﾞﾄﾝ　ｶﾞﾀﾝｺﾞﾄﾝ　ｶﾞﾀﾝｺﾞﾄﾝﾄﾝ（EXPERT难度评分达到S）
+おねがいダーリン
+    [一般]一生のお願い（1局内全部游玩同一首乐曲）
+リンカーネイション
+    [白金]少年は完全を拒んだ（MASTER难度达成ALL JUSTICE）
+太陽系デスコ
+    [银]ナーナナナーナナナーナナナーナ（游玩7回该乐曲）
+ナンセンス文学
+    [铜]ﾗｯﾀｯﾀ（EXPERT难度评分达到S）
+ロスタイムメモリー
+    [铜]また今日も、君が好きだった（EXPERT难度评分达到S）
+テオ
+    [白金]手を！（MASTER难度及以下达成ALL JUSTICE）
+ハイセンスナンセンス
+    [铜]ハイ。（EXPERT难度评分达到S）
+デンパラダイム
+    [银]【処理速度が追いついていません】（MASTER难度游玩1MISS）
+METEOR
+    [铜]ミ　ー　テ　ィ　ア　ふ　り　か　け（EXPERT难度评分达到SS）
+メルト
+    [铜]初音ミク　が　オリジナル曲を歌ってくれたよ（EXPERT难度评分达到S）
+カゲロウデイズ
+    [铜]だから夏は嫌いなんだ（EXPERT难度评分达到S）
+Seyana. ～何でも言うことを聞いてくれるアカネチャン～
+    [银]あ　ほ　く　さ（2人以上1MISS）
+    [白金]せやな（MASTER难度及以下达成ALL JUSTICE）
+    [银]わかる（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+はやくそれになりたい！
+    [铜]あいわなびー！（EXPERT难度评分达到SS）
+ちがう!!!
+    [银]無論エゴサは全力で行った（EXPERT难度评分达到SSS）
+フリィダム ロリィタ
+    [银]積み上げた嘘はどんな味？（2人以上店内联机1MISS）
+DAYBREAK FRONTLINE
+    [金]おはようございます。（EXPERT难度达成ALL JUSTICE）
+バレリーコ
+    [银]うわばきでシャル・ウィ・ダンス（游玩9回该乐曲）
+ゴーストルール
+    [一般]（＾ω＾）おーお↓ーお↑ーお↓ーお↑ーお↓ーお↑ーお↓ーぉおー（2人以上店内联机达成FULL CHAIN）
+StargazeR
+    [一般]ねぎだけでじゅうぶんですよ（BASIC难度达成FULL CHAIN）
+頓珍漢の宴
+    [银]この玉子焼きは注文してねえ（3人店内联机1MISS）
+ダンスロボットダンス
+    [银]あなたに共鳴して止まないの！（2人以上店内联机达成FULL CHAIN）
+レトロマニア狂想曲
+    [一般]ノーミスって欲張り過ぎじゃない（任意难度达成FULL COMBO）
+アンノウン・マザーグース
+    [金]あなたには僕が見えるか？（MASTER难度评分达到SSS）
+フラジール
+    [银]自転車で天国に行こう。（EXPERT难度达成FULL COMBO）
+Absolunote
+    [银]何にも穢される事のない、絶対的な音（MASTER难度评分达到S）
+木彫り鯰と右肩ゾンビ
+    [银]反省も後悔もしていません。えぇ微塵ほども。（2人以上店内联机1MISS）
+WAVE
+    [金]はぁーん…（EXPERT难度达成ALL JUSTICE）
+Just Be Friends
+    [一般]声を枯らして叫んだ（MASTER难度游玩1MISS）
+炉心融解
+    [银]ピャーーーーーーーーー！！（2人以上店内联机达成FULL CHAIN）
+Change me
+    [一般]ヴェヴェヴェヴェヴェヴェドゥーンドゥーン（触发即死技能）
+Palette
+    [一般]「愛してる」を溶かした青（任意难度达成ALL JUSTICE）
+    [一般]「ありがとう」を浮かべた赤（2人以上店内联机达成FULL CHAIN）
+パーフェクト生命
+    [银]┏( ◎_◎)┏ ┓(◎_◎ )┓（EXPERT难度2人以上店内联机达成FULL CHAIN）
+のぼれ！すすめ！高い塔
+    [一般]無限ループって怖くね?（1局内全部游玩同一首乐曲）
+アンハッピーリフレイン
+    [铜]ワンマンライブ大成功！（任意难度达成ALL JUSTICE）
+チュルリラ・チュルリラ・ダッダッダ！
+    [铜]先生に言ってやろ（任意难度评分达到S）
+だんだん早くなる
+    [银]マイペースでいいんだって（MASTER难度及以下进行游玩）
+    [白金]別に早くならない（1速MASTER难度评分达到SSS）
+ECHO
+    [铜]:-)（EXPERT难度评分达到S）
+    [铜]WHY CAN'T I SEE???（索尼克速任意难度评分达到S）
+エイリアンエイリアン
+    [铜]高鳴る気持ちが抑えられない！（任意难度达成ALL JUSTICE）
+桜ノ雨
+    [白金]僕らが巡り逢えた奇跡（4人店内联机MASTER难度达成FULL CHAIN）
+いーあるふぁんくらぶ
+    [银]うぉーあいにー（2人以上店内联机达成FULL CHAIN）
+神曲
+    [金]神（59歳）（游玩59回该乐曲）
+愛言葉
+    [银]みんなにありがとうって言いたかった！！！！！！（2人以上店内联机达成FULL CHAIN）
+鬼KYOKAN
+    [银]天上天下我等独尊！（2人以上店内联机达成FULL CHAIN）
+幸せになれる隠しコマンドがあるらしい
+    [白金]↑↑↓↓←→←→BA（MASTER难度及以下达成ALL JUSTICE）
+アカツキアライヴァル
+    [银]キミの代役は、他の誰にもできはしないから─（2人店内联机达成FULL CHAIN）
+ラクガキスト
+    [铜]予定調和の厨二病（EXPERT难度评分达到S）
+リモコン
+    [铜]L R L R STOP & Dash & UP & TALK B B A B S(tart)（EXPERT难度评分达到S）
+深海少女
+    [银]祝福のマリンスノー（2人以上店内联机达成FULL CHAIN）
+    [银]悲しみの海に沈んだ私（2人以上店内联机1MISS）
+初音ミクの消失
+    [一般]---深刻なエラーが発生しました---（触发即死技能）
+Hand in Hand
+    [银]ずっと　ずっと　ミライまで（2人以上店内联机达成FULL CHAIN）
+ウミユリ海底譚
+    [一般]僕のMISSを笑わないで（任意难度游玩中1MISS）
+天樂
+    [银]ドッカァズッシャアバリィーン（MASTER难度及以下进行游玩）
+カミサマネジマキ
+    [白金]少年は無垢すぎた（MASTER难度达成ALL JUSTICE）
+如月アテンション
+    [银]阿吽（2人店内联机达成FULL CHAIN）
+恋愛裁判
+    [一般]僕は「有罪（ギルティ）」（触发即死技能）
+    [银]君も「有罪（ギルティ）」（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+このふざけた素晴らしき世界は、僕の為にある
+    [银]やんややんややーいーやー（EXPERT难度评分达到SS）
+星屑ユートピア
+    [白金]夜空に描いた非現実（4人店内联机MASTER难度达成FULL CHAIN）
+六兆年と一夜物語
+    [白金]少年は人になりたかった（ULTIMA难度评分达到SSS）
+腐れ外道とチョコレゐト
+    [金]腐れ外道（2人以上店内联机从BASIC难度到MASTER难度评分达到SSS并取得胜利）
+M.S.S.Planet
+    [银]最強プラネット ラグナロク（2人店内联机达成FULL CHAIN）
+    [银]極限プラネット エクリプス（3人店内联机达成FULL CHAIN）
+    [银]終焉プラネット ビックバン（4人店内联机达成FULL CHAIN）
+    [白金]MSプラネット カオスアンサー（4人店内联机MASTER难度达成FULL CHAIN）
+
+
+東方Project
+回転 feat.あやぽんず＊
+    [银]妖術を扱う程度の能力（MASTER难度及以下进行游玩）
+SOUL 2 DIVIDE
+    [银]剣術を扱う程度の能力（MASTER难度及以下进行游玩）
+Cinderella Story［BlackY Remix］
+    [银]主に死を扱う程度の能力（MASTER难度及以下进行游玩）
+妖々跋扈　～ Who done it!!!
+    [银]式神を扱う程度の能力（MASTER难度及以下进行游玩）
+宵闇の月に抱かれて
+    [银]境界を扱う程度の能力（MASTER难度及以下进行游玩）
+ふぃーばー
+    [银]美しき緋の衣（MASTER难度及以下进行游玩）
+Earthquake Super Shock
+    [银]非想非非想天の娘（MASTER难度及以下进行游玩）
+はたてのバッコイ殺人事件
+    [银]今どきの念写記者（MASTER难度及以下进行游玩）
+    [银]事件なう（2人以上店内联机1MISS）
+ポーカーフェイス
+    [银]表情豊かなポーカーフェイス（MASTER难度及以下进行游玩）
+Energy Booster ～ 上海紅茶館
+    [银]気を使う程度の能力（MASTER难度及以下进行游玩）
+7 days a week
+    [银]火＋水＋木＋金＋土＋日＋月を操る程度の能力（MASTER难度及以下进行游玩）
+メイドと血の懐中時計
+    [银]時間を操る程度の能力（MASTER难度及以下进行游玩）
+ARROW RAIN feat. Ayame
+    [银]運命を操る程度の能力（MASTER难度及以下进行游玩）
+悪戯センセーション
+    [银]ありとあらゆるものを破壊する程度の能力（MASTER难度及以下进行游玩）
+Sweet Requiem
+    [银]主に空を飛ぶ程度の能力（MASTER难度及以下进行游玩）
+レータイスパークEx
+    [银]魔法を使う程度の能力（MASTER难度及以下进行游玩）
+Pump!n
+    [银]守り守られし大輪（MASTER难度及以下进行游玩）
+Endless Seeker
+    [银]水難事故の念縛霊（MASTER难度及以下进行游玩）
+STRIPES feat. EL.J (2018 reinterpretation)
+    [银]毘沙門天の弟子（MASTER难度及以下进行游玩）
+Cosmic Magic Shooter
+    [银]封印された大魔法使い（MASTER难度及以下进行游玩）
+神楽
+    [银]未確認幻想飛行少女（MASTER难度及以下进行游玩）
+最終鬼畜妹フランドール・S
+    [一般]秘弾「そして誰もいなくなるか?」（触发即死技能）
+    [银]禁忌「フォーオブアカインド」（4人店内联机达成FULL CHAIN）
+お嫁にしなさいっ！
+    [铜]ソワソワしちゃう～（EXPERT难度评分达到SS）
+    [银]ぜったいミスらないんだから～（3人店内联机1MISS）
+待チ人ハ来ズ。
+    [银]それがこのざまである。（2人以上店内联机1MISS）
+    [白金]やったね。凄いね。（MASTER难度达成ALL JUSTICE）
+あうんどばいみー
+    [银]神仏に心酔する守護神獣（MASTER难度及以下进行游玩）
+White Traveling Girl
+    [银]森で垂迹した魔法地蔵（MASTER难度及以下进行游玩）
+【東方ニコカラ】秘神マターラ feat.魂音泉【IOSYS】
+    [银]究極の絶対秘神（MASTER难度及以下进行游玩）
+    [银]ARMさん!!!(歓喜)（2人以上店内联机达成第1名）
+ウサテイ
+    [一般]ふ、ふふｗｗ俺自重ｗｗｗ（任意难度达成ALL JUSTICE）
+    [银]俺、自重しろｗｗｗｗｗｗ（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+地獄の端にて君を待つ
+    [银]語られる怪力乱神（MASTER难度及以下进行游玩）
+聖少女サクリファイス
+    [银]怨霊も恐れ怯む少女（MASTER难度及以下进行游玩）
+究極焼肉レストラン！お燐の地獄亭！
+    [银]地獄の輪禍（MASTER难度及以下进行游玩）
+    [银]フュージョンしましょ？（2人以上店内联机达成FULL CHAIN）
+WARNING!
+    [银]熱かい悩む神の火（MASTER难度及以下进行游玩）
+Paranoia
+    [银]閉じた恋の瞳（MASTER难度及以下进行游玩）
+Grip & Break down !!
+    [银]きゅっとしてドカーン（EXPERT难度评分达到SSS）
+つるぺったん
+    [金]かなりまな板だよコレ！（EXPERT难度达成ALL JUSTICE）
+    [白金]オマエは全然まな板のスゴさを分かってない（MASTER难度达成ALL JUSTICE）
+Scream out! -CHUNITHM Tuning-
+    [金]えーっ！今来たばっかり！！（MASTER难度及以下评分达到SSS）
+Floating Darkness
+    [银]チュウニのTatsh曲でSとった - III -（MASTER难度评分达到S）
+星色夜空
+    [银]七色の人形遣い（MASTER难度及以下进行游玩）
+物凄い勢いでけーねが物凄いうた
+    [银]知識と歴史の半獣（MASTER难度及以下进行游玩）
+    [白金]らめええ！邪気眼出ちゃいまひゅううう！！（索尼克速MASTER难度达成ALL JUSTICE）
+きゅうりバーにダイブ
+    [银]超妖怪弾頭（MASTER难度及以下进行游玩）
+Melody！
+    [一般]元気が出ないときは一緒にやろう（2人以上店内联机游玩该乐曲）
+    [银]ほら うまくできたでしょ？ それが君のリズム（2人以上店内联机达成FULL CHAIN）
+天狗の落とし文 feat. ｙｔｒ
+    [银]伝統の幻想ブン屋（MASTER难度及以下进行游玩）
+風に乗せた願い
+    [银]祀られる風の人間（MASTER难度及以下进行游玩）
+Last Moments
+    [银]山坂と湖の権化（MASTER难度及以下进行游玩）
+ケロ⑨destiny
+    [银]Nice boat.（2人以上店内联机1MISS）
+    [银]土着神の頂点（MASTER难度及以下进行游玩）
+チルノのパーフェクトさんすう教室　⑨周年バージョン
+    [银]湖上の妖精（MASTER难度及以下进行游玩）
+華鳥風月
+    [一般]白黒はっきりつける程度の能力（2人店内联机游玩该乐曲）
+Calamity Fortune
+    [银](*｀・▽・´*)（MASTER难度评分达到S）
+taboo tears you up
+    [金]三倍アイスクリーム（3人店内联机MASTER难度达成FULL CHAIN）
+キュアリアス光吉古牌　－祭－
+    [银]そんなことより麻雀やろうぜ！（4人店内联机游玩该乐曲）
+Help me, ERINNNNNN!! -Cranky remix-
+    [银]( ﾟ∀ﾟ)o彡゜くらんきー！くらんきー！（EXPERT难度达成FULL COMBO）
+仙酌絶唱のファンタジア
+    [银]～つなぐ・つながる東方！解禁！！～（MASTER难度及以下进行游玩）
+幽闇に目醒めしは
+    [银]四季のフラワーマスター（MASTER难度及以下进行游玩）
+No Routine
+    [银]月の頭脳（MASTER难度及以下进行游玩）
+Imperishable Night 2006 (2016 Refine)
+    [金]for D+（MASTER难度评分达到SSS）
+月に叢雲華に風
+    [白金]このゲームでは常識に囚われてはいけないのですね！（1速MASTER难度评分达到SSS）
+幻想のサテライト
+    [银]秘厨倶楽部（2人以上店内联机达成FULL CHAIN）
+橙の幻想郷音頭
+    [银]凶兆の黒猫（MASTER难度及以下进行游玩）
+    [银]ちぇえええええええええええええええええん（MASTER难度评分达到S）
+東方妖々夢 ～the maximum moving about～
+    [银]半人半霊の庭師（MASTER难度及以下进行游玩）
+蒼空に舞え、墨染の桜
+    [银]幽冥楼閣の亡霊少女（MASTER难度及以下进行游玩）
+少女幻葬戦慄曲 ～ Necro Fantasia
+    [一般]胡散臭いSLIDE、信用できないAIR、非常識なTAP。（任意难度游玩中1MISS）
+    [银]策士の九尾（MASTER难度及以下进行游玩）
+エピクロスの虹はもう見えない
+    [银]色鮮やかに虹色な門番（MASTER难度及以下进行游玩）
+Yet Another "drizzly rain"
+    [银]動かない大図書館（MASTER难度及以下进行游玩）
+四次元跳躍機関
+    [银]完全で瀟洒な従者（MASTER难度及以下进行游玩）
+緋色のDance
+    [银]永遠の紅い幼き月（MASTER难度及以下进行游玩）
+最終鬼畜妹・一部声
+    [银]恐ろしい波動（MASTER难度及以下进行游玩）
+Dreaming
+    [银]楽園の素敵な巫女（MASTER难度及以下进行游玩）
+Unlimited Spark！
+    [银]普通の魔法使い（MASTER难度及以下进行游玩）
+
+
+VARIETY
+FLOWER
+    [一般]全機種制覇（游玩该乐曲）
+    [银]咲かせましょう（2人以上店内联机达成FULL CHAIN）
+    [银]バッカお前……俺がついてるだろ！（2人以上店内联机1MISS）
+    [白金]APPEND FESTIVAL（ULTIMA难度评分达到SSS）
+ちくわパフェだよ☆CKP
+    [银]ちくわのおかげだねっ！（2人以上店内联机达成FULL CHAIN）
+    [银]大丈夫だよ！絶対、大丈夫だよっ！（2人以上店内联机1MISS）
+    [白金]ち　く　わ（MASTER难度达成ALL JUSTICE）
+    [白金]すごいめう！（ULTIMA难度评分达到SSS）
+Elemental Creation
+    [一般]俺達と出会えたってことは君も時を越えれるんだね…（游玩该乐曲）
+    [银]ズッ友（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+    [银]エレクリだーーー (チャーーラーラーrーtrwrgwウィmrgtzbダツツダツツダツツダツツダツダツデツツデツツ（2人以上店内联机达成FULL CHAIN）
+    [白金]時の超越者（ULTIMA难度评分达到SSS）
+アルストロメリア
+    [银]UFOを呼ぶ。（2人以上店内联机达成FULL CHAIN）
+    [银]未来への憧れ（MASTER难度及以下进行游玩）
+    [金]幸福な日々（MASTER难度及以下达成FULL COMBO）
+    [白金]ちょっぴりさみしいけど笑顔でサヨナラ！（ULTIMA难度评分达到SSS）
+凛として咲く花の如く
+    [铜]やっ！（EXPERT难度评分达到S）
+    [白金]撫子ロック（ULTIMA难度评分达到SSS）
+Evans
+    [铜]-prototype-（BASIC难度达成ALL JUSTICE）
+    [白金]with DJ YOSHITAKA（ULTIMA难度评分达到SSS）
+ピアノ協奏曲第１番”蠍火”
+    [铜]赫に、染まりな。（EXPERT难度评分达到SS）
+    [金]美しく、儚く散りな。（MASTER难度评分达到SSS）
+ミュージック・リボルバー
+    [银]ミュージックガンガン！2の世阿弥曲でSとった（MASTER难度评分达到S）
+DX超性能フルメタル少女
+    [一般]ズンドコ ズンドコ ズンドコ ズンドコ（1局内全部游玩同一首乐曲）
+DAZZLING♡SEASON
+    [银]1500spt（MASTER难度游玩1MISS）
+    [金]きらり　木漏れ日の色に染まる頃（MASTER难度达成FULL COMBO）
+Satellite System ft.Diana Chiaki
+    [银]はるか昔、GMという小さな星にダイアナという女王がいた。（4人店内联机达成FULL CHAIN）
+JET
+    [白金]1回100円（ULTIMA难度评分达到SSS）
+XL TECHNO -More Dance Remix-
+    [银]ゲロッパZ（EXPERT难度达成FULL COMBO）
+Finite
+    [银]Tone Sphere勢（MASTER难度评分达到S）
+    [金]キラートマト（MASTER难度评分达到SSS）
+Fracture Ray
+    [金]静寂。（MASTER难度达成FULL COMBO）
+Axium Crisis
+    [金]彼女は知らなかったが、彼女には名前があった。（MASTER难度达成FULL COMBO）
+Grievous Lady
+    [金]時は流れた。彼女は変わった。（MASTER难度达成FULL COMBO）
+Super Lovely (Heavenly Remix)
+    [一般]U NEED MORE PRACTICE（触发即死技能）
+    [铜]美しい餃子ラーメン（EXPERT难度评分达到S）
+Ladymade Star
+    [银]Tweedy Mode（2人店内联机达成FULL CHAIN）
+Memory of Beach
+    [铜]塩！DJMIX！母（EXPERT难度评分达到S）
+SON OF SUN
+    [金]Customizer（MASTER难度评分达到SSS）
+SINister Evolution
+    [金]Sledgehammer（MASTER难度评分达到SSS）
+A Site De La Rue
+    [银]ENDLESS CIRCULATION（MASTER难度评分达到S）
+]-[｜/34<#!
+    [银]それ無くね？（2人以上店内联机1MISS）
+    [金]いよいよもって死ぬがよい。そしてさようなら。（MASTER难度评分达到SS）
+MEGALOVANIA
+    [银]Should be burning in hell（2人店内联机并取得胜利）
+    [金]もっとも ラクなてき（2人店内联机从BASIC难度到MASTER难度评分达到SSS并取得胜利）
+Brain Power
+    [白金]O-oooooooooo AAAAE-A-A-I-A-U- JO-oooooooooooo（MASTER难度及以下达成ALL JUSTICE）
+Sound Chimera
+    [金]ナーナナナーｗｗナーナナナーｗｗナーナーナーｗｗ（2人以上店内联机MASTER难度达成FULL CHAIN）
+Blackmagik Blazing
+    [白金]黒く染まれ。（索尼克速MASTER难度评分达到SSS）
+BATTLE NO.1
+    [银]TANO*C Sound Team（4人店内联机达成FULL CHAIN）
+BLUE ZONE
+    [铜]to the NEXT STAGE!!（EXPERT难度评分达到S）
+    [银]青ぞぬ（MASTER难度评分达到SS）
+B.B.K.K.B.K.K.
+    [白金]Let the bass kick（ULTIMA难度评分达到SSS）
+FREEDOM DiVE
+    [银]BPM222.22（MASTER难度评分达到S）
+    [白金]FOUR DIMENSIONS（MASTER难度及以下达成ALL JUSTICE）
+Lapis
+    [银]静かなる蒼き星（2人以上店内联机达成FULL CHAIN）
+SAMBISTA
+    [金]右下（MASTER难度评分达到SS）
+    [银]右下が気になる（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+STAGER
+    [金]ALL STAGE CLEAR（MASTER难度及以下评分达到SS）
+★LittlE HearTs★
+    [白金]リトハGOD（MASTER难度达成ALL JUSTICE）
+GOODTEK
+    [银]カニ食べたい・・・・食べたくない？？？（2人以上店内联机游玩该乐曲）
+    [金]YOOOOOOOOOOOOOO（MASTER难度评分达到SSS）
+Name of oath
+    [金]（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（ ⌒_ゝ⌒）（MASTER难度评分达到SS）
+Bird Sprite
+    [一般]セップクハラキリ（任意难度游玩中1MISS）
+Dengeki Tube
+    [白金]100万ボルト（MASTER难度及以下达成ALL JUSTICE）
+ETERNAL DRAIN
+    [白金]音ゲー戦士シグナリオン（MASTER难度达成ALL JUSTICE）
+G e n g a o z o
+    [白金]ゲンガオfoon（MASTER难度达成ALL JUSTICE）
+Doppelganger
+    [金]自分はいつでも自分の味方。本当に？（MASTER难度评分达到SS）
+volcanic
+    [白金]大噴火（MASTER难度及以下达成ALL JUSTICE）
+Nhelv
+    [银]視えていますか（1速任意难度进行游玩）
+PUPA
+    [银]だから、どうか私を虐めないでください。（2人以上店内联机1MISS）
+    [金]モ　リ　モ　リ　あ　つ　し（MASTER难度评分达到SSS）
+Parousia
+    [金]APOCALYPSIS JOHANNIS（MASTER难度评分达到SSS）
+Papyrus
+    [金]宇宙 日本 中板橋（MASTER难度评分达到SSS）
+End Time
+    [白金]賢者タイム（MASTER难度及以下达成ALL JUSTICE）
+    [银]ふぅ…（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+ZEUS
+    [金]開けてはいけない箱、差し上げます。（MASTER难度评分达到SS）
+Destr0yer
+    [金]★==============Σ(゜д゜；)（MASTER难度评分达到SSS）
+Black Lotus
+    [金]ノリと勢い（MASTER难度评分达到SSS）
+AXION
+    [金]Magic Mash Man（MASTER难度评分达到SSS）
+音弾超人ゴリライザー
+    [一般]苦手な譜面はただのトリル（触发即死技能）
+MARENOL
+    [铜]おやすみなさい。（2人店内联机触发即死技能）
+小悪魔の遊園地
+    [银]TEAM：光吉猛修（3人店内联机达成FULL CHAIN）
+Love ＆ Justice
+    [白金]ぴゅーるふっふーん(?)（MASTER难度及以下达成ALL JUSTICE）
+花たちに希望を
+    [银]陽になろう 雨になろう 生命満ちる空を見せよう（EXPERT难度评分达到SSS）
+Tuk Tuk Boshi
+    [白金]-LAST BOSS-（MASTER难度及以下达成ALL JUSTICE）
+檄！帝国華撃団
+    [一般]い、いかん……体が勝手に…（任意难度游玩中1MISS）
+    [铜]太正櫻に浪漫の嵐（EXPERT难度评分达到S）
+In The Blue Sky ’01
+    [铜]GET READY（EXPERT难度评分达到S）
+Dreams Dreams：Kids Ver.
+    [一般]Night Over（触发即死技能）
+    [银]アディーマ!（MASTER难度及以下进行游玩）
+Through The Tower
+    [银]しょうがないにゃぁ……（2人以上店内联机达成FULL CHAIN）
+    [银]サーバーとの接続がキャンセルされました。（2人以上店内联机1MISS）
+    [银]ドッフルギャンガﾌﾌﾌﾌﾌﾌﾌﾌ（MASTER难度及以下进行游玩）
+    [白金]阿　修　羅　覇　凰　拳（MASTER难度及以下达成ALL JUSTICE）
+レッツゴー!陰陽師
+    [银]うううううううううううううううううう（MASTER难度及以下进行游玩）
+    [银]どーまんせーまん（2人以上店内联机达成FULL CHAIN）
+    [银]くよくよするな！（2人以上店内联机1MISS）
+Burning Hearts ～炎のANGEL～
+    [一般]Sight of night I cheer to embrace a magic（2人以上店内联机游玩该乐曲）
+Candyland Symphony
+    [金]『童話』は全て『戦記』だった――（MASTER难度评分达到SSS）
+オモイヨシノ
+    [银]永遠に咲き誇れ（EXPERT难度评分达到SSS）
+ぷよぷよのうた ピコピコミックス
+    [一般]ばたんきゅ～（触发即死技能）
+    [白金]ばよえ～ん（MASTER难度及以下达成ALL JUSTICE）
+
+
+イロドリミドリ
+Change Our MIRAI！ (Our 7 Lights)
+    [一般]イロドリミドリ最高!!!!!!!（1局内全部游玩同一首乐曲）
+Black'n White JAMMIN' CATS
+    [银]やらかしろな（2人以上店内联机1MISS）
+Help me，あーりん！
+    [铜]( ﾟ∀ﾟ)o彡゜あーりん！あーりん！（任意难度达成FULL COMBO）
+一世嬉遊曲‐ディヴェルティメント‐
+    [银]お姉ちゃんゾーン（MASTER难度及以下进行游玩）
+あねぺったん
+    [银]幼女幼女　つるぺた幼女！（2人以上店内联机达成FULL CHAIN）
+ＧＯ！ＧＯ！ラブリズム♥ ～あーりん書類審査通過記念Ver.～
+    [银]あーりん日本の人だけど　本名カタカナアリシアナ　髪の毛金色フリル増し　校則緩いぞ舞ヶ原！　ア・リ・シ・ア・ナ～～！（4人店内联机游玩该乐曲）
+夢と夢～あの日のメロディ～
+    [铜]IN THE NIGHTS DREAM DELIGHT（EXPERT难度评分达到S）
+ここで一席！　Oshama Scramble!
+    [银]なずなちゃんはいいぞ（MASTER难度及以下进行游玩）
+The wheel to the Night ～インド人が夢に!?～
+    [银]箱部なるについて語るスレ（MASTER难度及以下进行游玩）
+    [银]芹菜のカレーは世界一！（2人以上店内联机EXPERT难度达成FULL CHAIN）
+光線チューニング～なずな妄想海フェスイメージトレーニングVer.～
+    [银]チュッチュチュルチュル！（EXPERT难度评分达到SSS）
+燃えてもエンジョイ！宛城、炎上！！
+    [银]ハチャメチャ怖ちゃんなぎ（MASTER难度及以下进行游玩）
+SUPER RESULT BEAT vol.1
+    [银]コンティニューする？（任意难度游玩中1MISS）
+CAT’S EYE
+    [白金]シンセ研はきらめく（MASTER难度及以下达成ALL JUSTICE）
+
+
+
+
+ゲキマイ
+
+Garakuta Doll Play
+    [银]オーマイガー（MASTER难度评分达到S）
+Like the Wind［Reborn］
+    [银]風が好き（MASTER难度评分达到S）
+VERTeX
+    [金]師匠（MASTER难度评分达到SSS）
+L'épilogue
+    [一般]昨日の喧嘩ごめんね（2人店内联机游玩该乐曲）
+Hyper Active
+    [金]ハイテックニンジャ（MASTER难度评分达到SSS）
+Caliburne ～Story of the Legendary sword～
+    [金]（MASTER难度评分达到SSS）
+larva
+    [金]ガ　リ　ガ　リ　さ　む　し（MASTER难度评分达到SSS）
+CYCLES
+    [一般]いつもより余計に回しております（1局内全部游玩同一首乐曲）
+高気圧ねこロック
+    [银]隊長（EXPERT难度评分达到SSS）
+    [银]親分（EXPERT难度达成FULL COMBO）
+FEEL the BEATS
+    [银]ネコDJ（EXPERT难度评分达到SSS）
+夢花火
+    [一般]同じ阿呆なら回さにゃ損々（2人以上店内联机游玩该乐曲）
+Excalibur ～Revived resolution～
+    [金]エクス肩バーン（MASTER难度评分达到SSS）
+Alea jacta est!
+    [金]賽は投げられた（MASTER难度评分达到SSS）
+福宿音屋魂音泉
+    [银]ハラキリ テンプラ フジヤマ ゲイシャ スキヤキ サムライ スシ タマオンセン（EXPERT难度评分达到SSS）
+天火明命
+    [白金]天照国照彦天火明櫛玉饒速日尊（MASTER难度及以下达成ALL JUSTICE）
+花と、雪と、ドラムンベース。
+    [铜]冬の窓辺に、花一輪（任意难度达成FULL COMBO）
+    [银]ﾇｸﾇｸﾓﾘﾓﾘﾇｸﾇｸﾓﾘﾓﾘﾇｸﾇｸﾓﾘﾓﾘﾇｸﾇｸﾓﾘﾓﾘ（自己戴上上述称号并同相同称号的玩家进行店内联机，不限制乐曲游玩）
+最強 the サマータイム!!!!!
+    [一般]ずっと、夏！（1局内全部游玩同一首乐曲）
+タテマエと本心の大乱闘
+    [银]つぶあん派（2人店内联机并取得胜利）
+    [一般]じゃーん（触发即死技能）
+Don’t Fight The Music
+    [一般]負のオンゲキ（触发即死技能）
+脳天直撃
+    [一般]ちょっとは頑張るか～（触发即死技能）
+
+
+
+ORIGINAL
+GEMINI -C-
+    [银]チュウニのTatsh曲でSとった（MASTER难度评分达到S）
+Contrapasso -inferno-
+    [银]神曲 -彼岸の詩人-（MASTER难度评分达到S）
+Xevel
+    [银]チュウニのTatsh曲でSとった - II -（MASTER难度评分达到S）
+otorii INNOVATED -［i］3-
+    [银]4月1日でございます（游玩4回该乐曲）
+Jörqer
+    [白金]owl＊JUSTICE（MASTER难度及以下达成ALL JUSTICE）
+Theme of SeelischTact
+    [白金]古代兵器『ゼーレタクト』（ULTIMA难度评分达到SSS）
+Infantoon Fantasy
+    [白金]メタヴァースの最期の住人（ULTIMA难度评分达到SSS）
+We Gonna Journey
+    [白金]破壊と構築（ULTIMA难度评分达到SSS）
+Oshama Scramble！ (Cranky Remix)
+    [银]Let's牛乳death!!!（MASTER难度评分达到S）
+
+
+複数ジャンル
+1.POPS&ANIME
+Our Fighting / Cosmic twinkle star / 終わりなき物語
+    [银]クーナの支え（以上3首曲目MASTER难度评分达到S）
+セハガガガンバッちゃう！！ /若い力 -SEGA HARD GIRLS MIX-
+    [银]東京・羽田の大鳥居（以上2首曲目2人店内联机达成FULL CHAIN）
+若い力 -SEGA HARD GIRLS MIX-/ジングルベル
+    [银]溢れる［H.］（自己戴上上述称号并同相同称号的玩家进行店内联机并游玩『若い力 -SEGA HARD GIRLS MIX-』）
+2.niconico
+チルドレンレコード / 夜咄ディセイブ
+    [一般]メカクシ団（游玩以上2首乐曲）
+    [铜]メカクシ完了（以上2首乐曲EXPERT难度评分达到S）
+3.東方Project
+ゴールドビジョン / トランスダンスアナーキー
+    [银]危険すぎるバックダンサーズ（以上2首乐曲游玩MASTER及以下难度）
+4.VARIETY
+Elemental Creation / アルストロメリア
+    [铜]学園卒業（游玩以上2首乐曲）
+Elemental Creation / FLOWER / Evans
+    [银]朱雀（以上3首乐曲EXPERT难度评分达到SSS）
+Blue Noise / JET
+    [金]パカラー（以上2首乐曲EXPERT难度达成ALL JUSTICE）
+XL TECHNO / PRIVATE SERVICE
+    [金]パカリスト（以上2首乐曲EXPERT难度达成ALL JUSTICE）
+Ladymade Star / Memory of Beach / SON OF SUN / BlythE
+    [白金]RESPECT You（以上4首乐曲MASTER难度达成ALL JUSTICE）
+檄！帝国華撃団 / 檄！帝国華撃団＜新章＞
+    [铜]我ら新たなる帝国華撃団（以上2首乐曲EXPERT难度评分达到S）
+5.複数ジャンル
+からくりピエロ / 回転 feat.あやぽんず＊ / CYCLES
+    [白金]世界をかっ飛ばして三回転（以上3首乐曲MASTER难度达成ALL JUSTICE）
+KING / U ARE
+    [银]You are king（以上2首乐曲游玩MASTER及以下难度）
+Iudicium “Apocalypsis Mix” / Iudicium
+    [金]断罪の白い世界（以上2首乐曲MASTER难度评分达到SS）
+ロストワードクロニカル / 祈 -我ら神祖と共に歩む者なり-
+    [银]おいのり（以上2首乐曲游玩MASTER及以下难度）
+conflict / conflict(斉唱)
+    [白金]conflict歌います。ズォールヒ～～↑ｗｗｗｗヴィヤーンタースｗｗｗｗｗ（以上2首乐曲MASTER难度达成ALL JUSTICE）
+Help me, ERINNNNNN!!/ Help me, ERINNNNNN!! -Cranky remix- / Help me，あーりん！
+    [金]黄金の右腕（以上3首乐曲MASTER及以下难度评分达到SS） 作者：losffa https://www.bilibili.com/read/cv21199762?spm_id_from=333.999.0.0 出处：bilibili

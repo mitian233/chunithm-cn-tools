@@ -1,6 +1,8 @@
 <template>
 <v-card>
-  <v-card-title>单曲 OVER POWER 计算器
+  <v-card-title>单曲 OVER POWER 计算器</v-card-title>
+  <v-card-subtitle>若分数为 1010000 自动判定为 AJC（无需自行选择）</v-card-subtitle>
+  <v-container>
     <v-spacer/>
     <v-container class="pa-1">
       <v-text-field label="定数" v-model="ds_input" :rules="[
@@ -16,7 +18,7 @@
           <v-radio label="已完成" value="finished"></v-radio>
           <v-radio label="已达成 FULL COMBO" value="full_combo"></v-radio>
           <v-radio label="已达成 ALL JUSTICE" value="all_justice"></v-radio>
-          <v-radio label="已理论" value="all_justice_critical"></v-radio>
+          <v-radio label="已理论" value="all_justice_critical" readonly></v-radio>
         </v-radio-group>
         <v-row class="d-flex justify-center" style="margin-bottom: 10px">
           <v-col>
@@ -26,11 +28,11 @@
             <v-btn @click="clear" block>清空</v-btn>
           </v-col>
         </v-row>
-        <v-divider/>
+        <v-divider style="margin-bottom: 20px"/>
         <v-text-field label="结果" v-model="calc_result" readonly></v-text-field>
       </v-container>
     </v-container>
-  </v-card-title>
+  </v-container>
 </v-card>
 </template>
 
@@ -54,6 +56,9 @@ export default {
     },
     calculateOP() {
       let result = 0;
+      if (this.score_input == 1010000) {
+        this.combo_status = "all_justice_critical"
+      }
       switch (true) {
         case this.score_input >=1007500:
           result = (Number(this.ds_input)+2)*5+(this.score_input-1007500)*0.0015;

@@ -8,9 +8,9 @@
           <v-list-item-subtitle>Version</v-list-item-subtitle>
           <v-list>
             <v-list-item>
-              <v-list-item-title>0.1.1</v-list-item-title>
+              <v-list-item-title>0.1.3</v-list-item-title>
               <v-list-item-subtitle>更新日期：2023年3月11日</v-list-item-subtitle>
-              <p>剥离前端称号数据库，减少前端脚本体积。</p>
+              <p>添加称号分类方式。</p>
             </v-list-item>
           </v-list>
         </v-list-item>

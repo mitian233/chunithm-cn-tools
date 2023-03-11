@@ -26,7 +26,6 @@ export default {
         {text:"标题",value:"title"},
         {text:"颜色",value:"color"},
         {text:"获取条件",value:"obtain"},
-        {text:"类型",value:"type"},
       ],
     }
   },

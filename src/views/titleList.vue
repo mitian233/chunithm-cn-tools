@@ -11,7 +11,6 @@
 </template>
 
 <script>
-//import titleList from "../assets/titleList.js";
 import titleTable from "../components/titleTable.vue";
 import axios from "axios";
 import {markRaw} from "vue";

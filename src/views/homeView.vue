@@ -8,10 +8,11 @@
   </v-card>
 </template>
 <script>
+import { store } from "../store";
 export default {
   methods: {
     goToSong() {
-      this.$router.push('/song')
+      store.drawer = true
     }
   },
   name: 'HomeView',

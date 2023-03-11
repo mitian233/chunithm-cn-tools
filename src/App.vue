@@ -3,7 +3,7 @@
     <div v-if="ISDEV===true">
       <v-system-bar>DEV VERSION</v-system-bar>
     </div>
-    <v-navigation-drawer v-model="drawer" temporary app>
+    <v-navigation-drawer v-model="store.drawer" temporary app>
       <v-list-item>
         <v-list-item-title class="title grey--text text--darken-2">
           CHUNITHM CN Tools
@@ -15,14 +15,14 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" density="comfortable">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="store.drawer = !store.drawer" />
       <v-app-bar-title>{{$route.meta.title}} - CHUNITHM 国服工具箱</v-app-bar-title>
-      <v-btn icon="mdi-fishbowl" @click="jumpToProber()"/>
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
         </template>
         <v-list>
+          <v-list-item title="水鱼查分器" prepend-icon="mdi-fishbowl" @click="jumpToProber()"/>
           <v-list-item title="切换深色模式" prepend-icon="mdi-theme-light-dark" @click="this.toggleTheme()"/>
         </v-list>
       </v-menu>
@@ -46,8 +46,9 @@
 </template>
 
 <script>
-const ISDEV = false
+import { store } from "./store"
 import { useTheme } from 'vuetify'
+const ISDEV = false
 export default {
   setup() {
     const theme = useTheme()
@@ -60,6 +61,7 @@ export default {
   },
   data() {
     return {
+      store,
       ISDEV:ISDEV,
       drawer: false,
       nav_lists: [
@@ -103,9 +105,9 @@ export default {
     let matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
     matchMedia.addEventListener("change", () => {
       this.darkTheme = matchMedia.matches
-      this.toggleTheme(matchMedia.matches);
+      this.toggleTheme(matchMedia.matches)
     });
-    this.darkTheme = localStorage.darkTheme;
+    this.darkTheme = localStorage.darkTheme
   }
 }
 </script>

@@ -18,11 +18,11 @@
         <v-window v-model="listTab">
           <v-window-item value="music">
             <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找名称" single-line hide-details class="mb-4"/>
-            <title-table :search="searchKey" :title-list="listItemMusic" :loading="isLoading"/>
+            <title-table :search="searchKey" :title-list="listItemMusic" :loading="isLoading" :headers="headersMusic"/>
           </v-window-item>
           <v-window-item value="nonmusic">
             <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找名称" single-line hide-details class="mb-4"/>
-            <title-table :search="searchKey" :title-list="listItemNonMusic" :loading="isLoading"/>
+            <title-table :search="searchKey" :title-list="listItemNonMusic" :loading="isLoading" :headers="headersNonMusic"/>
           </v-window-item>
         </v-window>
       </v-card-text>
@@ -44,7 +44,18 @@ export default {
       searchKey: "",
       titleList: [],
       listItemMusic: [],
+      headersMusic: [
+        {text:"标题",value:"title"},
+        {text:"颜色",value:"color"},
+        {text:"关联乐曲",value:"music"},
+        {text:"获取条件",value:"obtain"},
+      ],
       listItemNonMusic: [],
+      headersNonMusic: [
+        {text:"标题",value:"title"},
+        {text:"颜色",value:"color"},
+        {text:"获取条件",value:"obtain"},
+      ],
       isLoading: true,
     }
   },
@@ -66,6 +77,7 @@ export default {
           title: this.titleList.music[j].title,
           color: this.titleList.music[j].color,
           obtain: this.titleList.music[j].obtain,
+          music: this.titleList.music[j].music,
         })
         idNumber++
       }

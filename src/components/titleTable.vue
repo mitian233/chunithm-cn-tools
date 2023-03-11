@@ -18,14 +18,10 @@ export default {
     search: String,
     titleList: Object,
     loading: Boolean,
+    headers: Array,
   },
   data: () => {
     return {
-      headers: [
-        {text:"标题",value:"title"},
-        {text:"颜色",value:"color"},
-        {text:"获取条件",value:"obtain"},
-      ],
     }
   },
   created() {

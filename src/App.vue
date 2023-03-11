@@ -16,8 +16,7 @@
     </v-navigation-drawer>
     <v-app-bar color="primary" density="comfortable">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-app-bar-title>CHUNITHM 国服工具箱 - {{$route.meta.title}}</v-app-bar-title>
-      <v-spacer/>
+      <v-app-bar-title>{{$route.meta.title}} - CHUNITHM 国服工具箱</v-app-bar-title>
       <v-btn icon="mdi-fishbowl" @click="jumpToProber()"/>
       <v-menu>
         <template v-slot:activator="{ props }">

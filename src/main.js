@@ -1,8 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css' //ここを追加する
+
+axios.defaults.withCredentials = false
 
 // Use Vuetify
 import 'vuetify/styles'
@@ -22,8 +25,9 @@ const vuetify = createVuetify({
     },
 })
 
-createApp(App)
-    .use(router)
+let app = createApp(App)
+app.config.globalProperties.$axios = axios
+app.use(router)
     .use(vuetify)
     .component('EasyDataTable', Vue3EasyDataTable)
     .mount('#app')

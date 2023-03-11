@@ -1,5 +1,15 @@
 <template>
-  <EasyDataTable :headers="headers" :items="items" :search-value="search"/>
+  <EasyDataTable :headers="headers" :items="titleList" :search-value="search" :loading="loading">
+    <template #loading>
+      <img
+          src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"
+          style="width: 100px; height: 80px;"
+      />
+    </template>
+    <template #empty-message>
+      <p>正在加载……</p>
+    </template>
+  </EasyDataTable>
 </template>
 
 <script>
@@ -7,6 +17,7 @@ export default {
   props: {
     search: String,
     titleList: Object,
+    loading: Boolean,
   },
   data: () => {
     return {
@@ -17,31 +28,9 @@ export default {
         {text:"获取条件",value:"obtain"},
         {text:"类型",value:"type"},
       ],
-      items: [],
     }
   },
   created() {
-    let idNumber = 1;
-    for (let j = 0; j < this.titleList.music.length; j++) {
-      this.items.push({
-        id: idNumber,
-        title: this.titleList.music[j].title,
-        color: this.titleList.music[j].color,
-        obtain: this.titleList.music[j].obtain,
-        type: "乐曲称号",
-      })
-      idNumber++
-    }
-    for (let i = 0; i < this.titleList.nonmusic.length; i++) {
-      this.items.push({
-        id: idNumber,
-        title: this.titleList.nonmusic[i].title,
-        color: this.titleList.nonmusic[i].color,
-        obtain: this.titleList.nonmusic[i].obtain,
-        type: "非乐曲称号",
-      })
-      idNumber++
-    }
   },
   name: "titleTable"
 }

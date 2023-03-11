@@ -1,6 +1,6 @@
 <template>
   <div>
-  <EasyDataTable :headers="headers" :items="items" :search-value="search">
+  <EasyDataTable :headers="headers" :items="items" :search-value="search" :loading="loading">
     <!--<template #item.title="{ item }">
       <v-tooltip top :disabled="!music_data_dict[item.mid]">
         <span v-if="music_data_dict[item.mid]">
@@ -30,6 +30,15 @@
         </span>
       </v-tooltip>
     </template>-->
+    <template #loading>
+        <img
+            src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"
+            style="width: 100px; height: 80px;"
+        />
+    </template>
+    <template #empty-message>
+      <p>正在加载……</p>
+    </template>
   </EasyDataTable>
   </div>
 </template>
@@ -51,9 +60,10 @@ export default {
         { text: '难度标签', value: 'level_label'},
         { text: '定数', value: 'ds' },
         { text: '谱面作者', value: 'charter'},
+        { text: 'BPM', value: 'bpm'},
         { text: 'MAX COMBO', value: 'combo'},
-        { text: '版本', value: 'from'},
         { text: '流派', value: 'genre'},
+        { text: '版本', value: 'from'},
       ],
     };
   },

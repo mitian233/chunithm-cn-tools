@@ -8,7 +8,7 @@
     <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找乐曲" single-line hide-details class="mb-4"/>
     <!--<pro-settings-chuni v-show="ProSettingChuni" ref="proSettingsChuni" :music_data="chuni_data" :music_data_dict="chuni_data_dict" />-->
     <v-card-text>
-      <chuni-table :search="searchKey" :items="chuniRecordDisplay" :music_data_dict="chuni_data_dict"/>
+      <chuni-table :search="searchKey" :items="chuniRecordDisplay" :music_data_dict="chuni_data_dict" :loading="isLoading"/>
     </v-card-text>
   </v-container>
 </v-card>
@@ -33,6 +33,7 @@ export default {
       chuni_data: [],
       chuni_data_dict: {},
       chuni_records: [],
+      isLoading: true,
     }
   },
   methods: {
@@ -40,13 +41,14 @@ export default {
       const that = this;
       axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")
           .then((resp) => {
-            that.chuni_data = markRaw(resp.data);
+            that.chuni_data = markRaw(resp.data)
             that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {
               acc[music.id] = music;
               return acc;
             }, {});
             that.setDefaultRecords()
           })
+      this.isLoading = false
     },
     setHeaders: function (headers) {
       this.headers = headers;
@@ -73,6 +75,7 @@ export default {
                 "genre": this.chuni_data_dict[m.id].basic_info.genre,
                 "charter": this.chuni_data_dict[m.id].charts[i].charter,
                 "combo": this.chuni_data_dict[m.id].charts[i].combo,
+                "bpm": this.chuni_data_dict[m.id].basic_info.bpm,
               }
           )
           rank++;

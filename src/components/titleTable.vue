@@ -22,7 +22,6 @@ export default {
   data: () => {
     return {
       headers: [
-        {text:"编号",value:"id"},
         {text:"标题",value:"title"},
         {text:"颜色",value:"color"},
         {text:"获取条件",value:"obtain"},

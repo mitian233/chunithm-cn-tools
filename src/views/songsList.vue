@@ -38,28 +38,28 @@ export default {
   },
   methods: {
     fetchMusicData: await function () {
-      const that = this;
+      const that = this
       axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")
           .then((resp) => {
             that.chuni_data = markRaw(resp.data)
             that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {
-              acc[music.id] = music;
-              return acc;
+              acc[music.id] = music
+              return acc
             }, {});
             that.setDefaultRecords()
           })
       this.isLoading = false
     },
     setHeaders: function (headers) {
-      this.headers = headers;
+      this.headers = headers
     },
     setDefaultRecords: function () {
       const currentCids = this.chuni_records.map(elem => {return elem.cid});
-      let rank = currentCids.length + 1;
+      let rank = currentCids.length + 1
       for (const m of this.chuni_data) {
         for (let i = 0; i < m.ds.length; i++) {
-          if (currentCids.indexOf(m.cids[i]) != -1) continue;
-          if (m.level[i] === "-") continue;
+          if (currentCids.indexOf(m.cids[i]) != -1) continue
+          if (m.level[i] === "-") continue
           this.chuni_records.push(
               {
                 "id": this.chuni_data_dict[m.id].id,
@@ -78,14 +78,14 @@ export default {
                 "bpm": this.chuni_data_dict[m.id].basic_info.bpm,
               }
           )
-          rank++;
+          rank++
         }
       }
     }
   },
   computed: {
     chuniRecordDisplay: function() {
-      const that = this;
+      const that = this
       return this.chuni_records//.filter((elem) => {
         //return (
             //that.$refs.filterSliderChuni.f(elem) &&
@@ -93,9 +93,15 @@ export default {
       //});
     },
   },
+  watch: {
+    searchKey: function (val) {
+      this.$router.push({query: {search: val}})
+    }
+  },
   created: function () {
-    history.replaceState("", "", window.location.pathname);
-    this.fetchMusicData();
+    history.replaceState("", "", window.location.pathname)
+    this.fetchMusicData()
+    this.searchKey = this.$route.query.search
   }
 }
 </script>

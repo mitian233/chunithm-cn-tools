@@ -94,6 +94,16 @@ export default {
   },
   created() {
     this.fetchTitleData()
+    this.listTab = this.$route.query.tab
+    this.searchKey = this.$route.query.search
+  },
+  watch: {
+    listTab: function (val) {
+      this.$router.push({query: {tab: val, search: this.searchKey}})
+    },
+    searchKey: function (val) {
+      this.$router.push({query: {tab: this.listTab, search: val}})
+    }
   },
   name: "titleList"
 }

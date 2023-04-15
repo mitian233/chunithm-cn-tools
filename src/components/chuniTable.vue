@@ -62,9 +62,9 @@ export default {
   data: () => {
     return {
       headers: [
-        { text: '乐曲ID', value: 'id' },
+        { text: '乐曲ID', value: 'id', sortable: true },
         { text: '乐曲名', value: 'title' },
-        { text: '难度标签', value: 'level_label', sortable: true},
+        { text: '难度标签', value: 'level_label', sortable: true },
         { text: '定数', value: 'ds', sortable: true },
         { text: '谱面作者', value: 'charter'},
         { text: 'BPM', value: 'bpm'},

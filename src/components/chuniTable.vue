@@ -31,9 +31,14 @@
       </v-tooltip>
     </template>-->
     <template #expand="items">
-      <div style="padding: 15px">
-        <img :src="getImageUrl(items.id)"/>
-        <p>Artist: {{ items.artist }}</p>
+      <div style="padding: 15px;display:flex;flex-direction:row">
+        <div>
+          <img :src="getImageUrl(items.id)"/>
+        </div>
+        <div style="padding-left: 20px">
+          <p>Artist: {{ items.artist }}</p>
+          <p>BPM: {{ items.bpm }}</p>
+        </div>
       </div>
     </template>
     <template #loading>
@@ -67,7 +72,6 @@ export default {
         { text: '难度标签', value: 'level_label', sortable: true },
         { text: '定数', value: 'ds', sortable: true },
         { text: '谱面作者', value: 'charter'},
-        { text: 'BPM', value: 'bpm'},
         { text: 'MAX COMBO', value: 'combo'},
         { text: '流派', value: 'genre'},
         { text: '版本', value: 'from'},

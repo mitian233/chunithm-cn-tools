@@ -4,11 +4,19 @@
   <v-card-subtitle>数据来源：diving fish api</v-card-subtitle>
   <v-container>
     <v-spacer />
+    <v-container class="pa-0">
+      <p>查找范围</p>
+      <v-btn-toggle v-model="searchFieldList" multiple>
+        <v-btn value="id">乐曲ID</v-btn>
+        <v-btn value="title">名称</v-btn>
+        <v-btn value="charter">谱面作者</v-btn>
+      </v-btn-toggle>
+    </v-container>
     <!--<v-checkbox label="使用高级设置" v-model="ProSettingChuni" class="mr-4" @click="$refs.proSettingsChuni.reset()" />-->
     <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找乐曲" single-line hide-details class="mb-4"/>
     <!--<pro-settings-chuni v-show="ProSettingChuni" ref="proSettingsChuni" :music_data="chuni_data" :music_data_dict="chuni_data_dict" />-->
     <v-card-text>
-      <chuni-table :search="searchKey" :items="chuniRecordDisplay" :music_data_dict="chuni_data_dict" :loading="isLoading"/>
+      <chuni-table :filterList="searchFieldList" :search="searchKey" :items="chuniRecordDisplay" :music_data_dict="chuni_data_dict" :loading="isLoading"/>
     </v-card-text>
   </v-container>
 </v-card>
@@ -34,6 +42,7 @@ export default {
       chuni_data_dict: {},
       chuni_records: [],
       isLoading: true,
+      searchFieldList: ["title"],
     }
   },
   methods: {
@@ -73,6 +82,7 @@ export default {
                 "level_label": ["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i]+" "+m.level[i],
                 "from": this.chuni_data_dict[m.id].basic_info.from ,
                 "genre": this.chuni_data_dict[m.id].basic_info.genre,
+                "artist": this.chuni_data_dict[m.id].basic_info.artist,
                 "charter": this.chuni_data_dict[m.id].charts[i].charter,
                 "combo": this.chuni_data_dict[m.id].charts[i].combo,
                 "bpm": this.chuni_data_dict[m.id].basic_info.bpm,
@@ -96,12 +106,16 @@ export default {
   watch: {
     searchKey: function (val) {
       this.$router.push({query: {search: val}})
-    }
+    },
+    searchFieldList: function (val) {
+      this.$router.push({query: {searchFieldList: val}})
+    },
   },
   created: function () {
     history.replaceState("", "", window.location.pathname)
     this.fetchMusicData()
     this.searchKey = this.$route.query.search
+    this.searchFieldList = this.$route.query.searchFieldList
   }
 }
 </script>

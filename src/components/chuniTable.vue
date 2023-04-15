@@ -1,6 +1,6 @@
 <template>
   <div>
-  <EasyDataTable :headers="headers" :items="items" :search-value="search" :loading="loading">
+  <EasyDataTable :headers="headers" :items="items" :search-field="filterList" :search-value="search" :loading="loading">
     <!--<template #item.title="{ item }">
       <v-tooltip top :disabled="!music_data_dict[item.mid]">
         <span v-if="music_data_dict[item.mid]">
@@ -30,6 +30,12 @@
         </span>
       </v-tooltip>
     </template>-->
+    <template #expand="items">
+      <div style="padding: 15px">
+        <img :src="getImageUrl(items.id)"/>
+        <p>Artist: {{ items.artist }}</p>
+      </div>
+    </template>
     <template #loading>
         <img
             src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"
@@ -51,14 +57,15 @@ export default {
     search: String,
     loading: Boolean,
     music_data_dict: Object,
+    filterList: Array,
   },
   data: () => {
     return {
       headers: [
         { text: '乐曲ID', value: 'id' },
         { text: '乐曲名', value: 'title' },
-        { text: '难度标签', value: 'level_label'},
-        { text: '定数', value: 'ds' },
+        { text: '难度标签', value: 'level_label', sortable: true},
+        { text: '定数', value: 'ds', sortable: true },
         { text: '谱面作者', value: 'charter'},
         { text: 'BPM', value: 'bpm'},
         { text: 'MAX COMBO', value: 'combo'},
@@ -68,6 +75,9 @@ export default {
     };
   },
   methods: {
+    getImageUrl(str) {
+      return "https://api-mfl.bangdream.moe/chuni/cover/"+str+".jpg";
+    },
     getLevel(index) {
       return ["#22bb5b", "#fb9c2d", "#f64861", "#9e45e2", "#1B1B1B", "cyan"][index];
     },

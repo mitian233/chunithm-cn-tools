@@ -9,8 +9,8 @@
           <v-list>
             <v-list-item>
               <v-list-item-title>0.1.3</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2023年3月11日</v-list-item-subtitle>
-              <p>添加称号分类方式。</p>
+              <v-list-item-subtitle>更新日期：2023年4月16日</v-list-item-subtitle>
+              <p>支持使用筛选搜索歌曲列表，同时增加显示曲封功能。</p>
             </v-list-item>
           </v-list>
         </v-list-item>
@@ -26,6 +26,7 @@
           <v-list-item-title>开发者</v-list-item-title>
           <v-list-item-subtitle>Developer</v-list-item-subtitle>
           <p>Mikan</p>
+          <p>（项目部分组件使用了 Diving-Fish 查分器的开源组件）</p>
         </v-list-item>
         <v-list-item>
           <v-list-item-title>称号数据</v-list-item-title>

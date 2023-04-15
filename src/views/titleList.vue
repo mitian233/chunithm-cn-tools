@@ -3,9 +3,7 @@
     <v-card-title>称号列表</v-card-title>
     <v-card-subtitle>数据来源：<a href="https://space.bilibili.com/32772298/article" >losffa</a></v-card-subtitle>
     <v-container>
-      <v-tabs
-          v-model="listTab"
-      >
+      <v-tabs v-model="listTab">
         <v-tab value="music">
           乐曲称号
         </v-tab>

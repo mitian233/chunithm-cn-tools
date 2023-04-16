@@ -8,7 +8,7 @@
           <v-list-item-subtitle>Version</v-list-item-subtitle>
           <v-list>
             <v-list-item>
-              <v-list-item-title>0.1.3</v-list-item-title>
+              <v-list-item-title>0.1.5</v-list-item-title>
               <v-list-item-subtitle>更新日期：2023年4月16日</v-list-item-subtitle>
               <p>支持使用筛选搜索歌曲列表，同时增加显示曲封功能。</p>
             </v-list-item>

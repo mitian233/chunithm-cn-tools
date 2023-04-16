@@ -11,7 +11,7 @@
         <v-btn value="title">名称</v-btn>
         <v-btn value="charter">谱面作者</v-btn>
         <v-btn value="genre">流派</v-btn>
-        <v-btn value="version">版本</v-btn>
+        <v-btn value="from">版本</v-btn>
       </v-btn-toggle>
     </v-container>
     <!--<v-checkbox label="使用高级设置" v-model="ProSettingChuni" class="mr-4" @click="$refs.proSettingsChuni.reset()" />-->
@@ -107,10 +107,10 @@ export default {
   },
   watch: {
     searchKey: function (val) {
-      this.$router.push({query: {search: val}})
+      this.$router.push({query: {searchFieldList: this.searchFieldList,search: val}})
     },
     searchFieldList: function (val) {
-      this.$router.push({query: {searchFieldList: val}})
+      this.$router.push({query: {search: this.searchKey,searchFieldList: val}})
     },
   },
   created: function () {

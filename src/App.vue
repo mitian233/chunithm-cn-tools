@@ -86,6 +86,11 @@ export default {
           link: '/op',
         },
         {
+          name: 'Rating 计算器',
+          icon: 'mdi-calculator',
+          link: '/rating',
+        },
+        {
           name: '关于',
           icon: 'mdi-information',
           link: '/about',

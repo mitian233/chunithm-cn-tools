@@ -4,21 +4,39 @@
     <v-container>
       <v-spacer/>
       <v-container class="pa-1">
-        <v-tabs v-model="rating_mode">
+        <v-tabs v-model="rating_mode" grow>
           <v-tab label="按分数计算" value="from_achievements">按分数计算</v-tab>
           <v-tab label="按定数计算" value="from_ds">按定数计算</v-tab>
           <v-tab label="按Rating计算" value="from_rating">按Rating计算</v-tab>
+          <div v-if="this.$route.query.mode != 'from_line'">
+            <v-tab label="计算分数线" value="from_line" disabled>计算分数线</v-tab>
+          </div>
+          <div v-else>
+            <v-tab label="计算分数线" value="from_line">计算分数线</v-tab>
+          </div>
         </v-tabs>
         <v-card-text>
           <v-window v-model="rating_mode">
             <v-window-item value="from_achievements">
-              <achievement-calc></achievement-calc>
+              <achievement-calc :ds="Number(ds_in_url)"></achievement-calc>
             </v-window-item>
             <v-window-item value="from_ds">
               <ds-calc></ds-calc>
             </v-window-item>
             <v-window-item value="from_rating">
               <ra-calc></ra-calc>
+            </v-window-item>
+            <v-window-item value="from_line">
+              <div v-if="this.$route.query.mode != 'from_line'" style="display: flex;justify-content: center">
+                <div style="text-align: center;margin: 15px">
+                  <h1 style="font-size: 100px;margin: 70px 0px 70px 0px">⚠️</h1>
+                  <p>该功能必须从歌曲列表访问</p>
+                  <v-btn @click="this.$router.push({path:'/song'})" color="primary" style="margin: 10px 0px 10px 0px">点此跳转</v-btn>
+                </div>
+              </div>
+              <div v-else>
+                <line-calc :combo="Number(combo_in_url)"></line-calc>
+              </div>
             </v-window-item>
           </v-window>
         </v-card-text>
@@ -55,8 +73,9 @@
 import RaCalc from "../components/raCalc.vue";
 import AchievementCalc from "../components/achievementCalc.vue";
 import DsCalc from "../components/dsCalc.vue";
+import LineCalc from "../components/lineCalc.vue";
 export default {
-  components: {RaCalc, DsCalc, AchievementCalc},
+  components: {LineCalc, RaCalc, DsCalc, AchievementCalc},
   data: () => {
     return {
       visible: false,
@@ -70,6 +89,8 @@ export default {
         {text: "分数", value: "achievements"},
         {text: "Rating", value: "rating"},
       ],
+      ds_in_url: NaN,
+      combo_in_url: NaN,
     }
   },
   computed: {
@@ -84,8 +105,12 @@ export default {
       return [];
     }
   },
+  created() {
+    this.rating_mode = this.$route.query.mode || "from_achievements";
+    this.ds_in_url = this.$route.query.ds;
+    this.combo_in_url = this.$route.query.combo;
+  },
   methods: {
-
   },
   name: "ratingCalculator"
 }

@@ -8,9 +8,9 @@
           <v-list-item-subtitle>Version</v-list-item-subtitle>
           <v-list>
             <v-list-item>
-              <v-list-item-title>0.1.8</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2023年5月4日</v-list-item-subtitle>
-              <p>Rating计算器（二号机）</p>
+              <v-list-item-title>0.1.9</v-list-item-title>
+              <v-list-item-subtitle>更新日期：2023年6月22日</v-list-item-subtitle>
+              <p>Rating计算器（三号机）</p>
             </v-list-item>
           </v-list>
         </v-list-item>

@@ -38,6 +38,22 @@
         <div style="padding-left: 20px">
           <p>Artist: {{ items.artist }}</p>
           <p>BPM: {{ items.bpm }}</p>
+          <div style="padding-top: 20px">
+            <v-expansion-panels>
+              <v-expansion-panel title="快捷填入计算器">
+                <v-expansion-panel-text>
+                  <v-row style="padding-top: 10px;">
+                    <v-col>
+                      <v-btn @click="gotoDsCalc(items.ds)">谱面Rating计算</v-btn>
+                    </v-col>
+                    <v-col>
+                      <v-btn @click="gotoLineCalc(items.combo)">分数线计算</v-btn>
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-text>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </div>
         </div>
       </div>
     </template>
@@ -274,6 +290,24 @@ export default {
               (info) => info.indexOf(search.toLocaleLowerCase()) !== -1
           )
       );
+    },
+    gotoDsCalc(ds) {
+      this.$router.push({
+        path: "/rating",
+        query: {
+          mode: "from_achievements",
+          ds: ds,
+        },
+      });
+    },
+    gotoLineCalc(combo) {
+      this.$router.push({
+        path: "/rating",
+        query: {
+          mode: "from_line",
+          combo: combo,
+        },
+      });
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <v-row class="d-flex justify-center">
     <v-col>
-      <v-text-field v-model="ds_input" label="定数" :rules="[(u) =>(isFinite(+u) && +u >= 0 && +u <= 15.5) || '请输入合法数据',]"/>
+      <v-text-field v-model="ds_input" prepend-icon="mdi-magnify" label="定数" :rules="[(u) =>(isFinite(+u) && +u >= 0 && +u <= 15.5) || '请输入合法数据',]"/>
     </v-col>
   </v-row>
   <EasyDataTable :headers="tableHeader" :items="tableData" :hide-footer="true" :rows-per-page="26"></EasyDataTable>

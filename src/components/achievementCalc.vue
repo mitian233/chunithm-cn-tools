@@ -12,6 +12,9 @@
 
 <script>
 export default {
+  props:{
+    ds: Number
+  },
   data: () => {
     return {
       ds_input: "",
@@ -53,6 +56,9 @@ export default {
       }
       return result;
     },
+  },
+  created() {
+    this.ds_input = this.ds || "";
   },
   watch:{
     achievements_input:function (val) {

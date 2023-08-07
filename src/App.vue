@@ -30,6 +30,7 @@
     <v-main>
       <v-container fluid>
         <router-view />
+        <google-adsense />
       </v-container>
     </v-main>
     <!--<v-bottom-navigation>
@@ -48,8 +49,10 @@
 <script>
 import { store } from "./store"
 import { useTheme } from 'vuetify'
+import GoogleAdsense from "./components/googleAdsense.vue";
 const ISDEV = false
 export default {
+  components: {GoogleAdsense},
   setup() {
     const theme = useTheme()
     return {

@@ -18,7 +18,7 @@
     </v-container>
   </v-card>
 
-  <v-card style="margin-top: 10px">
+  <v-card class="mt-5">
     <v-card-title>贡献</v-card-title>
     <v-container>
       <v-list>
@@ -51,6 +51,7 @@
       </v-list>
     </v-container>
   </v-card>
+
 </template>
 
 <script>

@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css' //ここを追加する
+import './main.css'
 
 axios.defaults.withCredentials = false
 

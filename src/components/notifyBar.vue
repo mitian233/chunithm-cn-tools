@@ -12,10 +12,11 @@ onMounted(() => {
     } else {
       showNotifyBar.value = false;
     }
-  }
-  if (Cookies.get('showNotifyBar') === true) {
+  } else if (Cookies.get('showNotifyBar') === 'true') {
+    showNotifyBar.value = true;
+  } else {
     showNotifyBar.value = false;
-  };
+  }
 });
 
 watch(showNotifyBar, (newVal) => {

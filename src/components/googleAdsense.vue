@@ -21,9 +21,10 @@ onMounted(() => {
     <v-container id="adSenseBar">
       <ins class="adsbygoogle"
            style="display:block"
-           data-ad-format="autorelaxed"
            data-ad-client="ca-pub-9004116390026603"
-           data-ad-slot="8708988515">
+           data-ad-slot="5964842462"
+           data-ad-format="auto"
+           data-full-width-responsive="true">
       </ins>
     </v-container>
   </v-card>

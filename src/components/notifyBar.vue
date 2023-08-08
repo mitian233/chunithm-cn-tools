@@ -1,19 +1,32 @@
 <script setup>
-import {ref, onMounted} from "vue";
+import {ref, onMounted, watch} from "vue";
+import Cookies from "js-cookie";
 
 const showNotifyBar = ref(false);
 
 onMounted(() => {
   const hostName = window.document.location.hostname;
-  if (hostName !== 'chu.3kn.jp') {
-    showNotifyBar.value = true;
+  if (Cookies.get('showNotifyBar') === undefined) {
+    if (hostName !== 'chu.3kn.jp') {
+      showNotifyBar.value = true;
+    } else {
+      showNotifyBar.value = false;
+    }
   }
+  if (Cookies.get('showNotifyBar') === true) {
+    showNotifyBar.value = false;
+  };
 });
+
+watch(showNotifyBar, (newVal) => {
+  Cookies.set('showNotifyBar', newVal);
+});
+
 </script>
 
 <template>
   <v-alert
-      v-if="showNotifyBar"
+      v-model="showNotifyBar"
       type="info"
       title="域名变更通知"
       class="mb-2"

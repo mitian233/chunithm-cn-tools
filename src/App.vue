@@ -29,6 +29,7 @@
     </v-app-bar>
     <v-main>
       <v-container fluid>
+        <notify-bar />
         <router-view />
         <google-adsense />
       </v-container>
@@ -50,9 +51,10 @@
 import { store } from "./store"
 import { useTheme } from 'vuetify'
 import GoogleAdsense from "./components/googleAdsense.vue";
+import NotifyBar from "./components/notifyBar.vue";
 const ISDEV = false
 export default {
-  components: {GoogleAdsense},
+  components: {NotifyBar, GoogleAdsense},
   setup() {
     const theme = useTheme()
     return {

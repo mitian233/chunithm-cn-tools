@@ -1,19 +1,30 @@
 <script setup>
+import {onMounted} from "vue";
+
+window['addAds'] = function() {
+  let childList = document.getElementById('adSenseBar');
+  for (let i = 0; i < childList.length; i++) {
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  }
+}
+
+onMounted(() => {
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  //window.addAds();
+});
 
 </script>
 
 <template>
   <v-card class="mt-5">
     <!--<v-card-title>广告</v-card-title>-->
-    <v-container>
-      <amp-ad width="100vw" height="320"
-              type="adsense"
-              data-ad-client="ca-pub-9004116390026603"
-              data-ad-slot="8708988515"
-              data-auto-format="mcrspv"
-              data-full-width="">
-        <div overflow=""></div>
-      </amp-ad>
+    <v-container id="adSenseBar">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-format="autorelaxed"
+           data-ad-client="ca-pub-9004116390026603"
+           data-ad-slot="8708988515">
+      </ins>
     </v-container>
   </v-card>
 </template>

@@ -50,7 +50,7 @@ export default {
   methods: {
     fetchMusicData: await function () {
       const that = this
-      axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")
+      axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
           .then((resp) => {
             that.chuni_data = markRaw(resp.data)
             that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {
@@ -69,7 +69,7 @@ export default {
       let rank = currentCids.length + 1
       for (const m of this.chuni_data) {
         for (let i = 0; i < m.ds.length; i++) {
-          if (currentCids.indexOf(m.cids[i]) != -1) continue
+          //if (currentCids.indexOf(m.cids[i]) != -1) continue
           if (m.level[i] === "-") continue
           this.chuni_records.push(
               {
@@ -82,7 +82,7 @@ export default {
                 "cid": m.cid,
                 "level_index": i,
                 "level_label": ["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i]+" "+m.level[i],
-                "from": this.chuni_data_dict[m.id].basic_info.from ,
+                "from": this.chuni_data_dict[m.id].basic_info.version,//from ,
                 "genre": this.chuni_data_dict[m.id].basic_info.genre,
                 "artist": this.chuni_data_dict[m.id].basic_info.artist,
                 "charter": this.chuni_data_dict[m.id].charts[i].charter,

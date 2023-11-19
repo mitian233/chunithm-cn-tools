@@ -59,14 +59,15 @@ export default {
     return {
       theme,
       toggleTheme: () => {
-        theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+        theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+
       }
     }
   },
   data() {
     return {
       store,
-      ISDEV:ISDEV,
+      ISDEV: ISDEV,
       drawer: false,
       nav_lists: [
         {

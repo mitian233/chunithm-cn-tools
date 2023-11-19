@@ -17,7 +17,7 @@ const isWE = ref(false);
 const tab = ref(null);
 
 const fetchMusicData = async () => {
-  axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://api-mfl.bangdream.moe/chuni/music_data_c3.json")
+  axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
       .then((resp) => {
         chuni_data.value = resp.data;
         let i = 0;

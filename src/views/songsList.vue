@@ -50,7 +50,7 @@ export default {
   methods: {
     fetchMusicData: await function () {
       const that = this
-      axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://api-mfl.bangdream.moe/chuni/music_data_c3.json")
+      axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
           .then((resp) => {
             that.chuni_data = markRaw(resp.data)
             that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {

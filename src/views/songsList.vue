@@ -50,7 +50,7 @@ export default {
   methods: {
     fetchMusicData: await function () {
       const that = this
-      axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
+      axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://api-mfl.bangdream.moe/chuni/music_data_c3.json")
           .then((resp) => {
             that.chuni_data = markRaw(resp.data)
             that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {
@@ -82,7 +82,7 @@ export default {
                 "cid": m.cid,
                 "level_index": i,
                 "level_label": ["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i]+" "+m.level[i],
-                "from": this.chuni_data_dict[m.id].basic_info.version,//from ,
+                "from": this.chuni_data_dict[m.id].basic_info.from,//version ,
                 "genre": this.chuni_data_dict[m.id].basic_info.genre,
                 "artist": this.chuni_data_dict[m.id].basic_info.artist,
                 "charter": this.chuni_data_dict[m.id].charts[i].charter,
@@ -113,7 +113,7 @@ export default {
       this.$router.push({query: {search: this.searchKey,searchFieldList: val}})
     },
   },
-  created: function () {
+  mounted: function () {
     history.replaceState("", "", window.location.pathname)
     this.fetchMusicData()
     this.searchKey = this.$route.query.search

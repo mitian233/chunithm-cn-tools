@@ -39,20 +39,7 @@
           <p>Artist: {{ items.artist }}</p>
           <p>BPM: {{ items.bpm }}</p>
           <div style="padding-top: 20px">
-            <v-expansion-panels>
-              <v-expansion-panel title="快捷填入计算器">
-                <v-expansion-panel-text>
-                  <v-row style="padding-top: 10px;">
-                    <v-col>
-                      <v-btn @click="gotoDsCalc(items.ds)">谱面Rating计算</v-btn>
-                    </v-col>
-                    <v-col>
-                      <v-btn @click="gotoLineCalc(items.combo)">分数线计算</v-btn>
-                    </v-col>
-                  </v-row>
-                </v-expansion-panel-text>
-              </v-expansion-panel>
-            </v-expansion-panels>
+            <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + items.id)">查看详细</v-btn>
           </div>
         </div>
       </div>
@@ -72,6 +59,7 @@
 
 <script>
 import {markRaw,toRaw} from "vue";
+import router from "../router";
 export default {
   props: {
     items: Object,
@@ -95,6 +83,9 @@ export default {
     };
   },
   methods: {
+    router() {
+      return router
+    },
     getImageUrl(str) {
       return "https://api-mfl.bangdream.moe/chuni/cover/"+str+".jpg";
     },

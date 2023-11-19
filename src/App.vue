@@ -29,7 +29,6 @@
     </v-app-bar>
     <v-main>
       <v-container fluid>
-        <notify-bar />
         <router-view />
         <google-adsense />
       </v-container>

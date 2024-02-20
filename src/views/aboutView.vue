@@ -9,8 +9,8 @@
           <v-list>
             <v-list-item>
               <v-list-item-title>0.1.11</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2023年11月19日</v-list-item-subtitle>
-              <p>歌曲信息页面追加</p>
+              <v-list-item-subtitle>更新日期：2024年2月20日</v-list-item-subtitle>
+              <p>加快响应速度</p>
             </v-list-item>
           </v-list>
         </v-list-item>

@@ -2,8 +2,9 @@
 import {ref, onMounted, watch, markRaw} from "vue";
 import {useRoute} from "vue-router";
 import axios from "axios";
-import {el} from "vuetify/locale";
+import {useMusicDataStore} from '../store';
 import router from "../router";
+const store = useMusicDataStore()
 
 const songID = ref(0);
 const isLoading = ref(true);
@@ -17,28 +18,26 @@ const isWE = ref(false);
 const tab = ref(null);
 
 const fetchMusicData = async () => {
-  axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
-      .then((resp) => {
-        chuni_data.value = resp.data;
-        let i = 0;
-        chuni_data.value.forEach((elem) => {
-          id_data_target.value[elem.id] = i++;
-        });
-        song_data.value = chuni_data.value[id_data_target.value[songID.value]];
-        song_data.value.levelLabel = [];
-        i = 0;
-        song_data.value.level.forEach((elem) => {
-          song_data.value.levelLabel.push(["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i++] + " " + elem);
-        });
-        if(song_data.value.ds.length === 5) {
-          haveUltima.value = true;
-        }else if(song_data.value.ds.length === 6) {
-          isWE.value = true;
-          song_data.value.levelLabel = ["World's End"];
-          tab.value = "World's End";
-        }
-        isLoading.value = false;
-      });
+  await store.fetchChuniData()
+  chuni_data.value = store.chuni_data;
+  let i = 0;
+  chuni_data.value.forEach((elem) => {
+    id_data_target.value[elem.id] = i++;
+  });
+  song_data.value = chuni_data.value[id_data_target.value[songID.value]];
+  song_data.value.levelLabel = [];
+  i = 0;
+  song_data.value.level.forEach((elem) => {
+    song_data.value.levelLabel.push(["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i++] + " " + elem);
+  });
+  if(song_data.value.ds.length === 5) {
+    haveUltima.value = true;
+  }else if(song_data.value.ds.length === 6) {
+    isWE.value = true;
+    song_data.value.levelLabel = ["World's End"];
+    tab.value = "World's End";
+  }
+  isLoading.value = false;
 }
 
 const gotoDsCalc = (ds) => {

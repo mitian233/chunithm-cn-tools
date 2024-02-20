@@ -5,6 +5,7 @@ import axios from 'axios'
 import 'vuetify/dist/vuetify.min.css'
 import '@mdi/font/css/materialdesignicons.css' //ここを追加する
 import './main.css'
+import { createPinia } from 'pinia'
 
 axios.defaults.withCredentials = false
 
@@ -26,9 +27,12 @@ const vuetify = createVuetify({
     },
 })
 
+const pinia = createPinia()
+
 let app = createApp(App)
 app.config.globalProperties.$axios = axios
 app.use(router)
+    .use(pinia)
     .use(vuetify)
     .component('EasyDataTable', Vue3EasyDataTable)
     .mount('#app')

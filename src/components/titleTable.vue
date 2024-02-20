@@ -7,7 +7,8 @@
       />
     </template>
     <template #empty-message>
-      <p>正在加载……</p>
+      <p v-if="loading">正在加载……</p>
+      <p v-else>没有找到相关称号</p>
     </template>
   </EasyDataTable>
 </template>

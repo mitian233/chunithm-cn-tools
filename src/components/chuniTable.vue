@@ -51,7 +51,8 @@
         />
     </template>
     <template #empty-message>
-      <p>正在加载……</p>
+      <p v-if="loading">正在加载……</p>
+      <p v-else>没有符合条件的结果</p>
     </template>
   </EasyDataTable>
   </div>

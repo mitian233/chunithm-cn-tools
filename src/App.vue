@@ -96,6 +96,11 @@ export default {
           link: '/rating',
         },
         {
+          name: '实验室',
+          icon: 'mdi-flask-outline',
+          link: '/labs',
+        },
+        {
           name: '关于',
           icon: 'mdi-information',
           link: '/about',

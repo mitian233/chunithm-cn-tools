@@ -18,7 +18,7 @@
     <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找乐曲" single-line hide-details class="mb-4"/>
     <!--<pro-settings-chuni v-show="ProSettingChuni" ref="proSettingsChuni" :music_data="chuni_data" :music_data_dict="chuni_data_dict" />-->
     <v-card-text>
-      <chuni-table :filterList="searchFieldList" :search="searchKey" :items="chuniRecordDisplay" :music_data_dict="chuni_data_dict" :loading="isLoading"/>
+      <chuni-table :filterList="searchFieldList" :search="searchKey" :items="store.chuniRecordDisplay" :music_data_dict="store.chuni_data_dict" :loading="store.isLoading"/>
     </v-card-text>
   </v-container>
 </v-card>
@@ -29,6 +29,8 @@ import {markRaw,toRaw} from "vue"
 import axios from "axios"
 import ProSettingsChuni from "../components/proSettingsChuni.vue"
 import chuniTable from "../components/chuniTable.vue";
+import { useMusicDataStore } from "../store";
+const store = useMusicDataStore();
 export default {
   name: "songsList",
   components: {
@@ -39,71 +41,16 @@ export default {
     return {
       ProSettingChuni: false,
       searchKey: "",
-      chuni_obj: {},
-      chuni_data: [],
-      chuni_data_dict: {},
-      chuni_records: [],
-      isLoading: true,
+      store: store,
       searchFieldList: ["title"],
     }
   },
   methods: {
-    fetchMusicData: await function () {
-      const that = this
-      axios.get("https://api-mfl.bangdream.moe/chuni/music_data_c3.json")//"https://www.diving-fish.com/api/chunithmprober/music_data")
-          .then((resp) => {
-            that.chuni_data = markRaw(resp.data)
-            that.chuni_data_dict = that.chuni_data.reduce((acc, music) => {
-              acc[music.id] = music
-              return acc
-            }, {});
-            that.setDefaultRecords()
-          })
-      this.isLoading = false
-    },
     setHeaders: function (headers) {
       this.headers = headers
     },
-    setDefaultRecords: function () {
-      const currentCids = this.chuni_records.map(elem => {return elem.cid});
-      let rank = currentCids.length + 1
-      for (const m of this.chuni_data) {
-        for (let i = 0; i < m.ds.length; i++) {
-          //if (currentCids.indexOf(m.cids[i]) != -1) continue
-          if (m.level[i] === "-") continue
-          this.chuni_records.push(
-              {
-                "id": this.chuni_data_dict[m.id].id,
-                "rank": rank,
-                "ds": m.ds[i],
-                "title": m.title,
-                "level": m.level[i],
-                "mid": m.id,
-                "cid": m.cid,
-                "level_index": i,
-                "level_label": ["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i]+" "+m.level[i],
-                "from": this.chuni_data_dict[m.id].basic_info.from,//version ,
-                "genre": this.chuni_data_dict[m.id].basic_info.genre,
-                "artist": this.chuni_data_dict[m.id].basic_info.artist,
-                "charter": this.chuni_data_dict[m.id].charts[i].charter,
-                "combo": this.chuni_data_dict[m.id].charts[i].combo,
-                "bpm": this.chuni_data_dict[m.id].basic_info.bpm,
-              }
-          )
-          rank++
-        }
-      }
-    }
   },
   computed: {
-    chuniRecordDisplay: function() {
-      const that = this
-      return this.chuni_records//.filter((elem) => {
-        //return (
-            //that.$refs.filterSliderChuni.f(elem) &&
-            //(!that.ProSettingChuni || that.$refs.proSettingsChuni.f(elem)))
-      //});
-    },
   },
   watch: {
     searchKey: function (val) {
@@ -115,7 +62,7 @@ export default {
   },
   mounted: function () {
     history.replaceState("", "", window.location.pathname)
-    this.fetchMusicData()
+    store.fetchChuniData()
     this.searchKey = this.$route.query.search
     this.searchFieldList = this.$route.query.searchFieldList
   }

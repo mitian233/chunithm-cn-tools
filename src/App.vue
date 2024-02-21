@@ -30,7 +30,7 @@
     <v-main>
       <v-container fluid>
         <router-view />
-<!--        <google-adsense />-->
+        <google-adsense />
       </v-container>
     </v-main>
     <!--<v-bottom-navigation>

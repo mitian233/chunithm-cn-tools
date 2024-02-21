@@ -3,7 +3,7 @@
     <div v-if="ISDEV===true">
       <v-system-bar>DEV VERSION</v-system-bar>
     </div>
-    <v-navigation-drawer v-model="store.drawer" temporary app>
+    <v-navigation-drawer v-model="homestore.drawer" temporary app>
       <v-list-item>
         <v-list-item-title class="title grey--text text--darken-2">
           CHUNITHM CN Tools
@@ -15,7 +15,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" density="comfortable">
-      <v-app-bar-nav-icon @click.stop="store.drawer = !store.drawer" />
+      <v-app-bar-nav-icon @click.stop="homestore.drawer = !homestore.drawer" />
       <v-app-bar-title>{{$route.meta.title}} - CHUNITHM 国服工具箱</v-app-bar-title>
       <v-menu>
         <template v-slot:activator="{ props }">
@@ -30,7 +30,7 @@
     <v-main>
       <v-container fluid>
         <router-view />
-        <google-adsense />
+<!--        <google-adsense />-->
       </v-container>
     </v-main>
     <!--<v-bottom-navigation>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { store } from "./store"
+import { homestore } from "./store"
 import { useTheme } from 'vuetify'
 import GoogleAdsense from "./components/googleAdsense.vue";
 import NotifyBar from "./components/notifyBar.vue";
@@ -66,7 +66,7 @@ export default {
   },
   data() {
     return {
-      store,
+      homestore,
       ISDEV: ISDEV,
       drawer: false,
       nav_lists: [

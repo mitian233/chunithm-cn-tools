@@ -8,7 +8,7 @@
           <v-tab label="按分数计算" value="from_achievements">按分数计算</v-tab>
           <v-tab label="按定数计算" value="from_ds">按定数计算</v-tab>
           <v-tab label="按Rating计算" value="from_rating">按Rating计算</v-tab>
-          <div v-if="this.$route.query.mode != 'from_line'">
+          <div v-if="this.$route.query.mode !== 'from_line'">
             <v-tab label="计算分数线" value="from_line" disabled>计算分数线</v-tab>
           </div>
           <div v-else>
@@ -27,7 +27,7 @@
               <ra-calc></ra-calc>
             </v-window-item>
             <v-window-item value="from_line">
-              <div v-if="this.$route.query.mode != 'from_line'" style="display: flex;justify-content: center">
+              <div v-if="this.$route.query.mode !== 'from_line'" style="display: flex;justify-content: center">
                 <div style="text-align: center;margin: 15px">
                   <h1 style="font-size: 100px;margin: 70px 0px 70px 0px">⚠️</h1>
                   <p>该功能必须从歌曲列表访问</p>

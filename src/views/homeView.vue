@@ -8,11 +8,16 @@
   </v-card>
 </template>
 <script>
-import { store } from "../store";
+import { homestore } from "../store";
 export default {
+  data() {
+    return {
+      homestore
+    }
+  },
   methods: {
     goToSong() {
-      store.drawer = true
+      homestore.drawer = true
     }
   },
   name: 'HomeView',

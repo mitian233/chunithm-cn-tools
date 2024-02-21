@@ -1,7 +1,6 @@
 <script setup>
-import {ref, onMounted, watch, markRaw} from "vue";
+import {ref, onMounted} from "vue";
 import {useRoute} from "vue-router";
-import axios from "axios";
 import {useMusicDataStore} from '../store';
 import router from "../router";
 const store = useMusicDataStore()

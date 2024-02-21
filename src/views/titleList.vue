@@ -22,6 +22,7 @@ const headersNonMusic = [
 const isLoading = ref(true)
 
 onMounted(async () => {
+  router.push({query: {tab: listTab.value, search: searchKey.value}})
   await store.fetchTitleData();
   isLoading.value = false;
   listTab.value = router.currentRoute.value.query.tab
@@ -38,7 +39,7 @@ watch(() => searchKey.value, (val) => {
 
 <template>
   <v-card>
-    <v-card-title>称号列表{{isLoading}}</v-card-title>
+    <v-card-title>称号列表</v-card-title>
     <v-card-subtitle>数据来源：<a href="https://space.bilibili.com/32772298/article" >losffa</a></v-card-subtitle>
     <v-container>
       <v-tabs v-model="listTab" grow>

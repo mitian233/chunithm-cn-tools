@@ -2,11 +2,8 @@ import {reactive, ref, computed} from "vue";
 import { defineStore } from 'pinia';
 import axios from "axios";
 
-export const store = reactive({
+export const homestore = reactive({
     drawer: false,
-    showDrawer() {
-        store.drawer = true
-    }
 })
 
 export const useMusicDataStore = defineStore('musicDataStore',()=>{

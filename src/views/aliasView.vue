@@ -21,10 +21,10 @@ onMounted(async ()=>{
       <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找名称/别名" single-line hide-details class="mb-4"/>
       <EasyDataTable :headers="headers" :items="store.alias_list" :search-value="searchKey">
         <template #item-id="data">
-          <a :href="`/song/id/${data.id}`" target="_blank"><p class="hover:underline">{{data.id}}</p></a>
+          <router-link :to="`/song/id/${data.id}`"><p class="hover:underline">{{data.id}}</p></router-link>
         </template>
         <template #item-song_name="data">
-          <a :href="`/song/id/${data.id}`" target="_blank"><p class="hover:underline">{{data.song_name}}</p></a>
+          <router-link :to="`/song/id/${data.id}`"><p class="hover:underline">{{data.song_name}}</p></router-link>
         </template>
       </EasyDataTable>
     </v-container>

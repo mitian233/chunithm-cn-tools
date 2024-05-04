@@ -86,6 +86,11 @@ export default {
           link: '/title',
         },
         {
+          name: '别名列表',
+          icon: 'mdi-alpha-a-circle-outline',
+          link: '/alias',
+        },
+        {
           name: 'OP 计算器',
           icon: 'mdi-calculator',
           link: '/op',

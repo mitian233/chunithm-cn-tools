@@ -11,6 +11,7 @@ const routes = [
     { path: '/op', component: () => import('../views/overpowerCalculator.vue') , meta: {title:'OP计算器',htmlAttrs: {amp: true},index: 5}},
     { path: '/rating', component: () => import('../views/ratingCalculator.vue') , meta: {title:'单曲 Rating 计算器',htmlAttrs: {amp: true},index: 6}},
     { path: '/labs', component: () => import('../views/labsView.vue') , meta: {title:'实验室',htmlAttrs: {amp: true},index: 7}},
+    { path: '/alias', component: () => import('../views/aliasView.vue'), meta: {title:'别名列表',htmlAttrs: {amp: true},index: 8}}
 ]
 
 const router = createRouter({history: createWebHistory(), routes})

@@ -114,3 +114,16 @@ export const useTitleDataStore = defineStore('titleDataStore',()=>{
 
     return {titleList, listItemMusic, listItemNonMusic, fetchTitleData}
 })
+
+export const useAliasDataStore = defineStore('aliasDataStore', () => {
+    const alias_list = ref([]);
+    const fetchAliasData = async () => {
+        if(alias_list.value.length === 0) {
+            const resp = await axios.get("https://api-mfl.bangdream.moe/chuni/alias.json")
+            alias_list.value = resp.data
+        }
+        return alias_list.value
+    }
+
+    return {alias_list, fetchAliasData}
+})

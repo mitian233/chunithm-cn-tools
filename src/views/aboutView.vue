@@ -9,8 +9,8 @@
           <v-list>
             <v-list-item>
               <v-list-item-title>0.1.20</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2024年2月21日</v-list-item-subtitle>
-              <p>新增随机乐曲功能</p>
+              <v-list-item-subtitle>更新日期：2024年5月4日</v-list-item-subtitle>
+              <p>新增别名速查功能</p>
             </v-list-item>
           </v-list>
         </v-list-item>

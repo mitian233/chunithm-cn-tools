@@ -4,22 +4,20 @@
   <v-card-subtitle>数据来源：diving fish api</v-card-subtitle>
   <v-container>
     <v-spacer />
-    <v-container class="pa-0">
-      <p>查找范围</p>
-      <v-btn-toggle v-model="searchFieldList" multiple>
-        <v-btn value="id">乐曲ID</v-btn>
-        <v-btn value="title">名称</v-btn>
-        <v-btn value="charter">谱面作者</v-btn>
-        <v-btn value="genre">流派</v-btn>
-        <v-btn value="from">版本</v-btn>
-      </v-btn-toggle>
-    </v-container>
+<!--    <v-container class="pa-0">-->
+<!--      <p>查找范围</p>-->
+<!--      <v-btn-toggle v-model="searchFieldList" multiple>-->
+<!--        <v-btn value="id">乐曲ID</v-btn>-->
+<!--        <v-btn value="title">名称</v-btn>-->
+<!--        <v-btn value="charter">谱面作者</v-btn>-->
+<!--        <v-btn value="genre">流派</v-btn>-->
+<!--        <v-btn value="from">版本</v-btn>-->
+<!--      </v-btn-toggle>-->
+<!--    </v-container>-->
     <!--<v-checkbox label="使用高级设置" v-model="ProSettingChuni" class="mr-4" @click="$refs.proSettingsChuni.reset()" />-->
     <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找乐曲" single-line hide-details class="mb-4"/>
     <!--<pro-settings-chuni v-show="ProSettingChuni" ref="proSettingsChuni" :music_data="chuni_data" :music_data_dict="chuni_data_dict" />-->
-    <v-card-text>
-      <chuni-table :filterList="searchFieldList" :search="searchKey" :items="store.chuniRecordDisplay" :music_data_dict="store.chuni_data_dict" :loading="store.isLoading"/>
-    </v-card-text>
+    <chuni-table :filterList="searchFieldList" :search="searchKey" :items="store.chuniRecordDisplay" :music_data_dict="store.chuni_data_dict" :loading="store.isLoading"/>
   </v-container>
 </v-card>
 </template>

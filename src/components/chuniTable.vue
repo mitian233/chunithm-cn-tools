@@ -1,66 +1,66 @@
 <template>
   <div>
-  <EasyDataTable :headers="headers" :items="items" :search-field="filterList" :search-value="search" :loading="loading">
-    <!--<template #item.title="{ item }">
-      <v-tooltip top :disabled="!music_data_dict[item.mid]">
-        <span v-if="music_data_dict[item.mid]">
-          id: {{ music_data_dict[item.mid].id }} <br />
-          Artist: {{ music_data_dict[item.mid].basic_info.artist }} <br />
-          Version: {{ music_data_dict[item.mid].basic_info.from }} <br />
-          Genre: {{ music_data_dict[item.mid].basic_info.genre }} <br />
-          BPM: {{ music_data_dict[item.mid].basic_info.bpm }} <br />
-        </span>
-      </v-tooltip>
-    </template>
-    <template #item.level="{ item }">
-      <v-tooltip top :disabled="!music_data_dict[item.mid]">
-        <template v-slot:activator="{ on, attrs }">
-          <v-chip
-              v-bind="attrs"
-              v-on="on"
-              :color="getLevel(item.level_index)"
-              dark
-          >
-            {{ item.level_label }} {{ item.level }}
-          </v-chip>
-        </template>
-        <span v-if="music_data_dict[item.mid]">
-          Charter: {{ music_data_dict[item.mid].charts[item.level_index].charter }} <br />
-          Combo: {{ music_data_dict[item.mid].charts[item.level_index].combo }} <br />
-        </span>
-      </v-tooltip>
-    </template>-->
-    <template #expand="items">
-      <div style="padding: 15px;display:flex;flex-direction:row">
-        <div>
-          <img :src="getImageUrl(items.id)"/>
-        </div>
-        <div style="padding-left: 20px">
-          <p>Artist: {{ items.artist }}</p>
-          <p>BPM: {{ items.bpm }}</p>
-          <div style="padding-top: 20px">
-            <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + items.id)">查看详细</v-btn>
-          </div>
-        </div>
-      </div>
-    </template>
-    <template #loading>
-        <img
-            src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"
-            style="width: 100px; height: 80px;"
-        />
-    </template>
-    <template #empty-message>
-      <p v-if="loading">正在加载……</p>
-      <p v-else>没有符合条件的结果</p>
-    </template>
-  </EasyDataTable>
+    <v-data-table :headers="headers_vuetify" :items="items" :search="search" :loading="loading" show-expand>
+      <template #expanded-row="{ columns, item }">
+        <tr>
+          <td :colspan="columns.length">
+            <div style="padding: 15px;display:flex;flex-direction:row">
+              <div>
+                <img :src="getImageUrl(item._id)"/>
+              </div>
+              <div style="padding-left: 20px">
+                <p>Artist: {{ item.artist }}</p>
+                <p>BPM: {{ item.bpm }}</p>
+                <div style="padding-top: 20px">
+                  <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + item._id)">
+                    查看详细
+                  </v-btn>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </template>
+      <template #loading>
+        <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
+      </template>
+    </v-data-table>
+<!--    <EasyDataTable :headers="headers" :items="items" :search-field="filterList" :search-value="search"-->
+<!--                   :loading="loading">-->
+<!--      <template #expand="items">-->
+<!--        <div style="padding: 15px;display:flex;flex-direction:row">-->
+<!--          <div>-->
+<!--            <img :src="getImageUrl(items.id)"/>-->
+<!--          </div>-->
+<!--          <div style="padding-left: 20px">-->
+<!--            <p>Artist: {{ items.artist }}</p>-->
+<!--            <p>BPM: {{ items.bpm }}</p>-->
+<!--            <div style="padding-top: 20px">-->
+<!--              <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + items.id)">-->
+<!--                查看详细-->
+<!--              </v-btn>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </template>-->
+<!--      <template #loading>-->
+<!--        <img-->
+<!--            src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"-->
+<!--            style="width: 100px; height: 80px;"-->
+<!--        />-->
+<!--      </template>-->
+<!--      <template #empty-message>-->
+<!--        <p v-if="loading">正在加载……</p>-->
+<!--        <p v-else>没有符合条件的结果</p>-->
+<!--      </template>-->
+<!--    </EasyDataTable>-->
   </div>
 </template>
 
 <script>
-import {markRaw,toRaw} from "vue";
+import {markRaw, toRaw} from "vue";
 import router from "../router";
+
 export default {
   props: {
     items: Object,
@@ -71,15 +71,29 @@ export default {
   },
   data: () => {
     return {
+      group_by: {
+        key: 'id',
+        order: 'asc',
+      },
+      headers_vuetify: [
+        {title: '乐曲ID', value: '_id', sortable: true},
+        {title: '乐曲名', value: 'title'},
+        {title: '难度标签', value: 'level_label', sortable: true},
+        {title: '定数', value: 'ds', sortable: true},
+        {title: '谱面作者', value: 'charter'},
+        {title: 'MAX COMBO', value: 'combo'},
+        {title: '流派', value: 'genre'},
+        {title: '版本', value: 'from'},
+      ],
       headers: [
-        { text: '乐曲ID', value: 'id', sortable: true },
-        { text: '乐曲名', value: 'title' },
-        { text: '难度标签', value: 'level_label', sortable: true },
-        { text: '定数', value: 'ds', sortable: true },
-        { text: '谱面作者', value: 'charter'},
-        { text: 'MAX COMBO', value: 'combo'},
-        { text: '流派', value: 'genre'},
-        { text: '版本', value: 'from'},
+        {text: '乐曲ID', value: 'id', sortable: true},
+        {text: '乐曲名', value: 'title'},
+        {text: '难度标签', value: 'level_label', sortable: true},
+        {text: '定数', value: 'ds', sortable: true},
+        {text: '谱面作者', value: 'charter'},
+        {text: 'MAX COMBO', value: 'combo'},
+        {text: '流派', value: 'genre'},
+        {text: '版本', value: 'from'},
       ],
     };
   },
@@ -88,7 +102,7 @@ export default {
       return router
     },
     getImageUrl(str) {
-      return "https://api-mfl.bangdream.moe/chuni/cover/"+str+".jpg";
+      return "https://api-mfl.bangdream.moe/chuni/cover/" + str + ".jpg";
     },
     getLevel(index) {
       return ["#22bb5b", "#fb9c2d", "#f64861", "#9e45e2", "#1B1B1B", "cyan"][index];
@@ -170,7 +184,7 @@ export default {
       };
       color = color_dict[tag];
       return {
-        exists: elem.v != undefined,
+        exists: elem.v !== undefined,
         value: tag,
         color: color,
         rank_text: elem.v + 1 + "/" + elem.t,

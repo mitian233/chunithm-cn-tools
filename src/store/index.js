@@ -27,6 +27,12 @@ export const useMusicDataStore = defineStore('musicDataStore',()=>{
         const resp = await axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://api-mfl.bangdream.moe/chuni/music_data_c3.json")
         try {
             chuni_data.value = resp.data
+            // let data = resp.data
+            // for(let i = 0; i < resp.data.length; i++){
+            //     data[i]['_id'] = data[i].id
+            //     delete data[i].id
+            // }
+            // chuni_data.value = data
             chuni_data_dict.value = chuni_data.value.reduce((acc, music) => {
                 acc[music.id] = music
                 return acc
@@ -44,13 +50,15 @@ export const useMusicDataStore = defineStore('musicDataStore',()=>{
         {
             const currentCids = chuni_records.value.map(elem => {return elem.cid});
             let rank = currentCids.length + 1
+            let currentId = 0;
             for (const m of chuni_data.value) {
                 for (let i = 0; i < m.ds.length; i++) {
                     //if (currentCids.indexOf(m.cids[i]) != -1) continue
                     if (m.level[i] === "-") continue
                     chuni_records.value.push(
                         {
-                            "id": chuni_data_dict.value[m.id].id,
+                            "id": currentId,
+                            "_id": chuni_data_dict.value[m.id].id,
                             "rank": rank,
                             "ds": m.ds[i],
                             "title": m.title,
@@ -67,6 +75,7 @@ export const useMusicDataStore = defineStore('musicDataStore',()=>{
                             "bpm": chuni_data_dict.value[m.id].basic_info.bpm,
                         }
                     )
+                    currentId++
                     rank++
                 }
             }

@@ -9,15 +9,15 @@ const store = useTitleDataStore();
 const listTab = ref("music");
 const searchKey = ref("");
 const headersMusic = [
-  {text:"标题",value:"title"},
-  {text:"颜色",value:"color"},
-  {text:"关联乐曲",value:"music"},
-  {text:"获取条件",value:"obtain"},
+  {title:"标题",value:"title"},
+  {title:"颜色",value:"color"},
+  {title:"关联乐曲",value:"music"},
+  {title:"获取条件",value:"obtain"},
 ]
 const headersNonMusic = [
-  {text:"标题",value:"title"},
-  {text:"颜色",value:"color"},
-  {text:"获取条件",value:"obtain"},
+  {title:"标题",value:"title"},
+  {title:"颜色",value:"color"},
+  {title:"获取条件",value:"obtain"},
 ]
 const isLoading = ref(true)
 

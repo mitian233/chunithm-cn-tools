@@ -83,7 +83,7 @@ export default {
         {
           name: '称号列表',
           icon: 'mdi-list-box-outline',
-          link: '/title',
+          link: '/title?tab=music',
         },
         {
           name: '别名列表',

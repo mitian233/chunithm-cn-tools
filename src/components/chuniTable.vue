@@ -1,6 +1,17 @@
 <template>
   <div>
-    <v-data-table :headers="headers_vuetify" :items="items" :search="search" :loading="loading" show-expand>
+    <v-data-table :headers="headers_vuetify" :items="items" :filter-keys="filterList" :search="search" :loading="loading" show-expand>
+      <template #item.title="{ item }">
+        <div class="flex flex-row items-center gap-2">
+          <img :src="getImageUrl(item._id)" class="inline-block h-10 w-10"/>
+          <p class="inline">{{ item.title }}</p>
+        </div>
+      </template>
+      <template #item.level_label="{ item }">
+        <v-chip :color="getLevel(item.level_index)">
+          {{item.level_label}}
+        </v-chip>
+      </template>
       <template #expanded-row="{ columns, item }">
         <tr>
           <td :colspan="columns.length">
@@ -25,35 +36,35 @@
         <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
       </template>
     </v-data-table>
-<!--    <EasyDataTable :headers="headers" :items="items" :search-field="filterList" :search-value="search"-->
-<!--                   :loading="loading">-->
-<!--      <template #expand="items">-->
-<!--        <div style="padding: 15px;display:flex;flex-direction:row">-->
-<!--          <div>-->
-<!--            <img :src="getImageUrl(items.id)"/>-->
-<!--          </div>-->
-<!--          <div style="padding-left: 20px">-->
-<!--            <p>Artist: {{ items.artist }}</p>-->
-<!--            <p>BPM: {{ items.bpm }}</p>-->
-<!--            <div style="padding-top: 20px">-->
-<!--              <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + items.id)">-->
-<!--                查看详细-->
-<!--              </v-btn>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </template>-->
-<!--      <template #loading>-->
-<!--        <img-->
-<!--            src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"-->
-<!--            style="width: 100px; height: 80px;"-->
-<!--        />-->
-<!--      </template>-->
-<!--      <template #empty-message>-->
-<!--        <p v-if="loading">正在加载……</p>-->
-<!--        <p v-else>没有符合条件的结果</p>-->
-<!--      </template>-->
-<!--    </EasyDataTable>-->
+    <!--    <EasyDataTable :headers="headers" :items="items" :search-field="filterList" :search-value="search"-->
+    <!--                   :loading="loading">-->
+    <!--      <template #expand="items">-->
+    <!--        <div style="padding: 15px;display:flex;flex-direction:row">-->
+    <!--          <div>-->
+    <!--            <img :src="getImageUrl(items.id)"/>-->
+    <!--          </div>-->
+    <!--          <div style="padding-left: 20px">-->
+    <!--            <p>Artist: {{ items.artist }}</p>-->
+    <!--            <p>BPM: {{ items.bpm }}</p>-->
+    <!--            <div style="padding-top: 20px">-->
+    <!--              <v-btn color="primary" style="margin-top: 10px" v-on:click="$router.push('/song/id/' + items.id)">-->
+    <!--                查看详细-->
+    <!--              </v-btn>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </template>-->
+    <!--      <template #loading>-->
+    <!--        <img-->
+    <!--            src="https://i.pinimg.com/originals/94/fd/2b/94fd2bf50097ade743220761f41693d5.gif"-->
+    <!--            style="width: 100px; height: 80px;"-->
+    <!--        />-->
+    <!--      </template>-->
+    <!--      <template #empty-message>-->
+    <!--        <p v-if="loading">正在加载……</p>-->
+    <!--        <p v-else>没有符合条件的结果</p>-->
+    <!--      </template>-->
+    <!--    </EasyDataTable>-->
   </div>
 </template>
 

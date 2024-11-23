@@ -60,7 +60,7 @@ const gotoLineCalc = (combo) => {
 };
 
 const getImageUrl =  (str) => {
-  return "https://api-mfl.bangdream.moe/chuni/cover/"+str+".jpg";
+  return "https://apis.anontokyo.com/chuni/cover/"+str+".jpg";
 }
 
 onMounted(() => {

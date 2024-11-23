@@ -113,7 +113,7 @@ export default {
       return router
     },
     getImageUrl(str) {
-      return "https://api-mfl.bangdream.moe/chuni/cover/" + str + ".jpg";
+      return "https://apis.anontokyo.com/chuni/cover/" + str + ".jpg";
     },
     getLevel(index) {
       return ["#22bb5b", "#fb9c2d", "#f64861", "#9e45e2", "#1B1B1B", "cyan"][index];

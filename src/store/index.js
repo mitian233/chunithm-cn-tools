@@ -24,7 +24,7 @@ export const useMusicDataStore = defineStore('musicDataStore',()=>{
     }
     async function fetchMusicData() {
         isLoading.value = true;
-        const resp = await axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://api-mfl.bangdream.moe/chuni/music_data_c3.json")
+        const resp = await axios.get("https://www.diving-fish.com/api/chunithmprober/music_data")//"https://apis.anontokyo.com/chuni/music_data_c3.json")
         try {
             chuni_data.value = resp.data
             // let data = resp.data
@@ -114,7 +114,7 @@ export const useTitleDataStore = defineStore('titleDataStore',()=>{
 
     const fetchTitleData = async () => {
         if (titleList.value.length === 0) {
-            const resp = await axios.get("https://api-mfl.bangdream.moe/chuni/titlelistraw.json")
+            const resp = await axios.get("https://apis.anontokyo.com/chuni/titlelistraw.json")
             titleList.value = resp.data
             creatList()
         }
@@ -128,7 +128,7 @@ export const useAliasDataStore = defineStore('aliasDataStore', () => {
     const alias_list = ref([]);
     const fetchAliasData = async () => {
         if(alias_list.value.length === 0) {
-            const resp = await axios.get("https://api-mfl.bangdream.moe/chuni/alias.json")
+            const resp = await axios.get("https://apis.anontokyo.com/chuni/alias.json")
             alias_list.value = resp.data
         }
         return alias_list.value

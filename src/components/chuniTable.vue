@@ -113,7 +113,7 @@ export default {
       return router
     },
     getImageUrl(str) {
-      return "https://apis.anontokyo.com/chuni/cover/" + str + ".jpg";
+      return "https://cdn.jsdelivr.net/gh/mitian233/chunicover@cached/covers/" + str + ".jpg";
     },
     getLevel(index) {
       return ["#22bb5b", "#fb9c2d", "#f64861", "#9e45e2", "#1B1B1B", "cyan"][index];

@@ -53,7 +53,7 @@
                         </template>
                       </n-button>
                       <n-text class="header-title">
-                        {{ $route.meta.title }} - CHUNITHM 国服工具箱
+                        {{ $route.meta.title }}
                       </n-text>
                     </n-space>
                     <n-space>

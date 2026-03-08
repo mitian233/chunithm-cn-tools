@@ -6,7 +6,7 @@
           <n-input-number
             v-model:value="dsInput"
             :min="0"
-            :max="15.5"
+            :max="16.0"
             :step="0.1"
             placeholder="请输入定数"
             style="width: 100%"

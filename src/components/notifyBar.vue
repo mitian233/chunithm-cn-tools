@@ -20,7 +20,7 @@ onMounted(() => {
 });
 
 watch(showNotifyBar, (newVal) => {
-  Cookies.set('showNotifyBar', newVal, { expires: 7 * 24 * 60 * 60 });
+  Cookies.set('showNotifyBar', newVal, { expires: 7 });
 });
 </script>
 

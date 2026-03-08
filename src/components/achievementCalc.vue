@@ -62,7 +62,7 @@ watch([dsInput, achievementsInput], () => {
 });
 
 onMounted(() => {
-  if (props.ds) {
+  if (props.ds != null) {
     dsInput.value = props.ds;
   }
 });

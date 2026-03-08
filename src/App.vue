@@ -176,6 +176,7 @@ function handleMenuUpdateMobile(key) {
 
 function toggleTheme() {
   isDark.value = !isDark.value;
+  localStorage.setItem('darkMode', isDark.value.toString());
 }
 
 function jumpToProber() {
@@ -185,6 +186,11 @@ function jumpToProber() {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
+
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode === 'true') {
+    isDark.value = true;
+  }
 });
 
 onUnmounted(() => {

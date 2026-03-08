@@ -147,7 +147,7 @@ const clearResult = () => {
 };
 
 const getImageUrl = (str) => {
-  return `https://apis.anontokyo.com/chuni/cover/${str}.jpg`;
+  return `https://cdn.jsdelivr.net/gh/mitian233/chunicover@cached/covers/${str}.jpg`;
 };
 
 onMounted(async () => {

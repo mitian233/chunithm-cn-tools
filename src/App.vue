@@ -43,6 +43,7 @@
               </n-drawer>
 
               <n-layout>
+                <notify-bar />
                 <n-layout-header bordered class="header">
                   <n-space justify="space-between" align="center" style="width: 100%">
                     <n-space align="center">
@@ -76,6 +77,7 @@
                 </n-layout-header>
                 <n-layout-content class="content" :class="{ 'content-mobile': isMobile }">
                   <router-view />
+                  <google-adsense />
                 </n-layout-content>
               </n-layout>
             </n-layout>
@@ -102,6 +104,8 @@ import {
   FishOutline,
   MenuOutline,
 } from '@vicons/ionicons5';
+import GoogleAdsense from './components/googleAdsense.vue';
+import NotifyBar from './components/notifyBar.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -172,6 +176,7 @@ function handleMenuUpdateMobile(key) {
 
 function toggleTheme() {
   isDark.value = !isDark.value;
+  localStorage.setItem('darkMode', isDark.value.toString());
 }
 
 function jumpToProber() {
@@ -181,6 +186,11 @@ function jumpToProber() {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
+
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode === 'true') {
+    isDark.value = true;
+  }
 });
 
 onUnmounted(() => {
@@ -208,6 +218,9 @@ onUnmounted(() => {
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   height: 64px;
   padding: 0 16px;
   display: flex;

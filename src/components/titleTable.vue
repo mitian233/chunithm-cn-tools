@@ -1,25 +1,48 @@
 <template>
-  <v-data-table :headers="headers" :items="titleList" :search="search" :loading="loading">
-    <template #loading>
-      <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
-    </template>
-  </v-data-table>
+  <n-data-table
+    :columns="columns"
+    :data="titleList || []"
+    :loading="loading"
+    :pagination="false"
+    striped
+  />
 </template>
 
-<script>
-export default {
-  props: {
-    search: String,
-    titleList: Object,
-    loading: Boolean,
-    headers: Array,
-  },
-  data: () => {
-    return {};
-  },
-  created() {},
-  name: 'titleTable',
-};
-</script>
+<script setup>
+import { h, computed } from 'vue';
+import { NTag } from 'naive-ui';
 
-<style scoped></style>
+const props = defineProps({
+  search: {
+    type: String,
+    default: '',
+  },
+  titleList: {
+    type: Array,
+    default: () => [],
+  },
+  loading: {
+    type: Boolean,
+    default: false,
+  },
+  headers: {
+    type: Array,
+    default: () => [],
+  },
+});
+
+const columns = computed(() => {
+  return props.headers.map((header) => ({
+    title: header.title,
+    key: header.value,
+    ellipsis: { tooltip: true },
+    render(row) {
+      const value = row[header.value];
+      if (header.value === 'color' && value) {
+        return h(NTag, { color: { color: value }, size: 'small' }, { default: () => value });
+      }
+      return value;
+    },
+  }));
+});
+</script>

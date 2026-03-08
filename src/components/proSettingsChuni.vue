@@ -1,139 +1,141 @@
 <template>
-  <v-sheet style="display: box; margin: 0px 16px">
-    <v-row dense>
-      <v-col cols="4" class="px-0 py-0">
-        <v-list-subheader>
-          按难度筛选
-          <v-icon
-            @click="
-              level_filter.length === level_filter_items.length
-                ? (level_filter = [])
-                : (level_filter = level_filter_items.map((i) => i.value))
-            "
-            class="ml-2"
-          >
-            mdi-check-all
-          </v-icon>
-        </v-list-subheader>
-      </v-col>
-      <v-col cols="8" class="px-0 py-0">
-        <v-item-group multiple v-model="level_filter" class="ml-2 py-2" show-arrows>
-          <v-item
-            v-for="(item, key) in level_filter_items"
-            :key="key"
-            :value="item.value"
-            class="mr-2"
-            v-slot="{ active, toggle }"
-          >
-            <v-chip :color="getLevel(item.value)" :outlined="!active" dark @click="toggle">
-              {{ item.text }}
-            </v-chip>
-          </v-item>
-        </v-item-group>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="6">
-        <v-select v-model="version" :items="versions" label="版本" clearable hide-details />
-      </v-col>
-      <v-col cols="6">
-        <v-select v-model="genre" :items="genres" label="歌曲类别" clearable hide-details />
-      </v-col>
-    </v-row>
-  </v-sheet>
+  <n-card size="small" style="margin-bottom: 16px">
+    <n-space vertical>
+      <n-space align="center" justify="space-between">
+        <n-text>按难度筛选</n-text>
+        <n-button size="small" @click="toggleAllLevels">
+          {{ levelFilter.length === levelFilterItems.length ? '取消全选' : '全选' }}
+        </n-button>
+      </n-space>
+      <n-space>
+        <n-tag
+          v-for="item in levelFilterItems"
+          :key="item.value"
+          :type="levelFilter.includes(item.value) ? getLevelType(item.value) : 'default'"
+          :checked="levelFilter.includes(item.value)"
+          checkable
+          @update:checked="toggleLevel(item.value)"
+        >
+          {{ item.text }}
+        </n-tag>
+      </n-space>
+      <n-grid :cols="2" :x-gap="16">
+        <n-gi>
+          <n-select
+            v-model:value="version"
+            :options="versionOptions"
+            placeholder="选择版本"
+            clearable
+          />
+        </n-gi>
+        <n-gi>
+          <n-select
+            v-model:value="genre"
+            :options="genreOptions"
+            placeholder="选择歌曲类别"
+            clearable
+          />
+        </n-gi>
+      </n-grid>
+    </n-space>
+  </n-card>
 </template>
 
-<script>
-export default {
-  props: {
-    music_data: Object,
-    music_data_dict: Object,
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+
+const props = defineProps({
+  musicData: {
+    type: Array,
+    default: () => [],
   },
-  data: () => {
-    return {
-      darkTheme: false,
-      fc_filter: [],
-      level_filter: [],
-      rate_filter: [],
-      version: null,
-      genre: null,
-      level_filter_items: [
-        { text: 'Basic', value: 0 },
-        { text: 'Advanced', value: 1 },
-        { text: 'Expert', value: 2 },
-        { text: 'Master', value: 3 },
-        { text: 'Ultima', value: 4 },
-        { text: "World's End", value: 5 },
-      ],
-      headers: [],
-      headers_default: [
-        { text: '排名', value: 'rank' },
-        { text: '乐曲名', value: 'title' },
-        { text: '难度', value: 'level' },
-        { text: '定数', value: 'ds' },
-        { text: '分数', value: 'score' },
-        { text: 'Rating', value: 'ra' },
-      ],
-    };
+  musicDataDict: {
+    type: Object,
+    default: () => ({}),
   },
-  computed: {
-    versions: function () {
-      return Array.from(
-        new Set(
-          this.music_data.map((elem) => {
-            return elem.basic_info.from;
-          })
-        )
-      );
-    },
-    genres: function () {
-      return Array.from(
-        new Set(
-          this.music_data.map((elem) => {
-            return elem.basic_info.genre;
-          })
-        )
-      );
-    },
-  },
-  methods: {
-    f(item) {
-      return (
-        this.level_filter.findIndex((i) => i == item.level_index) !== -1 &&
-        (!this.version ||
-          (this.music_data_dict[item.mid] &&
-            this.music_data_dict[item.mid].basic_info.from == this.version)) &&
-        (!this.genre ||
-          (this.music_data_dict[item.mid] &&
-            this.music_data_dict[item.mid].basic_info.genre == this.genre))
-      );
-    },
-    getLevel(index) {
-      return ['#22bb5b', '#fb9c2d', '#f64861', '#9e45e2', '#1B1B1B', 'cyan'][index];
-    },
-    reset() {
-      this.level_filter = [0, 1, 2, 3, 4, 5];
-    },
-    created: function () {
-      this.reset();
-    },
-  },
-  name: 'ProSettingsChuni',
+});
+
+const emit = defineEmits(['filter']);
+
+const levelFilter = ref([]);
+const version = ref(null);
+const genre = ref(null);
+
+const levelFilterItems = [
+  { text: 'Basic', value: 0 },
+  { text: 'Advanced', value: 1 },
+  { text: 'Expert', value: 2 },
+  { text: 'Master', value: 3 },
+  { text: 'Ultima', value: 4 },
+  { text: "World's End", value: 5 },
+];
+
+const levelTypes = {
+  0: 'success',
+  1: 'warning',
+  2: 'error',
+  3: 'default',
+  4: 'default',
+  5: 'info',
 };
+
+const versionOptions = computed(() => {
+  if (!props.musicData) return [];
+  const versions = [...new Set(props.musicData.map((elem) => elem.basic_info?.from))];
+  return versions.map((v) => ({ label: v, value: v }));
+});
+
+const genreOptions = computed(() => {
+  if (!props.musicData) return [];
+  const genres = [...new Set(props.musicData.map((elem) => elem.basic_info?.genre))];
+  return genres.map((g) => ({ label: g, value: g }));
+});
+
+function getLevelType(index) {
+  return levelTypes[index] || 'default';
+}
+
+function toggleLevel(value) {
+  const index = levelFilter.value.indexOf(value);
+  if (index === -1) {
+    levelFilter.value.push(value);
+  } else {
+    levelFilter.value.splice(index, 1);
+  }
+}
+
+function toggleAllLevels() {
+  if (levelFilter.value.length === levelFilterItems.length) {
+    levelFilter.value = [];
+  } else {
+    levelFilter.value = levelFilterItems.map((i) => i.value);
+  }
+}
+
+function filter(item) {
+  return (
+    levelFilter.value.includes(item.level_index) &&
+    (!version.value ||
+      (props.musicDataDict[item.mid] &&
+        props.musicDataDict[item.mid].basic_info?.from === version.value)) &&
+    (!genre.value ||
+      (props.musicDataDict[item.mid] &&
+        props.musicDataDict[item.mid].basic_info?.genre === genre.value))
+  );
+}
+
+function reset() {
+  levelFilter.value = [0, 1, 2, 3, 4, 5];
+  version.value = null;
+  genre.value = null;
+}
+
+onMounted(() => {
+  reset();
+});
+
+defineExpose({
+  filter,
+  reset,
+});
 </script>
-
-<style>
-.v-item-group__next,
-.v-item-group__prev {
-  min-width: 32px !important;
-}
-</style>
-
-<style scoped>
-.v-list-subheader {
-  float: right;
-  min-width: 102px;
-  justify-content: right;
-  padding: 0px !important;
-}
-</style>

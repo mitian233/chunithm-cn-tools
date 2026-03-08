@@ -1,33 +1,33 @@
-<script setup>
-import { onMounted } from 'vue';
+<template>
+  <n-card v-if="showAd" class="ad-container">
+    <ins
+      class="adsbygoogle"
+      style="display: block"
+      data-ad-client="ca-pub-9004116390026603"
+      data-ad-slot="5964842462"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+  </n-card>
+</template>
 
-window['addAds'] = function () {
-  let childList = document.getElementById('adSenseBar');
-  for (let i = 0; i < childList.length; i++) {
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  }
-};
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const showAd = ref(false);
 
 onMounted(() => {
-  (adsbygoogle = window.adsbygoogle || []).push({});
-  //window.addAds();
+  showAd.value = true;
+  try {
+    (window.adsbygoogle = window.adsbygoogle || []).push({});
+  } catch (e) {
+    console.warn('AdSense not loaded');
+  }
 });
 </script>
 
-<template>
-  <v-card class="mt-5">
-    <!--<v-card-title>广告</v-card-title>-->
-    <v-container id="adSenseBar">
-      <ins
-        class="adsbygoogle"
-        style="display: block"
-        data-ad-client="ca-pub-9004116390026603"
-        data-ad-slot="5964842462"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-    </v-container>
-  </v-card>
-</template>
-
-<style scoped></style>
+<style scoped>
+.ad-container {
+  margin-top: 24px;
+}
+</style>

@@ -1,139 +1,157 @@
-<script setup>
-import {onMounted, ref, watch} from "vue";
-import {useMusicDataStore} from '../store';
-const store = useMusicDataStore()
+<template>
+  <n-spin :show="isLoading">
+    <n-space vertical>
+      <n-radio-group v-model:value="mode" @update:value="clearResult">
+        <n-radio-button value="randall">手气不错</n-radio-button>
+        <n-radio-button value="randdsrange">定数范围随机</n-radio-button>
+        <n-radio-button value="randgenre">流派随机</n-radio-button>
+      </n-radio-group>
 
-const mode = ref('randall')
-const randResult = ref(null)
-const isLoading = ref(true)
-const dsrange_selected = ref([1,15.5])
-const genre_selected = ref('POPS & ANIME')
-const level_selected = ref('Master')
+      <n-space vertical>
+        <n-slider
+          v-model:value="dsrangeSelected"
+          range
+          :min="1"
+          :max="15.5"
+          :step="0.1"
+          :disabled="mode !== 'randdsrange'"
+          :format-tooltip="(value) => value.toFixed(1)"
+        />
+        <n-text v-if="mode === 'randdsrange'">
+          定数范围: {{ dsrangeSelected[0].toFixed(1) }} - {{ dsrangeSelected[1].toFixed(1) }}
+        </n-text>
+
+        <n-select
+          v-model:value="genreSelected"
+          :options="genreOptions"
+          :disabled="mode !== 'randgenre'"
+          placeholder="选择流派"
+        />
+
+        <n-space>
+          <n-button type="primary" @click="randomSongHandler">试试手气</n-button>
+          <n-button @click="clearResult">清空结果</n-button>
+        </n-space>
+      </n-space>
+
+      <n-card v-if="randResult" style="margin-top: 16px">
+        <n-grid :cols="2" :x-cols="1" responsive="screen">
+          <n-gi>
+            <n-space vertical align="center">
+              <n-image
+                :src="getImageUrl(randResult.id)"
+                :img-props="{ style: { maxWidth: '100%' } }"
+                fallback-src="https://via.placeholder.com/200x200?text=No+Image"
+              />
+            </n-space>
+          </n-gi>
+          <n-gi>
+            <n-descriptions :column="1" label-placement="left">
+              <n-descriptions-item label="歌曲名称">
+                {{ randResult.basic_info?.title }}
+              </n-descriptions-item>
+              <n-descriptions-item label="艺人">
+                {{ randResult.basic_info?.artist }}
+              </n-descriptions-item>
+              <n-descriptions-item label="分类">
+                {{ randResult.basic_info?.genre }}
+              </n-descriptions-item>
+              <n-descriptions-item label="版本">
+                {{ randResult.basic_info?.from }}
+              </n-descriptions-item>
+              <n-descriptions-item label="BPM">
+                {{ randResult.basic_info?.bpm }}
+              </n-descriptions-item>
+              <n-descriptions-item label="等级">
+                {{ randResult.level?.join(', ') }}
+              </n-descriptions-item>
+              <n-descriptions-item label="定数">
+                {{ randResult.ds?.join(', ') }}
+              </n-descriptions-item>
+            </n-descriptions>
+          </n-gi>
+        </n-grid>
+      </n-card>
+    </n-space>
+  </n-spin>
+</template>
+
+<script setup>
+import { onMounted, ref, watch } from 'vue';
+import { useMusicDataStore } from '../store';
+
+const store = useMusicDataStore();
+
+const mode = ref('randall');
+const randResult = ref(null);
+const isLoading = ref(true);
+const dsrangeSelected = ref([1, 15.5]);
+const genreSelected = ref('POPS & ANIME');
+
+const genreOptions = [
+  { label: 'POPS & ANIME', value: 'POPS & ANIME' },
+  { label: 'niconico', value: 'niconico' },
+  { label: '東方Project', value: '東方Project' },
+  { label: 'VARIETY', value: 'VARIETY' },
+  { label: 'ゲキマイ', value: 'ゲキマイ' },
+  { label: 'イロドリミドリ', value: 'イロドリミドリ' },
+  { label: 'ORIGINAL', value: 'ORIGINAL' },
+];
 
 const randomSongHandler = () => {
   switch (mode.value) {
     case 'randall':
-      randomSongfromAll()
-      break
+      randomSongfromAll();
+      break;
     case 'randdsrange':
-      randInDsRange()
-      break
+      randInDsRange();
+      break;
     case 'randgenre':
-      randInGenre()
-      break
+      randInGenre();
+      break;
   }
-}
+};
 
 const randomSongfromAll = () => {
-  randResult.value = store.chuni_data[Math.floor(Math.random() * store.chuni_data.length)]
-}
+  randResult.value = store.chuni_data[Math.floor(Math.random() * store.chuni_data.length)];
+};
 
 const randInDsRange = () => {
-  const [min, max] = dsrange_selected.value
-  let songsTargetArray = []
-  for(let i = 0; i < store.chuni_data.length; i++) {
-    const song = store.chuni_data[i]
-    if(song.ds){
-      for(let i = 0; i < song.ds.length; i++){
-        if(song.ds[i] >= min && song.ds[i] <= max){
-          songsTargetArray.push(song)
-          break
+  const [min, max] = dsrangeSelected.value;
+  const songsTargetArray = [];
+  for (const song of store.chuni_data) {
+    if (song.ds) {
+      for (let i = 0; i < song.ds.length; i++) {
+        if (song.ds[i] >= min && song.ds[i] <= max) {
+          songsTargetArray.push(song);
+          break;
         }
       }
     }
   }
-  randResult.value = songsTargetArray[Math.floor(Math.random() * songsTargetArray.length)]
-}
+  randResult.value = songsTargetArray[Math.floor(Math.random() * songsTargetArray.length)];
+};
 
 const randInGenre = () => {
-  let songsTargetArray = []
-  for(let i = 0; i < store.chuni_data.length; i++) {
-    const song = store.chuni_data[i]
-    if(song.basic_info.genre === genre_selected.value){
-      songsTargetArray.push(song)
+  const songsTargetArray = [];
+  for (const song of store.chuni_data) {
+    if (song.basic_info.genre === genreSelected.value) {
+      songsTargetArray.push(song);
     }
   }
-  randResult.value = songsTargetArray[Math.floor(Math.random() * songsTargetArray.length)]
-}
+  randResult.value = songsTargetArray[Math.floor(Math.random() * songsTargetArray.length)];
+};
 
 const clearResult = () => {
-  randResult.value = null
-}
+  randResult.value = null;
+};
 
-const getImageUrl =  (str) => {
-  return "https://apis.anontokyo.com/chuni/cover/"+str+".jpg";
-}
+const getImageUrl = (str) => {
+  return `https://apis.anontokyo.com/chuni/cover/${str}.jpg`;
+};
 
 onMounted(async () => {
-  await store.fetchChuniData()
-  isLoading.value = false
-})
-
-watch(() => mode.value, () => {
-  clearResult()
-})
+  await store.fetchChuniData();
+  isLoading.value = false;
+});
 </script>
-
-<template>
-  <v-container v-if="isLoading">
-    <v-progress-linear indeterminate></v-progress-linear>
-  </v-container>
-  <v-container v-else>
-    <v-radio-group inline v-model="mode" grow>
-      <v-radio label="手气不错" value="randall" />
-      <v-radio label="定数范围随机" value="randdsrange" />
-      <v-radio label="流派随机" value="randgenre" />
-    </v-radio-group>
-    <v-container>
-      <v-range-slider
-          color="primary"
-          v-model="dsrange_selected"
-          :max="15.5"
-          :min="1"
-          :step="0.1"
-          strict
-          :disabled="mode !== 'randdsrange'" >
-        <template v-slot:prepend>
-          <p style="width: 35px;text-align: right">{{dsrange_selected[0]}}</p>
-        </template>
-        <template v-slot:append>
-          <p style="width: 35px;text-align: left">{{dsrange_selected[1]}}</p>
-        </template>
-      </v-range-slider>
-      <v-select
-          v-model="genre_selected"
-          label="流派选择器"
-          :items="['POPS & ANIME', 'niconico', '東方Project', 'VARIETY', 'ゲキマイ', 'イロドリミドリ', 'ORIGINAL']"
-          :disabled="mode !== 'randgenre'"
-      />
-      <div class="flex justify-center gap-3">
-        <v-btn color="primary" class="inline-block" v-on:click="randomSongHandler">试试手气</v-btn>
-        <v-btn v-on:click="clearResult">清空结果</v-btn>
-      </div>
-    </v-container>
-    <v-container v-if="randResult">
-      <table>
-        <tr>
-          <td style="border: 5px">
-            <img :src="getImageUrl(randResult.id)" />
-          </td>
-        </tr>
-        <tr>
-          <td style="border: 5px">
-            <p>歌曲名称：{{randResult.basic_info.title}}</p>
-            <p>艺人：{{randResult.basic_info.artist}}</p>
-            <p>分类：{{randResult.basic_info.genre}}</p>
-            <p>版本：{{randResult.basic_info.from}}</p>
-            <p>BPM：{{randResult.basic_info.bpm}}</p>
-            <p>等级：{{randResult.level}}</p>
-            <p>定数：{{randResult.ds}}</p>
-          </td>
-        </tr>
-      </table>
-    </v-container>
-  </v-container>
-</template>
-
-<style scoped>
-
-</style>

@@ -1,65 +1,41 @@
 <template>
-  <v-card>
-    <v-card-title>关于工具箱</v-card-title>
-    <v-container>
-      <v-list>
-        <v-list-item>
-          <v-list-item-title>版本</v-list-item-title>
-          <v-list-item-subtitle>Version</v-list-item-subtitle>
-          <v-list>
-            <v-list-item>
-              <v-list-item-title>0.1.20</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2024年5月4日</v-list-item-subtitle>
-              <p>新增别名速查功能</p>
-            </v-list-item>
-          </v-list>
-        </v-list-item>
-      </v-list>
-    </v-container>
-  </v-card>
+  <n-space vertical>
+    <n-card title="关于工具箱">
+      <n-descriptions label-placement="left" :column="1">
+        <n-descriptions-item label="版本">
+          <n-text>0.1.21</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="更新日期">
+          <n-text>2026年3月8日</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="更新内容">
+          <n-text>优化界面和性能，升级依赖</n-text>
+        </n-descriptions-item>
+      </n-descriptions>
+    </n-card>
 
-  <v-card class="mt-5">
-    <v-card-title>贡献</v-card-title>
-    <v-container>
-      <v-list>
-        <v-list-item>
-          <v-list-item-title>开发者</v-list-item-title>
-          <v-list-item-subtitle>Developer</v-list-item-subtitle>
-          <p>Mikan</p>
-          <p>（项目部分组件使用了 Diving-Fish 查分器的开源组件）</p>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>称号数据</v-list-item-title>
-          <v-list-item-subtitle>Title Data</v-list-item-subtitle>
-          <p>losffa</p>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>歌曲数据</v-list-item-title>
-          <v-list-item-subtitle>Song Data</v-list-item-subtitle>
-          <p>Diving-Fish 查分器 API</p>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>还有……</v-list-item-title>
-          <v-list-item-subtitle>And...</v-list-item-subtitle>
-          <p>您</p>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>项目地址</v-list-item-title>
-          <v-list-item-subtitle>Repository</v-list-item-subtitle>
-          <p><a href="https://github.com/mitian233/chunithm-cn-tools">https://github.com/mitian233/chunithm-cn-tools</a></p>
-        </v-list-item>
-      </v-list>
-    </v-container>
-  </v-card>
-
+    <n-card title="贡献">
+      <n-descriptions label-placement="left" :column="1">
+        <n-descriptions-item label="开发者">
+          <n-text>Mikan</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="称号数据">
+          <n-text>losffa</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="歌曲数据">
+          <n-text>Diving-Fish 查分器 API</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="还有……">
+          <n-text>您</n-text>
+        </n-descriptions-item>
+        <n-descriptions-item label="项目地址">
+          <n-a href="https://github.com/mitian233/chunithm-cn-tools" target="_blank">
+            https://github.com/mitian233/chunithm-cn-tools
+          </n-a>
+        </n-descriptions-item>
+      </n-descriptions>
+    </n-card>
+  </n-space>
 </template>
 
-<script>
-export default {
-  name: "aboutView"
-}
-</script>
-
-<style scoped>
-
-</style>
+<script setup></script>

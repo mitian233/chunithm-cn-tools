@@ -1,9 +1,106 @@
+<template>
+  <n-card title="歌曲信息">
+    <template #header-extra>
+      <n-text depth="3">数据来源：diving fish api</n-text>
+    </template>
+    <n-spin :show="isLoading">
+      <n-space vertical v-if="!isLoading">
+        <n-grid :cols="2" :x-cols="1" responsive="screen">
+          <n-gi>
+            <n-space vertical align="center">
+              <n-image
+                :src="getImageUrl(songID)"
+                :img-props="{ style: { maxWidth: '100%' } }"
+                fallback-src="https://via.placeholder.com/200x200?text=No+Image"
+              />
+            </n-space>
+          </n-gi>
+          <n-gi>
+            <n-space vertical>
+              <n-text v-if="isWE" type="error">该谱面为 World's End 谱面</n-text>
+              <n-descriptions :column="1" label-placement="left">
+                <n-descriptions-item label="歌曲名称">
+                  {{ song_data.basic_info?.title }}
+                </n-descriptions-item>
+                <n-descriptions-item label="曲师">
+                  {{ song_data.basic_info?.artist }}
+                </n-descriptions-item>
+                <n-descriptions-item label="分类">
+                  {{ song_data.basic_info?.genre }}
+                </n-descriptions-item>
+                <n-descriptions-item label="版本">
+                  {{ song_data.basic_info?.from }}
+                </n-descriptions-item>
+                <n-descriptions-item label="BPM">
+                  {{ song_data.basic_info?.bpm }}
+                </n-descriptions-item>
+              </n-descriptions>
+              <n-text v-if="haveUltima" type="info">有 Ultima 谱面</n-text>
+              <n-button @click="$router.go(-1)">回到上一页</n-button>
+            </n-space>
+          </n-gi>
+        </n-grid>
+
+        <n-card style="margin-top: 20px">
+          <n-tabs v-model:value="tab" type="line">
+            <n-tab-pane
+              v-for="(level, index) in song_data.levelLabel"
+              :key="index"
+              :name="level"
+              :tab="level"
+            >
+              <n-card v-if="level !== 'World\'s End'">
+                <n-descriptions :column="1" label-placement="left">
+                  <n-descriptions-item label="定数">
+                    {{ song_data.ds[index] }}
+                  </n-descriptions-item>
+                  <n-descriptions-item label="最大连击数量">
+                    {{ song_data.charts[index]?.combo }}
+                  </n-descriptions-item>
+                  <n-descriptions-item label="谱师">
+                    {{ song_data.charts[index]?.charter }}
+                  </n-descriptions-item>
+                </n-descriptions>
+                <n-collapse style="margin-top: 10px">
+                  <n-collapse-item title="快捷填入计算器" name="calc">
+                    <n-space>
+                      <n-button @click="gotoDsCalc(song_data.ds[index])">谱面Rating计算</n-button>
+                      <n-button @click="gotoLineCalc(song_data.charts[index]?.combo)">
+                        分数线计算
+                      </n-button>
+                    </n-space>
+                  </n-collapse-item>
+                </n-collapse>
+              </n-card>
+              <n-card v-else>
+                <n-descriptions :column="1" label-placement="left">
+                  <n-descriptions-item label="谱面标签">
+                    {{ song_data.level[5] }}
+                  </n-descriptions-item>
+                  <n-descriptions-item label="最大连击数量">
+                    {{ song_data.charts[5]?.combo }}
+                  </n-descriptions-item>
+                  <n-descriptions-item label="谱师">
+                    {{ song_data.charts[5]?.charter }}
+                  </n-descriptions-item>
+                </n-descriptions>
+              </n-card>
+            </n-tab-pane>
+          </n-tabs>
+        </n-card>
+      </n-space>
+    </n-spin>
+  </n-card>
+</template>
+
 <script setup>
-import {ref, onMounted} from "vue";
-import {useRoute} from "vue-router";
-import {useMusicDataStore} from '../store';
-import router from "../router";
-const store = useMusicDataStore()
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useMusicDataStore } from '../store';
+
+const route = useRoute();
+const router = useRouter();
+const store = useMusicDataStore();
 
 const songID = ref(0);
 const isLoading = ref(true);
@@ -17,7 +114,7 @@ const isWE = ref(false);
 const tab = ref(null);
 
 const fetchMusicData = async () => {
-  await store.fetchChuniData()
+  await store.fetchChuniData();
   chuni_data.value = store.chuni_data;
   let i = 0;
   chuni_data.value.forEach((elem) => {
@@ -27,23 +124,25 @@ const fetchMusicData = async () => {
   song_data.value.levelLabel = [];
   i = 0;
   song_data.value.level.forEach((elem) => {
-    song_data.value.levelLabel.push(["Basic", "Advanced", "Expert", "Master", "Ultima", "World's End"][i++] + " " + elem);
+    song_data.value.levelLabel.push(
+      ['Basic', 'Advanced', 'Expert', 'Master', 'Ultima', "World's End"][i++] + ' ' + elem
+    );
   });
-  if(song_data.value.ds.length === 5) {
+  if (song_data.value.ds.length === 5) {
     haveUltima.value = true;
-  }else if(song_data.value.ds.length === 6) {
+  } else if (song_data.value.ds.length === 6) {
     isWE.value = true;
     song_data.value.levelLabel = ["World's End"];
     tab.value = "World's End";
   }
   isLoading.value = false;
-}
+};
 
 const gotoDsCalc = (ds) => {
   router.push({
-    path: "/rating",
+    path: '/rating',
     query: {
-      mode: "from_achievements",
+      mode: 'from_achievements',
       ds: ds,
     },
   });
@@ -51,87 +150,21 @@ const gotoDsCalc = (ds) => {
 
 const gotoLineCalc = (combo) => {
   router.push({
-    path: "/rating",
+    path: '/rating',
     query: {
-      mode: "from_line",
+      mode: 'from_line',
       combo: combo,
     },
   });
 };
 
-const getImageUrl =  (str) => {
-  return "https://apis.anontokyo.com/chuni/cover/"+str+".jpg";
-}
+const getImageUrl = (str) => {
+  return `https://cdn.jsdelivr.net/gh/mitian233/chunicover@cached/covers/${str}.jpg`;
+};
 
 onMounted(() => {
-  songID.value = useRoute().params.id;
+  songID.value = route.params.id;
   isLoading.value = true;
   fetchMusicData();
 });
 </script>
-
-<template>
-<v-card>
-  <v-card-title>歌曲信息</v-card-title>
-  <v-card-subtitle>数据来源：diving fish api</v-card-subtitle>
-  <v-container v-if="isLoading">
-    <v-progress-linear indeterminate></v-progress-linear>
-  </v-container>
-  <v-container v-else>
-    <div class="md:grid md:grid-cols-2">
-      <div class="text-center">
-        <img class="inline" :src="getImageUrl(songID)" />
-      </div>
-      <div>
-        <p v-if="isWE" style="color: red">该谱面为 World's End 谱面</p>
-        <p>歌曲名称：{{song_data.basic_info.title}}</p>
-        <p>曲师：{{song_data.basic_info.artist}}</p>
-        <p>分类：{{song_data.basic_info.genre}}</p>
-        <p>版本：{{song_data.basic_info.from}}</p>
-        <p>BPM：{{song_data.basic_info.bpm}}</p>
-        <p v-if="haveUltima">有 Ultima 谱面</p>
-        <v-btn v-on:click="$router.go(-1)">回到上一页</v-btn>
-      </div>
-    </div>
-    <v-card style="margin-top: 20px">
-      <v-tabs v-model="tab" bg-color="primary">
-        <v-tab v-for="level in song_data.levelLabel" :value="level">{{level}}</v-tab>
-      </v-tabs>
-      <v-card-text>
-        <v-window v-model="tab">
-          <v-window-item v-for="(value, key) in song_data.levelLabel" :value="value">
-            <v-card v-if="value !== 'World\'s End'">
-              <p>定数：{{song_data.ds[key]}}</p>
-              <p>最大连击数量：{{song_data.charts[key].combo}}</p>
-              <p>谱师：{{song_data.charts[key].charter}}</p>
-              <v-expansion-panels style="margin-top: 10px">
-                <v-expansion-panel title="快捷填入计算器">
-                  <v-expansion-panel-text>
-                    <v-row style="padding-top: 10px;">
-                      <v-col>
-                        <v-btn v-on:click="gotoDsCalc(song_data.ds[key])">谱面Rating计算</v-btn>
-                      </v-col>
-                      <v-col>
-                        <v-btn v-on:click="gotoLineCalc(song_data.charts[key].combo)">分数线计算</v-btn>
-                      </v-col>
-                    </v-row>
-                  </v-expansion-panel-text>
-                </v-expansion-panel>
-              </v-expansion-panels>
-            </v-card>
-            <v-card v-else>
-              <p>谱面标签：{{song_data.level[5]}}</p>
-              <p>最大连击数量：{{song_data.charts[5].combo}}</p>
-              <p>谱师：{{song_data.charts[5].charter}}</p>
-            </v-card>
-          </v-window-item>
-        </v-window>
-      </v-card-text>
-    </v-card>
-  </v-container>
-</v-card>
-</template>
-
-<style scoped>
-
-</style>

@@ -1,75 +1,109 @@
 <template>
-  <v-card>
-  <v-card-title>歌曲列表</v-card-title>
-  <v-card-subtitle>数据来源：diving fish api</v-card-subtitle>
-  <v-container>
-    <v-spacer />
-    <v-container class="pa-0">
-      <p>查找范围</p>
-      <v-btn @click="searchFieldList = undefined" variant="tonal">
-        清除筛选器
-      </v-btn>
-      <v-btn-toggle v-model="searchFieldList" multiple>
-        <v-btn value="_id">乐曲ID</v-btn>
-        <v-btn value="title">名称</v-btn>
-        <v-btn value="charter">谱面作者</v-btn>
-        <v-btn value="genre">流派</v-btn>
-        <v-btn value="from">版本</v-btn>
-      </v-btn-toggle>
-    </v-container>
-    <!--<v-checkbox label="使用高级设置" v-model="ProSettingChuni" class="mr-4" @click="$refs.proSettingsChuni.reset()" />-->
-    <v-text-field v-model="searchKey" prepend-icon="mdi-magnify" label="查找乐曲" single-line hide-details class="mb-4"/>
-    <!--<pro-settings-chuni v-show="ProSettingChuni" ref="proSettingsChuni" :music_data="chuni_data" :music_data_dict="chuni_data_dict" />-->
-    <chuni-table :filterList="searchFieldList" :search="searchKey" :items="store.chuniRecordDisplay" :music_data_dict="store.chuni_data_dict" :loading="store.isLoading"/>
-  </v-container>
-</v-card>
+  <n-card>
+    <n-card-header>
+      <n-card-header-content>
+        <n-text strong style="font-size: 20px">歌曲列表</n-text>
+        <n-text depth="3">数据来源：diving fish api</n-text>
+      </n-card-header-content>
+    </n-card-header>
+    <n-space vertical>
+      <n-space vertical>
+        <n-text>查找范围</n-text>
+        <n-space>
+          <n-button @click="searchFieldList = []" secondary>清除筛选器</n-button>
+          <n-button-group>
+            <n-button
+              v-for="field in searchFields"
+              :key="field.value"
+              :type="searchFieldList?.includes(field.value) ? 'primary' : 'default'"
+              @click="toggleSearchField(field.value)"
+            >
+              {{ field.label }}
+            </n-button>
+          </n-button-group>
+        </n-space>
+      </n-space>
+      <n-input
+        v-model:value="searchKey"
+        placeholder="查找乐曲"
+        clearable
+        @update:value="handleSearchUpdate"
+      >
+        <template #prefix>
+          <n-icon :component="SearchOutline" />
+        </template>
+      </n-input>
+      <chuni-table
+        :filter-list="searchFieldList"
+        :search="searchKey"
+        :items="store.chuniRecordDisplay"
+        :music_data_dict="store.chuni_data_dict"
+        :loading="store.isLoading"
+      />
+    </n-space>
+  </n-card>
 </template>
 
-<script>
-import {markRaw,toRaw} from "vue"
-import axios from "axios"
-import ProSettingsChuni from "../components/proSettingsChuni.vue"
-import chuniTable from "../components/chuniTable.vue";
-import { useMusicDataStore } from "../store";
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { SearchOutline } from '@vicons/ionicons5';
+import chuniTable from '../components/chuniTable.vue';
+import { useMusicDataStore } from '../store';
+
+const router = useRouter();
+const route = useRoute();
 const store = useMusicDataStore();
-export default {
-  name: "songsList",
-  components: {
-    ProSettingsChuni,
-    chuniTable
-  },
-  data: () => {
-    return {
-      ProSettingChuni: false,
-      searchKey: "",
-      store: store,
-      searchFieldList: ["title"],
-    }
-  },
-  methods: {
-    setHeaders: function (headers) {
-      this.headers = headers
-    },
-  },
-  computed: {
-  },
-  watch: {
-    searchKey: function (val) {
-      this.$router.push({query: {searchFieldList: this.searchFieldList,search: val}})
-    },
-    searchFieldList: function (val) {
-      this.$router.push({query: {search: this.searchKey,searchFieldList: val}})
-    },
-  },
-  mounted: function () {
-    history.replaceState("", "", window.location.pathname)
-    store.fetchChuniData()
-    this.searchKey = this.$route.query.search
-    this.searchFieldList = this.$route.query.searchFieldList
-  },
+
+const searchKey = ref('');
+const searchFieldList = ref(['title']);
+
+const searchFields = [
+  { label: '乐曲ID', value: '_id' },
+  { label: '名称', value: 'title' },
+  { label: '谱面作者', value: 'charter' },
+  { label: '流派', value: 'genre' },
+  { label: '版本', value: 'from' },
+];
+
+function toggleSearchField(field) {
+  if (!searchFieldList.value) {
+    searchFieldList.value = [];
+  }
+  const index = searchFieldList.value.indexOf(field);
+  if (index === -1) {
+    searchFieldList.value.push(field);
+  } else {
+    searchFieldList.value.splice(index, 1);
+  }
+  updateQuery();
 }
+
+function handleSearchUpdate() {
+  updateQuery();
+}
+
+function updateQuery() {
+  router.push({
+    query: {
+      search: searchKey.value,
+      searchFieldList: searchFieldList.value,
+    },
+  });
+}
+
+onMounted(() => {
+  history.replaceState('', '', window.location.pathname);
+  store.fetchChuniData();
+  if (route.query.search) {
+    searchKey.value = route.query.search;
+  }
+  if (route.query.searchFieldList) {
+    searchFieldList.value = Array.isArray(route.query.searchFieldList)
+      ? route.query.searchFieldList
+      : [route.query.searchFieldList];
+  }
+});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

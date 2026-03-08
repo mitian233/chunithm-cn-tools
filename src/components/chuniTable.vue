@@ -3,7 +3,6 @@
     :columns="columns"
     :data="filteredData"
     :loading="loading"
-    :pagination="pagination"
     :row-key="(row) => row.id"
     :scroll-x="1200"
     :max-height="600"
@@ -13,9 +12,9 @@
 </template>
 
 <script setup>
-import { h, computed, ref } from 'vue';
+import { h, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import { NTag, NButton, NImage, NSpace } from 'naive-ui';
+import { NTag, NButton, NImage } from 'naive-ui';
 
 const props = defineProps({
   items: {
@@ -41,12 +40,6 @@ const props = defineProps({
 });
 
 const router = useRouter();
-
-const pagination = ref({
-  pageSize: 50,
-  showSizePicker: true,
-  pageSizes: [25, 50, 100, 200],
-});
 
 const levelColors = {
   0: 'success',
@@ -155,7 +148,6 @@ const columns = [
     title: '操作',
     key: 'action',
     width: 100,
-    fixed: 'right',
     render(row) {
       return h(
         NButton,

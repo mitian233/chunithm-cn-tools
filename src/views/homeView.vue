@@ -1,30 +1,22 @@
 <template>
-  <v-card>
-    <div class="d-flex flex-column justify-center align-center" style="text-align: center">
-      <img src="../assets/logo.png" alt="new-plus-logo" style="width: 300px; margin-top: 90px" />
-      <h1 style="margin-top: 40px">国服工具箱</h1>
-      <v-btn
-        style="margin-top: 30px; margin-bottom: 40px"
-        icon="mdi-arrow-right"
-        color="primary"
-        @click="goToSong()"
-      ></v-btn>
-    </div>
-  </v-card>
+  <n-card>
+    <n-space vertical align="center" justify="center" style="padding: 40px 0">
+      <img src="../assets/logo.png" alt="logo" style="width: 300px" />
+      <n-h1 style="margin-top: 40px">国服工具箱</n-h1>
+      <n-button type="primary" size="large" @click="goToSong" style="margin-top: 30px">
+        <template #icon>
+          <n-icon :component="ArrowForwardOutline" />
+        </template>
+        开始使用
+      </n-button>
+    </n-space>
+  </n-card>
 </template>
-<script>
-import { homestore } from '../store';
-export default {
-  data() {
-    return {
-      homestore,
-    };
-  },
-  methods: {
-    goToSong() {
-      homestore.drawer = true;
-    },
-  },
-  name: 'HomeView',
-};
+
+<script setup>
+import { ArrowForwardOutline } from '@vicons/ionicons5';
+
+function goToSong() {
+  window.location.href = '/song';
+}
 </script>

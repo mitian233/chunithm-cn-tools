@@ -1,143 +1,182 @@
 <template>
-  <v-app>
-    <div v-if="ISDEV === true">
-      <v-system-bar>DEV VERSION</v-system-bar>
-    </div>
-    <v-navigation-drawer v-model="homestore.drawer" temporary app>
-      <v-list-item>
-        <v-list-item-title class="title grey--text text--darken-2">
-          CHUNITHM CN Tools
-        </v-list-item-title>
-      </v-list-item>
-      <v-divider></v-divider>
-      <v-list density="compact" nav v-for="nav_list in nav_lists">
-        <v-list-item
-          :prepend-icon="nav_list.icon"
-          :title="nav_list.name"
-          :to="nav_list.link"
-          :key="nav_list.name"
-        />
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar color="primary" density="comfortable">
-      <v-app-bar-nav-icon @click.stop="homestore.drawer = !homestore.drawer" />
-      <v-app-bar-title>{{ $route.meta.title }} - CHUNITHM 国服工具箱</v-app-bar-title>
-      <v-menu>
-        <template v-slot:activator="{ props }">
-          <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
-        </template>
-        <v-list>
-          <v-list-item title="水鱼查分器" prepend-icon="mdi-fishbowl" @click="jumpToProber()" />
-          <v-list-item
-            title="切换深色模式"
-            prepend-icon="mdi-theme-light-dark"
-            @click="this.toggleTheme()"
-          />
-        </v-list>
-      </v-menu>
-    </v-app-bar>
-    <v-main>
-      <v-container fluid>
-        <router-view />
-        <google-adsense />
-      </v-container>
-    </v-main>
-    <!--<v-bottom-navigation>
-      <v-btn value="recent">
-        <v-icon>mdi-content-save-all</v-icon>
-        Save All
-      </v-btn>
-      <v-btn value="favorites">
-        <v-icon>mdi-heart</v-icon>
-        Favorites
-      </v-btn>
-    </v-bottom-navigation>-->
-  </v-app>
+  <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
+    <n-loading-bar-provider>
+      <n-dialog-provider>
+        <n-notification-provider>
+          <n-message-provider>
+            <n-layout has-sider>
+              <n-layout-sider
+                bordered
+                collapse-mode="width"
+                :collapsed-width="64"
+                :width="240"
+                :collapsed="collapsed"
+                show-trigger
+                @collapse="collapsed = true"
+                @expand="collapsed = false"
+              >
+                <div class="logo-container">
+                  <n-text v-if="!collapsed" class="logo-text">CHUNITHM CN Tools</n-text>
+                  <n-text v-else class="logo-text-mini">CN</n-text>
+                </div>
+                <n-menu
+                  :collapsed="collapsed"
+                  :collapsed-width="64"
+                  :collapsed-icon-size="22"
+                  :options="menuOptions"
+                  :value="currentKey"
+                  @update:value="handleMenuUpdate"
+                />
+              </n-layout-sider>
+              <n-layout>
+                <n-layout-header bordered class="header">
+                  <n-space justify="space-between" align="center">
+                    <n-text class="header-title">
+                      {{ $route.meta.title }} - CHUNITHM 国服工具箱
+                    </n-text>
+                    <n-space>
+                      <n-button text @click="jumpToProber">
+                        <template #icon>
+                          <n-icon><FishOutline /></n-icon>
+                        </template>
+                        水鱼查分器
+                      </n-button>
+                      <n-button text @click="toggleTheme">
+                        <template #icon>
+                          <n-icon>
+                            <MoonOutline v-if="!isDark" />
+                            <SunnyOutline v-else />
+                          </n-icon>
+                        </template>
+                        {{ isDark ? '浅色模式' : '深色模式' }}
+                      </n-button>
+                    </n-space>
+                  </n-space>
+                </n-layout-header>
+                <n-layout-content class="content">
+                  <router-view />
+                </n-layout-content>
+              </n-layout>
+            </n-layout>
+          </n-message-provider>
+        </n-notification-provider>
+      </n-dialog-provider>
+    </n-loading-bar-provider>
+  </n-config-provider>
 </template>
 
-<script>
-import { homestore } from './store';
-import { useTheme } from 'vuetify';
-import GoogleAdsense from './components/googleAdsense.vue';
-import NotifyBar from './components/notifyBar.vue';
-const ISDEV = false;
-export default {
-  components: { NotifyBar, GoogleAdsense },
-  setup() {
-    const theme = useTheme();
-    return {
-      theme,
-      toggleTheme: () => {
-        theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
-      },
-    };
+<script setup>
+import { ref, computed, h } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { darkTheme, zhCN, dateZhCN } from 'naive-ui';
+import { NIcon } from 'naive-ui';
+import {
+  HomeOutline,
+  MusicalNotesOutline,
+  CalculatorOutline,
+  FlaskOutline,
+  InformationCircleOutline,
+  MoonOutline,
+  SunnyOutline,
+  FishOutline,
+} from '@vicons/ionicons5';
+
+const router = useRouter();
+const route = useRoute();
+const collapsed = ref(false);
+const isDark = ref(false);
+
+const theme = computed(() => (isDark.value ? darkTheme : null));
+
+function renderIcon(icon) {
+  return () => h(NIcon, null, { default: () => h(icon) });
+}
+
+const menuOptions = [
+  {
+    label: '主页',
+    key: '/',
+    icon: renderIcon(HomeOutline),
   },
-  data() {
-    return {
-      homestore,
-      ISDEV: ISDEV,
-      drawer: false,
-      nav_lists: [
-        {
-          name: '主页',
-          icon: 'mdi-home-outline',
-          link: '/',
-        },
-        {
-          name: '歌曲列表',
-          icon: 'mdi-music-note',
-          link: '/song',
-        },
-        // {
-        //   name: '称号列表',
-        //   icon: 'mdi-list-box-outline',
-        //   link: '/title?tab=music',
-        // },
-        // {
-        //   name: '别名列表',
-        //   icon: 'mdi-alpha-a-circle-outline',
-        //   link: '/alias',
-        // },
-        {
-          name: 'OP 计算器',
-          icon: 'mdi-calculator',
-          link: '/op',
-        },
-        {
-          name: 'Rating 计算器',
-          icon: 'mdi-calculator',
-          link: '/rating',
-        },
-        {
-          name: '实验室',
-          icon: 'mdi-flask-outline',
-          link: '/labs',
-        },
-        {
-          name: '关于',
-          icon: 'mdi-information',
-          link: '/about',
-        },
-      ],
-    };
+  {
+    label: '歌曲列表',
+    key: '/song',
+    icon: renderIcon(MusicalNotesOutline),
   },
-  methods: {
-    jumpToProber: function () {
-      window.open('https://www.diving-fish.com/maimaidx/prober/');
-    },
+  {
+    label: 'OP 计算器',
+    key: '/op',
+    icon: renderIcon(CalculatorOutline),
   },
-  beforeCreate() {
-    localStorage.darkTheme = +window.matchMedia('(prefers-color-scheme: dark)').matches;
+  {
+    label: 'Rating 计算器',
+    key: '/rating',
+    icon: renderIcon(CalculatorOutline),
   },
-  created() {
-    let matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
-    matchMedia.addEventListener('change', () => {
-      this.darkTheme = matchMedia.matches;
-      this.toggleTheme(matchMedia.matches);
-    });
-    this.darkTheme = localStorage.darkTheme;
+  {
+    label: '实验室',
+    key: '/labs',
+    icon: renderIcon(FlaskOutline),
   },
-};
+  {
+    label: '关于',
+    key: '/about',
+    icon: renderIcon(InformationCircleOutline),
+  },
+];
+
+const currentKey = computed(() => {
+  const path = route.path;
+  if (path.startsWith('/song')) return '/song';
+  return path;
+});
+
+function handleMenuUpdate(key) {
+  router.push(key);
+}
+
+function toggleTheme() {
+  isDark.value = !isDark.value;
+}
+
+function jumpToProber() {
+  window.open('https://www.diving-fish.com/maimaidx/prober/');
+}
 </script>
 
-<style></style>
+<style scoped>
+.logo-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--n-border-color);
+}
+
+.logo-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.logo-text-mini {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.header {
+  height: 64px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.content {
+  padding: 24px;
+  min-height: calc(100vh - 64px);
+}
+</style>

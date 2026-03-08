@@ -1,125 +1,110 @@
 <template>
-  <v-card>
-    <v-card-title>单曲 OVER POWER 计算器</v-card-title>
-    <v-card-subtitle>若分数为 1010000 自动判定为 AJC（无需自行选择）</v-card-subtitle>
-    <v-container>
-      <v-spacer />
-      <v-container class="pa-1">
-        <v-text-field
-          label="定数"
-          v-model="ds_input"
-          :rules="[(u) => (isFinite(+u) && +u >= 0 && +u <= 15.5) || '请输入合法数据']"
-        ></v-text-field>
-        <v-text-field
-          label="分数"
-          v-model="score_input"
-          :rules="[(u) => (isFinite(+u) && +u >= 0 && +u <= 1010000) || '请输入合法数据']"
-        ></v-text-field>
-        <v-container class="pa-0">
-          <v-radio-group v-model="combo_status" row>
-            <v-radio label="已完成" value="finished"></v-radio>
-            <v-radio label="已达成 FULL COMBO" value="full_combo"></v-radio>
-            <v-radio label="已达成 ALL JUSTICE" value="all_justice"></v-radio>
-            <v-radio label="已理论" value="all_justice_critical" readonly></v-radio>
-          </v-radio-group>
-          <v-row class="d-flex justify-center" style="margin-bottom: 10px">
-            <v-col>
-              <v-btn color="primary" @click="calculateOP" block>计算</v-btn>
-            </v-col>
-            <v-col>
-              <v-btn @click="clear" block>清空</v-btn>
-            </v-col>
-          </v-row>
-          <v-divider style="margin-bottom: 20px" />
-          <v-text-field label="结果" v-model="calc_result" readonly></v-text-field>
-        </v-container>
-      </v-container>
-    </v-container>
-  </v-card>
+  <n-card title="单曲 OVER POWER 计算器">
+    <template #header-extra>
+      <n-text depth="3" style="font-size: 12px">若分数为 1010000 自动判定为 AJC</n-text>
+    </template>
+    <n-space vertical>
+      <n-form ref="formRef" :model="formData">
+        <n-form-item label="定数" path="ds">
+          <n-input-number
+            v-model:value="formData.ds"
+            :min="0"
+            :max="15.5"
+            :step="0.1"
+            placeholder="请输入定数"
+            style="width: 100%"
+          />
+        </n-form-item>
+        <n-form-item label="分数" path="score">
+          <n-input-number
+            v-model:value="formData.score"
+            :min="0"
+            :max="1010000"
+            placeholder="请输入分数"
+            style="width: 100%"
+          />
+        </n-form-item>
+        <n-form-item label="状态">
+          <n-radio-group v-model:value="formData.comboStatus">
+            <n-radio-button value="finished">已完成</n-radio-button>
+            <n-radio-button value="full_combo">FULL COMBO</n-radio-button>
+            <n-radio-button value="all_justice">ALL JUSTICE</n-radio-button>
+            <n-radio-button value="all_justice_critical" :disabled="formData.score !== 1010000">
+              AJC
+            </n-radio-button>
+          </n-radio-group>
+        </n-form-item>
+      </n-form>
+      <n-space>
+        <n-button type="primary" @click="calculateOP">计算</n-button>
+        <n-button @click="clear">清空</n-button>
+      </n-space>
+      <n-divider />
+      <n-statistic label="结果" :value="result">
+        <template #suffix>
+          <n-text depth="3">OP</n-text>
+        </template>
+      </n-statistic>
+    </n-space>
+  </n-card>
 </template>
 
-<script>
-export default {
-  data: () => {
-    return {
-      visible: false,
-      ds_input: '',
-      score_input: '',
-      combo_status: 'finished',
-      calc_result: '0',
-    };
-  },
-  methods: {
-    clear() {
-      this.ds_input = '';
-      this.score_input = '';
-      this.combo_status = 'finished';
-      this.calc_result = '0';
-    },
-    calculateOP() {
-      let result = 0;
-      if (this.score_input == 1010000) {
-        this.combo_status = 'all_justice_critical';
-      }
-      switch (true) {
-        case this.score_input >= 1007500:
-          result = (Number(this.ds_input) + 2) * 5 + (this.score_input - 1007500) * 0.0015;
-          switch (true) {
-            case this.combo_status === 'full_combo':
-              result += 0.5;
-              break;
-            case this.combo_status === 'all_justice':
-              result += 0.5 + 0.5;
-              break;
-            case this.combo_status === 'all_justice_critical':
-              result += 0.5 + 0.5 + 0.25;
-              break;
-          }
-          break;
-        case this.score_input >= 975000:
-          result = this.raCalculate(Number(this.ds_input), Number(this.score_input)) * 5;
-          break;
-        default:
-          result = 0;
-      }
-      this.calc_result = result;
-    },
-    raCalculate: function (ds, score) {
-      let result = 0;
-      switch (true) {
-        case score >= 1009000:
-          result = ds + 2.15;
-          break;
-        case score >= 1007500:
-          result = ds + 2 + parseInt((score - 1007500) / 100) * 0.01;
-          break;
-        case score >= 1005000:
-          result = ds + 1.5 + parseInt((score - 1005000) / 500) * 0.1;
-          break;
-        case score >= 1000000:
-          result = ds + 1 + parseInt((score - 1000000) / 1000) * 0.1;
-          break;
-        case score >= 975000:
-          result = ds + parseInt((score - 975000) / 2500) * 0.1;
-          break;
-        case score >= 925000:
-          result = ds - 3;
-          break;
-        case score >= 900000:
-          result = ds - 5;
-          break;
-        case score >= 800000:
-          result = (ds - 5) / 2;
-          break;
-        default:
-          result = 0;
-          break;
-      }
-      return result;
-    },
-  },
-  name: 'overpowerCalculator',
-};
-</script>
+<script setup>
+import { ref, watch } from 'vue';
 
-<style scoped></style>
+const formData = ref({
+  ds: null,
+  score: null,
+  comboStatus: 'finished',
+});
+
+const result = ref(0);
+
+watch(
+  () => formData.value.score,
+  (newScore) => {
+    if (newScore === 1010000) {
+      formData.value.comboStatus = 'all_justice_critical';
+    }
+  }
+);
+
+function clear() {
+  formData.value = {
+    ds: null,
+    score: null,
+    comboStatus: 'finished',
+  };
+  result.value = 0;
+}
+
+function raCalculate(ds, score) {
+  if (score >= 1009000) return ds + 2.15;
+  if (score >= 1007500) return ds + 2 + Math.floor((score - 1007500) / 100) * 0.01;
+  if (score >= 1005000) return ds + 1.5 + Math.floor((score - 1005000) / 500) * 0.1;
+  if (score >= 1000000) return ds + 1 + Math.floor((score - 1000000) / 1000) * 0.1;
+  if (score >= 975000) return ds + Math.floor((score - 975000) / 2500) * 0.1;
+  if (score >= 925000) return ds - 3;
+  if (score >= 900000) return ds - 5;
+  if (score >= 800000) return (ds - 5) / 2;
+  return 0;
+}
+
+function calculateOP() {
+  const { ds, score, comboStatus } = formData.value;
+  if (ds === null || score === null) return;
+
+  let op = 0;
+
+  if (score >= 1007500) {
+    op = (ds + 2) * 5 + (score - 1007500) * 0.0015;
+    if (comboStatus === 'full_combo') op += 0.5;
+    if (comboStatus === 'all_justice') op += 1;
+    if (comboStatus === 'all_justice_critical') op += 1.25;
+  } else if (score >= 975000) {
+    op = raCalculate(ds, score) * 5;
+  }
+
+  result.value = op.toFixed(2);
+}
+</script>

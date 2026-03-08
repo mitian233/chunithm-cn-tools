@@ -1,6 +1,6 @@
 <script setup>
-import {ref, onMounted, watch} from "vue";
-import Cookies from "js-cookie";
+import { ref, onMounted, watch } from 'vue';
+import Cookies from 'js-cookie';
 
 const showNotifyBar = ref(false);
 
@@ -20,22 +20,18 @@ onMounted(() => {
 });
 
 watch(showNotifyBar, (newVal) => {
-  Cookies.set('showNotifyBar', newVal, {expires: 7 * 24 * 60 * 60});
-  });
-
+  Cookies.set('showNotifyBar', newVal, { expires: 7 * 24 * 60 * 60 });
+});
 </script>
 
 <template>
-  <v-alert
-      v-model="showNotifyBar"
-      type="info"
-      title="域名变更通知"
-      class="mb-2"
-      closable>
-    <p>本站将于近期搬迁到新的域名<a href="https://chu.3kn.jp">chu.3kn.jp</a>，请窒息。</p>
+  <v-alert v-model="showNotifyBar" type="info" title="域名变更通知" class="mb-2" closable>
+    <p>
+      本站将于近期搬迁到新的域名
+      <a href="https://chu.3kn.jp">chu.3kn.jp</a>
+      ，请窒息。
+    </p>
   </v-alert>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

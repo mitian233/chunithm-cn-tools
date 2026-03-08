@@ -15,15 +15,11 @@ export default {
     headers: Array,
   },
   data: () => {
-    return {
-    }
+    return {};
   },
-  created() {
-  },
-  name: "titleTable"
-}
+  created() {},
+  name: 'titleTable',
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

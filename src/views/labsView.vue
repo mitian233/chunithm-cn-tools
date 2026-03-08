@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import RandomSong from "../components/randomSong.vue";
+import { ref } from 'vue';
+import RandomSong from '../components/randomSong.vue';
 
 const lab_tab = ref('randomSong');
 </script>
@@ -9,7 +9,7 @@ const lab_tab = ref('randomSong');
   <v-card>
     <v-card-title>实验室</v-card-title>
     <v-container>
-      <v-spacer/>
+      <v-spacer />
       <v-container class="pa-1">
         <v-tabs v-model="lab_tab" grow>
           <v-tab label="随机歌曲" value="randomSong">随机歌曲</v-tab>
@@ -30,6 +30,4 @@ const lab_tab = ref('randomSong');
   </v-card>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

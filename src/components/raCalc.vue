@@ -1,9 +1,15 @@
 <template>
-  <div style="display: flex;justify-content: center">
-    <div style="text-align: center;margin: 15px">
-      <h1 style="font-size: 100px;margin: 70px 0px 70px 0px">🏗️</h1>
+  <div style="display: flex; justify-content: center">
+    <div style="text-align: center; margin: 15px">
+      <h1 style="font-size: 100px; margin: 70px 0px 70px 0px">🏗️</h1>
       <h2>该页面正在施工</h2>
-      <v-btn @click="this.$router.push({path:'/'})" color="primary" style="margin: 20px 0px 10px 0px">回到主页</v-btn>
+      <v-btn
+        @click="this.$router.push({ path: '/' })"
+        color="primary"
+        style="margin: 20px 0px 10px 0px"
+      >
+        回到主页
+      </v-btn>
     </div>
   </div>
   <!--
@@ -21,21 +27,17 @@ export default {
   data: () => {
     return {
       tableHeader: [
-        {text:"定数",value:"ds"},
-        {text:"分数",value:"achievements"},
-        {text:"Rating",value:"rating"},
+        { text: '定数', value: 'ds' },
+        { text: '分数', value: 'achievements' },
+        { text: 'Rating', value: 'rating' },
       ],
-      achievements_input: "",
-      tableData:[],
-    }
+      achievements_input: '',
+      tableData: [],
+    };
   },
-  methods:{
-
-  },
-  name: "raCalc"
-}
+  methods: {},
+  name: 'raCalc',
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

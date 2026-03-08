@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div v-if="ISDEV===true">
+    <div v-if="ISDEV === true">
       <v-system-bar>DEV VERSION</v-system-bar>
     </div>
     <v-navigation-drawer v-model="homestore.drawer" temporary app>
@@ -11,19 +11,28 @@
       </v-list-item>
       <v-divider></v-divider>
       <v-list density="compact" nav v-for="nav_list in nav_lists">
-        <v-list-item :prepend-icon="nav_list.icon" :title="nav_list.name" :to="nav_list.link" :key="nav_list.name" />
+        <v-list-item
+          :prepend-icon="nav_list.icon"
+          :title="nav_list.name"
+          :to="nav_list.link"
+          :key="nav_list.name"
+        />
       </v-list>
     </v-navigation-drawer>
     <v-app-bar color="primary" density="comfortable">
       <v-app-bar-nav-icon @click.stop="homestore.drawer = !homestore.drawer" />
-      <v-app-bar-title>{{$route.meta.title}} - CHUNITHM 国服工具箱</v-app-bar-title>
+      <v-app-bar-title>{{ $route.meta.title }} - CHUNITHM 国服工具箱</v-app-bar-title>
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn icon="mdi-dots-vertical" v-bind="props"></v-btn>
         </template>
         <v-list>
-          <v-list-item title="水鱼查分器" prepend-icon="mdi-fishbowl" @click="jumpToProber()"/>
-          <v-list-item title="切换深色模式" prepend-icon="mdi-theme-light-dark" @click="this.toggleTheme()"/>
+          <v-list-item title="水鱼查分器" prepend-icon="mdi-fishbowl" @click="jumpToProber()" />
+          <v-list-item
+            title="切换深色模式"
+            prepend-icon="mdi-theme-light-dark"
+            @click="this.toggleTheme()"
+          />
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -47,22 +56,21 @@
 </template>
 
 <script>
-import { homestore } from "./store"
-import { useTheme } from 'vuetify'
-import GoogleAdsense from "./components/googleAdsense.vue";
-import NotifyBar from "./components/notifyBar.vue";
-const ISDEV = false
+import { homestore } from './store';
+import { useTheme } from 'vuetify';
+import GoogleAdsense from './components/googleAdsense.vue';
+import NotifyBar from './components/notifyBar.vue';
+const ISDEV = false;
 export default {
-  components: {NotifyBar, GoogleAdsense},
+  components: { NotifyBar, GoogleAdsense },
   setup() {
-    const theme = useTheme()
+    const theme = useTheme();
     return {
       theme,
       toggleTheme: () => {
         theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
-
-      }
-    }
+      },
+    };
   },
   data() {
     return {
@@ -80,16 +88,16 @@ export default {
           icon: 'mdi-music-note',
           link: '/song',
         },
-        {
-          name: '称号列表',
-          icon: 'mdi-list-box-outline',
-          link: '/title?tab=music',
-        },
-        {
-          name: '别名列表',
-          icon: 'mdi-alpha-a-circle-outline',
-          link: '/alias',
-        },
+        // {
+        //   name: '称号列表',
+        //   icon: 'mdi-list-box-outline',
+        //   link: '/title?tab=music',
+        // },
+        // {
+        //   name: '别名列表',
+        //   icon: 'mdi-alpha-a-circle-outline',
+        //   link: '/alias',
+        // },
         {
           name: 'OP 计算器',
           icon: 'mdi-calculator',
@@ -111,26 +119,25 @@ export default {
           link: '/about',
         },
       ],
-    }
+    };
   },
-  methods:{
-    jumpToProber: function(){
-      window.open('https://www.diving-fish.com/maimaidx/prober/')
+  methods: {
+    jumpToProber: function () {
+      window.open('https://www.diving-fish.com/maimaidx/prober/');
     },
   },
   beforeCreate() {
-    localStorage.darkTheme = +window.matchMedia("(prefers-color-scheme: dark)").matches
+    localStorage.darkTheme = +window.matchMedia('(prefers-color-scheme: dark)').matches;
   },
   created() {
-    let matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
-    matchMedia.addEventListener("change", () => {
-      this.darkTheme = matchMedia.matches
-      this.toggleTheme(matchMedia.matches)
+    let matchMedia = window.matchMedia('(prefers-color-scheme: dark)');
+    matchMedia.addEventListener('change', () => {
+      this.darkTheme = matchMedia.matches;
+      this.toggleTheme(matchMedia.matches);
     });
-    this.darkTheme = localStorage.darkTheme
-  }
-}
+    this.darkTheme = localStorage.darkTheme;
+  },
+};
 </script>
 
-<style>
-</style>
+<style></style>

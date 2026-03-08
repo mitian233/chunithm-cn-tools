@@ -2,7 +2,7 @@
   <v-card>
     <v-card-title>中二 Rating 线计算工具</v-card-title>
     <v-container>
-      <v-spacer/>
+      <v-spacer />
       <v-container class="pa-1">
         <v-tabs v-model="rating_mode" grow>
           <v-tab label="按分数计算" value="from_achievements">按分数计算</v-tab>
@@ -27,11 +27,20 @@
               <ra-calc></ra-calc>
             </v-window-item>
             <v-window-item value="from_line">
-              <div v-if="this.$route.query.mode !== 'from_line'" style="display: flex;justify-content: center">
-                <div style="text-align: center;margin: 15px">
-                  <h1 style="font-size: 100px;margin: 70px 0px 70px 0px">⚠️</h1>
+              <div
+                v-if="this.$route.query.mode !== 'from_line'"
+                style="display: flex; justify-content: center"
+              >
+                <div style="text-align: center; margin: 15px">
+                  <h1 style="font-size: 100px; margin: 70px 0px 70px 0px">⚠️</h1>
                   <p>该功能必须从歌曲列表访问</p>
-                  <v-btn @click="this.$router.push({path:'/song'})" color="primary" style="margin: 10px 0px 10px 0px">点此跳转</v-btn>
+                  <v-btn
+                    @click="this.$router.push({ path: '/song' })"
+                    color="primary"
+                    style="margin: 10px 0px 10px 0px"
+                  >
+                    点此跳转
+                  </v-btn>
                 </div>
               </div>
               <div v-else>
@@ -70,52 +79,49 @@
 </template>
 
 <script>
-import RaCalc from "../components/raCalc.vue";
-import AchievementCalc from "../components/achievementCalc.vue";
-import DsCalc from "../components/dsCalc.vue";
-import LineCalc from "../components/lineCalc.vue";
+import RaCalc from '../components/raCalc.vue';
+import AchievementCalc from '../components/achievementCalc.vue';
+import DsCalc from '../components/dsCalc.vue';
+import LineCalc from '../components/lineCalc.vue';
 export default {
-  components: {LineCalc, RaCalc, DsCalc, AchievementCalc},
+  components: { LineCalc, RaCalc, DsCalc, AchievementCalc },
   data: () => {
     return {
       visible: false,
       rating_mode: 'from_achievements',
-      ds_input: "",
-      rating_input: "",
+      ds_input: '',
+      rating_input: '',
       rating_result: 0,
-      achievements_input: "",
+      achievements_input: '',
       rating_list_headers: [
-        {text: "定数", value: "ds"},
-        {text: "分数", value: "achievements"},
-        {text: "Rating", value: "rating"},
+        { text: '定数', value: 'ds' },
+        { text: '分数', value: 'achievements' },
+        { text: 'Rating', value: 'rating' },
       ],
       ds_in_url: NaN,
       combo_in_url: NaN,
-    }
+    };
   },
   computed: {
     rating_list: function () {
-      if (this.rating_mode === "from_ds") {
-        if (this.ds_input === "") return [];
-      } else if (this.rating_mode === "from_achievements") {
-        if (this.achievements_input === "") return [];
-      } else if (this.rating_mode === "from_rating") {
-        if (this.rating_input === "") return [];
+      if (this.rating_mode === 'from_ds') {
+        if (this.ds_input === '') return [];
+      } else if (this.rating_mode === 'from_achievements') {
+        if (this.achievements_input === '') return [];
+      } else if (this.rating_mode === 'from_rating') {
+        if (this.rating_input === '') return [];
       }
       return [];
-    }
+    },
   },
   created() {
-    this.rating_mode = this.$route.query.mode || "from_achievements";
+    this.rating_mode = this.$route.query.mode || 'from_achievements';
     this.ds_in_url = this.$route.query.ds;
     this.combo_in_url = this.$route.query.combo;
   },
-  methods: {
-  },
-  name: "ratingCalculator"
-}
+  methods: {},
+  name: 'ratingCalculator',
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

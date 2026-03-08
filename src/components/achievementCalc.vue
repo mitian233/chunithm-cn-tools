@@ -1,26 +1,34 @@
 <template>
   <v-row class="d-flex justify-center">
     <v-col>
-      <v-text-field v-model="ds_input" label="定数" :rules="[(u) =>(isFinite(+u) && +u >= 0 && +u <= 15.5) || '请输入合法数据',]"/>
+      <v-text-field
+        v-model="ds_input"
+        label="定数"
+        :rules="[(u) => (isFinite(+u) && +u >= 0 && +u <= 15.5) || '请输入合法数据']"
+      />
     </v-col>
     <v-col>
-      <v-text-field v-model="achievements_input" label="分数" :rules="[(u) =>(isFinite(+u) && +u >= 0 && +u <= 1010000) || '请输入合法数据',]"/>
+      <v-text-field
+        v-model="achievements_input"
+        label="分数"
+        :rules="[(u) => (isFinite(+u) && +u >= 0 && +u <= 1010000) || '请输入合法数据']"
+      />
     </v-col>
   </v-row>
-  <v-text-field v-model="rating_result" label="计算Rating" readonly/>
+  <v-text-field v-model="rating_result" label="计算Rating" readonly />
 </template>
 
 <script>
 export default {
-  props:{
-    ds: Number
+  props: {
+    ds: Number,
   },
   data: () => {
     return {
-      ds_input: "",
-      achievements_input: "",
+      ds_input: '',
+      achievements_input: '',
       rating_result: 0,
-    }
+    };
   },
   methods: {
     get_ra: function (ds, score) {
@@ -58,20 +66,18 @@ export default {
     },
   },
   created() {
-    this.ds_input = this.ds || "";
+    this.ds_input = this.ds || '';
   },
-  watch:{
-    achievements_input:function (val) {
-      this.rating_result = this.get_ra(this.ds_input, val)
+  watch: {
+    achievements_input: function (val) {
+      this.rating_result = this.get_ra(this.ds_input, val);
     },
-    ds_input:function (val) {
-      this.rating_result = this.get_ra(val, this.achievements_input)
-    }
+    ds_input: function (val) {
+      this.rating_result = this.get_ra(val, this.achievements_input);
+    },
   },
-  name: "achievementCalc"
-}
+  name: 'achievementCalc',
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -8,9 +8,9 @@
           <v-list-item-subtitle>Version</v-list-item-subtitle>
           <v-list>
             <v-list-item>
-              <v-list-item-title>0.1.20</v-list-item-title>
-              <v-list-item-subtitle>更新日期：2024年5月4日</v-list-item-subtitle>
-              <p>新增别名速查功能</p>
+              <v-list-item-title>0.1.21</v-list-item-title>
+              <v-list-item-subtitle>更新日期：2026年3月8日</v-list-item-subtitle>
+              <p>优化界面和性能，升级依赖</p>
             </v-list-item>
           </v-list>
         </v-list-item>
@@ -46,20 +46,21 @@
         <v-list-item>
           <v-list-item-title>项目地址</v-list-item-title>
           <v-list-item-subtitle>Repository</v-list-item-subtitle>
-          <p><a href="https://github.com/mitian233/chunithm-cn-tools">https://github.com/mitian233/chunithm-cn-tools</a></p>
+          <p>
+            <a href="https://github.com/mitian233/chunithm-cn-tools">
+              https://github.com/mitian233/chunithm-cn-tools
+            </a>
+          </p>
         </v-list-item>
       </v-list>
     </v-container>
   </v-card>
-
 </template>
 
 <script>
 export default {
-  name: "aboutView"
-}
+  name: 'aboutView',
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

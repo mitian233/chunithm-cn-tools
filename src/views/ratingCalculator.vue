@@ -2,7 +2,7 @@
   <n-card title="中二 Rating 线计算工具">
     <n-tabs v-model:value="ratingMode" type="line" animated>
       <n-tab-pane name="from_achievements" tab="按分数计算">
-        <achievement-calc :ds="Number(dsInUrl)" />
+        <achievement-calc :ds="dsInUrl" />
       </n-tab-pane>
       <n-tab-pane name="from_ds" tab="按定数计算">
         <ds-calc />
@@ -16,14 +16,14 @@
           <n-p>该功能必须从歌曲列表访问</n-p>
           <n-button type="primary" @click="$router.push('/song')">点此跳转</n-button>
         </div>
-        <line-calc v-else :combo="Number(comboInUrl)" />
+        <line-calc v-else :combo="comboInUrl" />
       </n-tab-pane>
     </n-tabs>
   </n-card>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import RaCalc from '../components/raCalc.vue';
 import AchievementCalc from '../components/achievementCalc.vue';
@@ -33,14 +33,22 @@ import LineCalc from '../components/lineCalc.vue';
 const route = useRoute();
 
 const ratingMode = ref('from_achievements');
-const dsInUrl = ref(NaN);
-const comboInUrl = ref(NaN);
+const dsInUrl = ref(null);
+const comboInUrl = ref(null);
 
 const isFromLine = computed(() => route.query.mode === 'from_line');
 
-onMounted(() => {
-  ratingMode.value = route.query.mode || 'from_achievements';
-  dsInUrl.value = route.query.ds;
-  comboInUrl.value = route.query.combo;
-});
+watch(
+  () => route.query,
+  (query) => {
+    ratingMode.value = query.mode || 'from_achievements';
+
+    const ds = Number(query.ds);
+    dsInUrl.value = Number.isFinite(ds) ? ds : null;
+
+    const combo = Number(query.combo);
+    comboInUrl.value = Number.isFinite(combo) ? combo : null;
+  },
+  { immediate: true }
+);
 </script>

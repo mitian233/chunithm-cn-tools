@@ -6,7 +6,7 @@
           <n-input-number
             v-model:value="dsInput"
             :min="0"
-            :max="15.5"
+            :max="16.0"
             :step="0.1"
             placeholder="请输入定数"
             style="width: 100%"
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   ds: {
@@ -61,9 +61,11 @@ watch([dsInput, achievementsInput], () => {
   ratingResult.value = getRa(dsInput.value, achievementsInput.value);
 });
 
-onMounted(() => {
-  if (props.ds != null) {
-    dsInput.value = props.ds;
-  }
-});
+watch(
+  () => props.ds,
+  (value) => {
+    dsInput.value = value ?? null;
+  },
+  { immediate: true }
+);
 </script>

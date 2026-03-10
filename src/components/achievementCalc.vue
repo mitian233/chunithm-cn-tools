@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   ds: {
@@ -61,9 +61,11 @@ watch([dsInput, achievementsInput], () => {
   ratingResult.value = getRa(dsInput.value, achievementsInput.value);
 });
 
-onMounted(() => {
-  if (props.ds != null) {
-    dsInput.value = props.ds;
-  }
-});
+watch(
+  () => props.ds,
+  (value) => {
+    dsInput.value = value ?? null;
+  },
+  { immediate: true }
+);
 </script>

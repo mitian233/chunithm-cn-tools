@@ -23,7 +23,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import RaCalc from '../components/raCalc.vue';
 import AchievementCalc from '../components/achievementCalc.vue';
@@ -38,9 +38,17 @@ const comboInUrl = ref(null);
 
 const isFromLine = computed(() => route.query.mode === 'from_line');
 
-onMounted(() => {
-  ratingMode.value = route.query.mode || 'from_achievements';
-  dsInUrl.value = route.query.ds ? Number(route.query.ds) : null;
-  comboInUrl.value = route.query.combo ? Number(route.query.combo) : null;
-});
+watch(
+  () => route.query,
+  (query) => {
+    ratingMode.value = query.mode || 'from_achievements';
+
+    const ds = Number(query.ds);
+    dsInUrl.value = Number.isFinite(ds) ? ds : null;
+
+    const combo = Number(query.combo);
+    comboInUrl.value = Number.isFinite(combo) ? combo : null;
+  },
+  { immediate: true }
+);
 </script>

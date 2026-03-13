@@ -1,5 +1,5 @@
 <template>
-  <n-card title="中二 Rating 线计算工具">
+  <n-card title="中二 Rating 线计算工具" class="card-hover-lift">
     <n-tabs v-model:value="ratingMode" type="line" animated>
       <n-tab-pane name="from_achievements" tab="按分数计算">
         <achievement-calc :ds="dsInUrl" />

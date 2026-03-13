@@ -1,6 +1,6 @@
 <template>
   <n-space vertical align="center">
-    <n-card style="max-width: 400px">
+    <n-card style="max-width: 400px" class="card-hover-lift">
       <n-space vertical>
         <n-statistic label="该乐曲总Combo数" :value="combo" />
         <n-form-item label="输入目标分数线">
@@ -9,17 +9,25 @@
             :min="0"
             :max="1010000"
             placeholder="请输入分数"
+            class="input-focus-glow"
             style="width: 100%"
           />
         </n-form-item>
         <n-divider />
-        <template v-if="showResult">
-          <n-statistic label="允许的最多Justice数" :value="justiceCount" />
-          <n-statistic label="等效的最多Attack数" :value="attackCount" />
-          <n-statistic label="等效的最多Miss数" :value="missCount" />
-        </template>
-        <n-text v-else depth="3">未输入数据或数据不合法！请检查输入！</n-text>
-        <n-button type="primary" @click="$router.back()" style="margin-top: 16px">
+        <transition name="fade">
+          <template v-if="showResult">
+            <n-statistic label="允许的最多Justice数" :value="justiceCount" />
+            <n-statistic label="等效的最多Attack数" :value="attackCount" />
+            <n-statistic label="等效的最多Miss数" :value="missCount" />
+          </template>
+        </transition>
+        <n-text v-if="!showResult" depth="3">未输入数据或数据不合法！请检查输入！</n-text>
+        <n-button
+          type="primary"
+          class="btn-hover-lift"
+          @click="$router.back()"
+          style="margin-top: 16px"
+        >
           回到上一页
         </n-button>
       </n-space>

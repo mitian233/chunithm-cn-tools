@@ -7,6 +7,7 @@
         :max="15.5"
         :step="0.1"
         placeholder="请输入定数"
+        class="input-focus-glow"
         style="width: 100%"
       />
     </n-form-item>

@@ -1,5 +1,5 @@
 <template>
-  <n-card title="单曲 OVER POWER 计算器">
+  <n-card title="单曲 OVER POWER 计算器" class="card-hover-lift">
     <template #header-extra>
       <n-text depth="3" style="font-size: 12px">若分数为 1010000 自动判定为 AJC</n-text>
     </template>
@@ -12,6 +12,7 @@
             :max="15.5"
             :step="0.1"
             placeholder="请输入定数"
+            class="input-focus-glow"
             style="width: 100%"
           />
         </n-form-item>
@@ -21,6 +22,7 @@
             :min="0"
             :max="1010000"
             placeholder="请输入分数"
+            class="input-focus-glow"
             style="width: 100%"
           />
         </n-form-item>
@@ -36,11 +38,11 @@
         </n-form-item>
       </n-form>
       <n-space>
-        <n-button type="primary" @click="calculateOP">计算</n-button>
-        <n-button @click="clear">清空</n-button>
+        <n-button type="primary" class="btn-hover-lift" @click="calculateOP">计算</n-button>
+        <n-button class="btn-hover-lift" @click="clear">清空</n-button>
       </n-space>
       <n-divider />
-      <n-statistic label="结果" :value="result">
+      <n-statistic label="结果" :value="result" :class="{ 'animate-number-reveal': hasResult }">
         <template #suffix>
           <n-text depth="3">OP</n-text>
         </template>
@@ -59,6 +61,7 @@ const formData = ref({
 });
 
 const result = ref(0);
+const hasResult = ref(false);
 
 watch(
   () => formData.value.score,
@@ -105,6 +108,10 @@ function calculateOP() {
     op = raCalculate(ds, score) * 5;
   }
 
-  result.value = op.toFixed(2);
+  hasResult.value = false;
+  setTimeout(() => {
+    result.value = op.toFixed(2);
+    hasResult.value = true;
+  }, 50);
 }
 </script>

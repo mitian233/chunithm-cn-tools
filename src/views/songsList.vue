@@ -1,5 +1,5 @@
 <template>
-  <n-card>
+  <n-card class="card-hover-lift">
     <n-card-header>
       <n-card-header-content>
         <n-text strong style="font-size: 20px">歌曲列表</n-text>

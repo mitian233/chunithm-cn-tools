@@ -76,7 +76,11 @@
                   </n-space>
                 </n-layout-header>
                 <n-layout-content class="content" :class="{ 'content-mobile': isMobile }">
-                  <router-view />
+                  <router-view v-slot="{ Component }">
+                    <transition name="slide-fade" mode="out-in">
+                      <component :is="Component" />
+                    </transition>
+                  </router-view>
                   <google-adsense />
                 </n-layout-content>
               </n-layout>

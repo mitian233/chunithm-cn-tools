@@ -9,6 +9,7 @@
             :max="16.0"
             :step="0.1"
             placeholder="请输入定数"
+            class="input-focus-glow"
             style="width: 100%"
           />
         </n-form-item>
@@ -20,12 +21,17 @@
             :min="0"
             :max="1010000"
             placeholder="请输入分数"
+            class="input-focus-glow"
             style="width: 100%"
           />
         </n-form-item>
       </n-gi>
     </n-grid>
-    <n-statistic label="计算Rating" :value="ratingResult.toFixed(2)" />
+    <n-statistic
+      label="计算Rating"
+      :value="ratingResult.toFixed(2)"
+      :class="{ 'animate-number-reveal': hasResult }"
+    />
   </n-space>
 </template>
 
@@ -42,6 +48,7 @@ const props = defineProps({
 const dsInput = ref(null);
 const achievementsInput = ref(null);
 const ratingResult = ref(0);
+const hasResult = ref(false);
 
 const getRa = (ds, score) => {
   if (!ds || !score) return 0;
@@ -58,7 +65,16 @@ const getRa = (ds, score) => {
 };
 
 watch([dsInput, achievementsInput], () => {
-  ratingResult.value = getRa(dsInput.value, achievementsInput.value);
+  const newResult = getRa(dsInput.value, achievementsInput.value);
+  if (newResult !== ratingResult.value && newResult > 0) {
+    hasResult.value = false;
+    setTimeout(() => {
+      ratingResult.value = newResult;
+      hasResult.value = true;
+    }, 50);
+  } else {
+    ratingResult.value = newResult;
+  }
 });
 
 watch(

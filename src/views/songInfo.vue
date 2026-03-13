@@ -1,5 +1,5 @@
 <template>
-  <n-card title="歌曲信息">
+  <n-card title="歌曲信息" class="card-hover-lift animate-fade-in-up">
     <template #header-extra>
       <n-text depth="3">数据来源：diving fish api</n-text>
     </template>
@@ -166,5 +166,11 @@ onMounted(() => {
   songID.value = route.params.id;
   isLoading.value = true;
   fetchMusicData();
+
+  setTimeout(() => {
+    document.querySelectorAll('.animate-fade-in-up').forEach((el) => {
+      el.classList.remove('opacity-0');
+    });
+  }, 50);
 });
 </script>

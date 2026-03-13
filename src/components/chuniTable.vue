@@ -154,6 +154,7 @@ const columns = [
         {
           size: 'small',
           type: 'primary',
+          class: 'btn-hover-lift',
           onClick: () => router.push(`/song/id/${row._id}`),
         },
         { default: () => '查看详细' }

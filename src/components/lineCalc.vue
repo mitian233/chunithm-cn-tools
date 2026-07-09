@@ -15,11 +15,11 @@
         </n-form-item>
         <n-divider />
         <transition name="fade">
-          <template v-if="showResult">
+          <div v-if="showResult">
             <n-statistic label="允许的最多Justice数" :value="justiceCount" />
             <n-statistic label="等效的最多Attack数" :value="attackCount" />
             <n-statistic label="等效的最多Miss数" :value="missCount" />
-          </template>
+          </div>
         </transition>
         <n-text v-if="!showResult" depth="3">未输入数据或数据不合法！请检查输入！</n-text>
         <n-button

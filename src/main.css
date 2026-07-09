@@ -177,16 +177,6 @@
   transform: translateY(0) scale(0.98);
 }
 
-.card-hover-lift {
-  transition:
-    transform 0.2s var(--ease-out-quart),
-    box-shadow 0.2s var(--ease-out-quart);
-}
-
-.card-hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-}
 
 .input-focus-glow {
   transition: box-shadow 0.2s var(--ease-out-quart);

@@ -52,9 +52,11 @@
                           <n-icon :component="MenuOutline" />
                         </template>
                       </n-button>
-                      <n-text class="header-title">
-                        {{ $route.meta.title }}
-                      </n-text>
+                      <transition name="slide-fade" mode="out-in">
+                        <n-text :key="$route.fullPath" class="header-title">
+                          {{ $route.meta.title }}
+                        </n-text>
+                      </transition>
                     </n-flex>
                     <n-flex>
                       <n-button text @click="jumpToProber">

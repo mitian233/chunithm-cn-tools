@@ -1,6 +1,6 @@
 <template>
   <n-flex vertical align="center">
-    <n-card style="max-width: 400px" class="card-hover-lift">
+    <n-card style="max-width: 400px">
       <n-flex vertical>
         <n-statistic label="该乐曲总Combo数" :value="combo" />
         <n-form-item label="输入目标分数线">

@@ -1,5 +1,5 @@
 <template>
-  <n-card title="单曲 OVER POWER 计算器" class="card-hover-lift">
+  <n-card title="单曲 OVER POWER 计算器">
     <template #header-extra>
       <n-text depth="3" style="font-size: 12px">若分数为 1010000 自动判定为 AJC</n-text>
     </template>

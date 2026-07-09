@@ -1,5 +1,5 @@
 <template>
-  <n-card class="card-hover-lift">
+  <n-card>
     <n-flex vertical align="center" justify="center" style="padding: 40px 0">
       <img
         src="../assets/logo.png"

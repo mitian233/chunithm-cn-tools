@@ -1,5 +1,5 @@
 <template>
-  <n-card title="歌曲信息" class="card-hover-lift animate-fade-in-up">
+  <n-card title="歌曲信息"">
     <template #header-extra>
       <n-text depth="3">数据来源：diving fish api</n-text>
     </template>

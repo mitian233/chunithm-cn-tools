@@ -1,6 +1,6 @@
 <template>
   <n-flex vertical>
-    <n-card title="关于工具箱" class="card-hover-lift animate-fade-in-up">
+    <n-card title="关于工具箱"">
       <n-descriptions label-placement="left" :column="1">
         <n-descriptions-item label="版本">
           <n-text>0.1.21</n-text>
@@ -14,7 +14,7 @@
       </n-descriptions>
     </n-card>
 
-    <n-card title="贡献" class="card-hover-lift animate-fade-in-up stagger-2">
+    <n-card title="贡献"">
       <n-descriptions label-placement="left" :column="1">
         <n-descriptions-item label="开发者">
           <n-text>Mikan</n-text>

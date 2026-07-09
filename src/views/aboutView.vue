@@ -1,5 +1,5 @@
 <template>
-  <n-space vertical>
+  <n-flex vertical>
     <n-card title="关于工具箱" class="card-hover-lift animate-fade-in-up">
       <n-descriptions label-placement="left" :column="1">
         <n-descriptions-item label="版本">
@@ -35,7 +35,7 @@
         </n-descriptions-item>
       </n-descriptions>
     </n-card>
-  </n-space>
+  </n-flex>
 </template>
 
 <script setup>

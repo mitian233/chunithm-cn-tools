@@ -6,7 +6,7 @@
         <n-a href="https://docs.qq.com/sheet/DY3FoeWRLdERLRUxB" target="_blank">腾讯文档</n-a>
       </n-text>
     </template>
-    <n-space vertical>
+    <n-flex vertical>
       <n-input v-model:value="searchKey" placeholder="查找名称/别名" clearable>
         <template #prefix>
           <n-icon :component="SearchOutline" />
@@ -21,7 +21,7 @@
         virtual-scroll
         :max-height="600"
       />
-    </n-space>
+    </n-flex>
   </n-card>
 </template>
 

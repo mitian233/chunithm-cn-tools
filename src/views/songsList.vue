@@ -6,10 +6,10 @@
         <n-text depth="3">数据来源：diving fish api</n-text>
       </n-card-header-content>
     </n-card-header>
-    <n-space vertical>
-      <n-space vertical>
+    <n-flex vertical>
+      <n-flex vertical>
         <n-text>查找范围</n-text>
-        <n-space>
+        <n-flex>
           <n-button @click="searchFieldList = []" secondary>清除筛选器</n-button>
           <n-button-group>
             <n-button
@@ -21,8 +21,8 @@
               {{ field.label }}
             </n-button>
           </n-button-group>
-        </n-space>
-      </n-space>
+        </n-flex>
+      </n-flex>
       <n-input
         v-model:value="searchKey"
         placeholder="查找乐曲"
@@ -40,7 +40,7 @@
         :music_data_dict="store.chuni_data_dict"
         :loading="store.isLoading"
       />
-    </n-space>
+    </n-flex>
   </n-card>
 </template>
 

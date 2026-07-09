@@ -1,13 +1,13 @@
 <template>
   <n-card size="small" style="margin-bottom: 16px">
-    <n-space vertical>
-      <n-space align="center" justify="space-between">
+    <n-flex vertical>
+      <n-flex align="center" justify="space-between">
         <n-text>按难度筛选</n-text>
         <n-button size="small" @click="toggleAllLevels">
           {{ levelFilter.length === levelFilterItems.length ? '取消全选' : '全选' }}
         </n-button>
-      </n-space>
-      <n-space>
+      </n-flex>
+      <n-flex>
         <n-tag
           v-for="item in levelFilterItems"
           :key="item.value"
@@ -18,7 +18,7 @@
         >
           {{ item.text }}
         </n-tag>
-      </n-space>
+      </n-flex>
       <n-grid :cols="2" :x-gap="16">
         <n-gi>
           <n-select
@@ -37,7 +37,7 @@
           />
         </n-gi>
       </n-grid>
-    </n-space>
+    </n-flex>
   </n-card>
 </template>
 

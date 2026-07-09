@@ -1,5 +1,5 @@
 <template>
-  <n-space vertical>
+  <n-flex vertical>
     <n-grid :cols="2" :x-cols="1" responsive="screen">
       <n-gi>
         <n-form-item label="定数">
@@ -32,7 +32,7 @@
       :value="ratingResult.toFixed(2)"
       :class="{ 'animate-number-reveal': hasResult }"
     />
-  </n-space>
+  </n-flex>
 </template>
 
 <script setup>

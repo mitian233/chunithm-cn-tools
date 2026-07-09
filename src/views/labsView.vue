@@ -5,9 +5,9 @@
         <random-song />
       </n-tab-pane>
       <n-tab-pane name="more" tab="更多功能">
-        <n-space vertical align="center" justify="center" style="height: 50vh">
+        <n-flex vertical align="center" justify="center" style="height: 50vh">
           <n-text style="font-size: 1.5em">Work in progress...</n-text>
-        </n-space>
+        </n-flex>
       </n-tab-pane>
     </n-tabs>
   </n-card>

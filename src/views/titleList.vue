@@ -8,7 +8,7 @@
     </template>
     <n-tabs v-model:value="listTab" type="line" animated @update:value="handleTabChange">
       <n-tab-pane name="music" tab="乐曲称号">
-        <n-space vertical>
+        <n-flex vertical>
           <n-input v-model:value="searchKey" placeholder="查找名称" clearable>
             <template #prefix>
               <n-icon :component="SearchOutline" />
@@ -20,10 +20,10 @@
             :loading="isLoading"
             :headers="headersMusic"
           />
-        </n-space>
+        </n-flex>
       </n-tab-pane>
       <n-tab-pane name="nonmusic" tab="非乐曲称号">
-        <n-space vertical>
+        <n-flex vertical>
           <n-input v-model:value="searchKey" placeholder="查找名称" clearable>
             <template #prefix>
               <n-icon :component="SearchOutline" />
@@ -35,7 +35,7 @@
             :loading="isLoading"
             :headers="headersNonMusic"
           />
-        </n-space>
+        </n-flex>
       </n-tab-pane>
     </n-tabs>
   </n-card>

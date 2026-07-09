@@ -1,5 +1,5 @@
 <template>
-  <n-space vertical>
+  <n-flex vertical>
     <n-form-item label="定数">
       <n-input-number
         v-model:value="dsInput"
@@ -12,7 +12,7 @@
       />
     </n-form-item>
     <n-data-table :columns="columns" :data="tableData" :pagination="false" />
-  </n-space>
+  </n-flex>
 </template>
 
 <script setup>

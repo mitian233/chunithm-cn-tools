@@ -45,8 +45,8 @@
               <n-layout>
                 <notify-bar />
                 <n-layout-header bordered class="header">
-                  <n-space justify="space-between" align="center" style="width: 100%">
-                    <n-space align="center">
+                  <n-flex justify="space-between" align="center" style="width: 100%">
+                    <n-flex align="center">
                       <n-button v-if="isMobile" quaternary @click="drawerVisible = true">
                         <template #icon>
                           <n-icon :component="MenuOutline" />
@@ -55,8 +55,8 @@
                       <n-text class="header-title">
                         {{ $route.meta.title }}
                       </n-text>
-                    </n-space>
-                    <n-space>
+                    </n-flex>
+                    <n-flex>
                       <n-button text @click="jumpToProber">
                         <template #icon>
                           <n-icon><FishOutline /></n-icon>
@@ -72,16 +72,18 @@
                         </template>
                         <span v-if="!isMobile">{{ isDark ? '浅色模式' : '深色模式' }}</span>
                       </n-button>
-                    </n-space>
-                  </n-space>
+                    </n-flex>
+                  </n-flex>
                 </n-layout-header>
                 <n-layout-content class="content" :class="[isMobile && 'content-mobile']">
-                  <google-adsense />
-                  <router-view v-slot="{ Component }">
-                    <transition name="slide-fade" mode="out-in">
-                      <component :is="Component" />
-                    </transition>
-                  </router-view>
+                  <n-flex vertical>
+                    <google-adsense />
+                    <router-view v-slot="{ Component }">
+                      <transition name="slide-fade" mode="out-in">
+                        <component :is="Component" />
+                      </transition>
+                    </router-view>
+                  </n-flex>
                 </n-layout-content>
               </n-layout>
             </n-layout>

@@ -3,7 +3,7 @@
     <template #header-extra>
       <n-text depth="3" style="font-size: 12px">若分数为 1010000 自动判定为 AJC</n-text>
     </template>
-    <n-space vertical>
+    <n-flex vertical>
       <n-form ref="formRef" :model="formData">
         <n-form-item label="定数" path="ds">
           <n-input-number
@@ -37,17 +37,17 @@
           </n-radio-group>
         </n-form-item>
       </n-form>
-      <n-space>
+      <n-flex>
         <n-button type="primary" class="btn-hover-lift" @click="calculateOP">计算</n-button>
         <n-button class="btn-hover-lift" @click="clear">清空</n-button>
-      </n-space>
+      </n-flex>
       <n-divider />
       <n-statistic label="结果" :value="result" :class="{ 'animate-number-reveal': hasResult }">
         <template #suffix>
           <n-text depth="3">OP</n-text>
         </template>
       </n-statistic>
-    </n-space>
+    </n-flex>
   </n-card>
 </template>
 

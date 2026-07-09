@@ -1,7 +1,7 @@
 <template>
-  <n-space vertical align="center">
+  <n-flex vertical align="center">
     <n-card style="max-width: 400px" class="card-hover-lift">
-      <n-space vertical>
+      <n-flex vertical>
         <n-statistic label="该乐曲总Combo数" :value="combo" />
         <n-form-item label="输入目标分数线">
           <n-input-number
@@ -30,9 +30,9 @@
         >
           回到上一页
         </n-button>
-      </n-space>
+      </n-flex>
     </n-card>
-  </n-space>
+  </n-flex>
 </template>
 
 <script setup>

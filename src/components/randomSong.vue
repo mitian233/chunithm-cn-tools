@@ -1,13 +1,13 @@
 <template>
   <n-spin :show="isLoading">
-    <n-space vertical>
+    <n-flex vertical>
       <n-radio-group v-model:value="mode" @update:value="clearResult">
         <n-radio-button value="randall">手气不错</n-radio-button>
         <n-radio-button value="randdsrange">定数范围随机</n-radio-button>
         <n-radio-button value="randgenre">流派随机</n-radio-button>
       </n-radio-group>
 
-      <n-space vertical>
+      <n-flex vertical>
         <n-slider
           v-model:value="dsrangeSelected"
           range
@@ -28,22 +28,22 @@
           placeholder="选择流派"
         />
 
-        <n-space>
+        <n-flex>
           <n-button type="primary" @click="randomSongHandler">试试手气</n-button>
           <n-button @click="clearResult">清空结果</n-button>
-        </n-space>
-      </n-space>
+        </n-flex>
+      </n-flex>
 
       <n-card v-if="randResult" style="margin-top: 16px">
         <n-grid :cols="2" :x-cols="1" responsive="screen">
           <n-gi>
-            <n-space vertical align="center">
+            <n-flex vertical align="center">
               <n-image
                 :src="getImageUrl(randResult.id)"
                 :img-props="{ style: { maxWidth: '100%' } }"
                 fallback-src="https://via.placeholder.com/200x200?text=No+Image"
               />
-            </n-space>
+            </n-flex>
           </n-gi>
           <n-gi>
             <n-descriptions :column="1" label-placement="left">
@@ -72,7 +72,7 @@
           </n-gi>
         </n-grid>
       </n-card>
-    </n-space>
+    </n-flex>
   </n-spin>
 </template>
 

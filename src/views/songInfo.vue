@@ -4,19 +4,19 @@
       <n-text depth="3">数据来源：diving fish api</n-text>
     </template>
     <n-spin :show="isLoading">
-      <n-space vertical v-if="!isLoading">
+      <n-flex vertical v-if="!isLoading">
         <n-grid :cols="2" :x-cols="1" responsive="screen">
           <n-gi>
-            <n-space vertical align="center">
+            <n-flex vertical align="center">
               <n-image
                 :src="getImageUrl(songID)"
                 :img-props="{ style: { maxWidth: '100%' } }"
                 fallback-src="https://via.placeholder.com/200x200?text=No+Image"
               />
-            </n-space>
+            </n-flex>
           </n-gi>
           <n-gi>
-            <n-space vertical>
+            <n-flex vertical>
               <n-text v-if="isWE" type="error">该谱面为 World's End 谱面</n-text>
               <n-descriptions :column="1" label-placement="left">
                 <n-descriptions-item label="歌曲名称">
@@ -37,7 +37,7 @@
               </n-descriptions>
               <n-text v-if="haveUltima" type="info">有 Ultima 谱面</n-text>
               <n-button @click="$router.go(-1)">回到上一页</n-button>
-            </n-space>
+            </n-flex>
           </n-gi>
         </n-grid>
 
@@ -63,12 +63,12 @@
                 </n-descriptions>
                 <n-collapse style="margin-top: 10px">
                   <n-collapse-item title="快捷填入计算器" name="calc">
-                    <n-space>
+                    <n-flex>
                       <n-button @click="gotoDsCalc(song_data.ds[index])">谱面Rating计算</n-button>
                       <n-button @click="gotoLineCalc(song_data.charts[index]?.combo)">
                         分数线计算
                       </n-button>
-                    </n-space>
+                    </n-flex>
                   </n-collapse-item>
                 </n-collapse>
               </n-card>
@@ -88,7 +88,7 @@
             </n-tab-pane>
           </n-tabs>
         </n-card>
-      </n-space>
+      </n-flex>
     </n-spin>
   </n-card>
 </template>

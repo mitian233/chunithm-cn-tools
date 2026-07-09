@@ -1,6 +1,6 @@
 <template>
   <n-card class="card-hover-lift">
-    <n-space vertical align="center" justify="center" style="padding: 40px 0">
+    <n-flex vertical align="center" justify="center" style="padding: 40px 0">
       <img
         src="../assets/logo.png"
         alt="logo"
@@ -22,7 +22,7 @@
         </template>
         开始使用
       </n-button>
-    </n-space>
+    </n-flex>
   </n-card>
 </template>
 

@@ -12,16 +12,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, nextTick } from 'vue';
 
 const showAd = ref(false);
 
-onMounted(() => {
+onMounted(async () => {
   showAd.value = true;
+  await nextTick();
   try {
     (window.adsbygoogle = window.adsbygoogle || []).push({});
   } catch (e) {
-    console.warn('AdSense not loaded');
+    // push throws when AdSense tries to re-render an already-filled slot;
+    // that's expected on route changes — silently ignore.
   }
 });
 </script>

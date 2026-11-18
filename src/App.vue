@@ -261,6 +261,7 @@ onUnmounted(() => {
 .content {
   padding: 16px;
   min-height: calc(100vh - 64px);
+  background-color: var(--ui-bg);
 }
 
 @media (min-width: 768px) {

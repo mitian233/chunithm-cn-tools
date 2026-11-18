@@ -1,42 +1,31 @@
 <template>
-  <n-flex vertical>
-    <n-grid :cols="2" :x-cols="1" responsive="screen">
-      <n-gi>
-        <n-form-item label="定数">
-          <n-input-number
-            v-model:value="dsInput"
-            :min="0"
-            :max="16.0"
-            :step="0.1"
-            placeholder="请输入定数"
-            class="input-focus-glow"
-            style="width: 100%"
-          />
-        </n-form-item>
-      </n-gi>
-      <n-gi>
-        <n-form-item label="分数">
-          <n-input-number
-            v-model:value="achievementsInput"
-            :min="0"
-            :max="1010000"
-            placeholder="请输入分数"
-            class="input-focus-glow"
-            style="width: 100%"
-          />
-        </n-form-item>
-      </n-gi>
-    </n-grid>
-    <n-statistic
-      label="计算Rating"
-      :value="ratingResult.toFixed(2)"
-      :class="{ 'animate-number-reveal': hasResult }"
-    />
-  </n-flex>
+  <div class="space-y-4">
+    <div class="grid gap-4 sm:grid-cols-2">
+      <NumberInput v-model="dsInput" label="定数" placeholder="请输入定数" :max="16" :step="0.1" />
+      <NumberInput
+        v-model="achievementsInput"
+        label="分数"
+        placeholder="请输入分数"
+        :max="1010000"
+      />
+    </div>
+    <dl>
+      <dt class="text-sm text-[var(--ui-muted)]">计算Rating</dt>
+      <dd
+        :key="ratingResult"
+        class="text-3xl font-semibold tabular-nums"
+        :class="{ 'animate-number-reveal': ratingResult > 0 }"
+        role="status"
+      >
+        {{ ratingResult.toFixed(2) }}
+      </dd>
+    </dl>
+  </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
+import NumberInput from './NumberInput.vue';
 
 const props = defineProps({
   ds: {
@@ -47,8 +36,6 @@ const props = defineProps({
 
 const dsInput = ref(null);
 const achievementsInput = ref(null);
-const ratingResult = ref(0);
-const hasResult = ref(false);
 
 const getRa = (ds, score) => {
   if (!ds || !score) return 0;
@@ -64,18 +51,7 @@ const getRa = (ds, score) => {
   return 0;
 };
 
-watch([dsInput, achievementsInput], () => {
-  const newResult = getRa(dsInput.value, achievementsInput.value);
-  if (newResult !== ratingResult.value && newResult > 0) {
-    hasResult.value = false;
-    setTimeout(() => {
-      ratingResult.value = newResult;
-      hasResult.value = true;
-    }, 50);
-  } else {
-    ratingResult.value = newResult;
-  }
-});
+const ratingResult = computed(() => getRa(dsInput.value, achievementsInput.value));
 
 watch(
   () => props.ds,

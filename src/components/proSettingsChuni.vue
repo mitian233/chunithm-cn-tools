@@ -1,48 +1,85 @@
 <template>
-  <n-card size="small" style="margin-bottom: 16px">
-    <n-flex vertical>
-      <n-flex align="center" justify="space-between">
-        <n-text>按难度筛选</n-text>
-        <n-button size="small" @click="toggleAllLevels">
-          {{ levelFilter.length === levelFilterItems.length ? '取消全选' : '全选' }}
-        </n-button>
-      </n-flex>
-      <n-flex>
-        <n-tag
-          v-for="item in levelFilterItems"
-          :key="item.value"
-          :type="levelFilter.includes(item.value) ? getLevelType(item.value) : 'default'"
-          :checked="levelFilter.includes(item.value)"
-          checkable
-          @update:checked="toggleLevel(item.value)"
+  <section class="ui-card mb-4 space-y-3">
+    <div class="flex items-center justify-between gap-3">
+      <span>按难度筛选</span>
+      <button type="button" class="ui-button ui-button--outline" @click="toggleAllLevels">
+        {{ levelFilter.length === levelFilterItems.length ? '取消全选' : '全选' }}
+      </button>
+    </div>
+    <ToggleGroupRoot
+      v-model="selectedLevels"
+      type="multiple"
+      class="flex flex-wrap gap-2"
+      aria-label="按难度筛选"
+    >
+      <ToggleGroupItem
+        v-for="item in levelFilterItems"
+        :key="item.value"
+        :value="String(item.value)"
+        class="ui-button ui-button--outline difficulty-toggle"
+        :style="{ '--difficulty-color': item.color }"
+      >
+        {{ item.text }}
+      </ToggleGroupItem>
+    </ToggleGroupRoot>
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div v-for="selector in selectors" :key="selector.key" class="flex min-w-0 gap-2">
+        <SelectRoot
+          :model-value="selector.value ?? undefined"
+          @update:model-value="setSelector(selector.key, $event)"
         >
-          {{ item.text }}
-        </n-tag>
-      </n-flex>
-      <n-grid :cols="2" :x-gap="16">
-        <n-gi>
-          <n-select
-            v-model:value="version"
-            :options="versionOptions"
-            placeholder="选择版本"
-            clearable
-          />
-        </n-gi>
-        <n-gi>
-          <n-select
-            v-model:value="genre"
-            :options="genreOptions"
-            placeholder="选择歌曲类别"
-            clearable
-          />
-        </n-gi>
-      </n-grid>
-    </n-flex>
-  </n-card>
+          <SelectTrigger
+            class="ui-button ui-button--outline min-w-0 flex-1 justify-between"
+            :aria-label="selector.placeholder"
+          >
+            <SelectValue :placeholder="selector.placeholder" />
+            <SelectIcon aria-hidden="true">▾</SelectIcon>
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectContent class="filter-select-content" position="popper" :side-offset="4">
+              <SelectViewport>
+                <SelectItem
+                  v-for="option in selector.options"
+                  :key="option.value"
+                  :value="option.value"
+                  class="filter-select-item"
+                >
+                  <SelectItemText>{{ option.label }}</SelectItemText>
+                  <SelectItemIndicator aria-hidden="true">✓</SelectItemIndicator>
+                </SelectItem>
+              </SelectViewport>
+            </SelectContent>
+          </SelectPortal>
+        </SelectRoot>
+        <button
+          type="button"
+          class="ui-button ui-button--outline"
+          :aria-label="`清空${selector.placeholder.slice(2)}`"
+          @click="setSelector(selector.key, null)"
+        >
+          清空
+        </button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import {
+  ToggleGroupRoot,
+  ToggleGroupItem,
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectIcon,
+  SelectPortal,
+  SelectContent,
+  SelectViewport,
+  SelectItem,
+  SelectItemText,
+  SelectItemIndicator,
+} from 'reka-ui';
 
 const props = defineProps({
   musicData: {
@@ -55,53 +92,52 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['filter']);
+defineEmits(['filter']);
 
 const levelFilter = ref([]);
 const version = ref(null);
 const genre = ref(null);
 
 const levelFilterItems = [
-  { text: 'Basic', value: 0 },
-  { text: 'Advanced', value: 1 },
-  { text: 'Expert', value: 2 },
-  { text: 'Master', value: 3 },
-  { text: 'Ultima', value: 4 },
-  { text: "World's End", value: 5 },
+  { text: 'Basic', value: 0, color: 'var(--ui-basic)' },
+  { text: 'Advanced', value: 1, color: 'var(--ui-advanced)' },
+  { text: 'Expert', value: 2, color: 'var(--ui-expert)' },
+  { text: 'Master', value: 3, color: 'var(--ui-master)' },
+  { text: 'Ultima', value: 4, color: 'var(--ui-ultima)' },
+  { text: "World's End", value: 5, color: 'var(--ui-worlds-end)' },
 ];
 
-const levelTypes = {
-  0: 'success',
-  1: 'warning',
-  2: 'error',
-  3: 'default',
-  4: 'default',
-  5: 'info',
-};
+const selectedLevels = computed({
+  get: () => levelFilter.value.map(String),
+  set: (values) => {
+    levelFilter.value = values.map(Number);
+  },
+});
 
 const versionOptions = computed(() => {
   if (!props.musicData) return [];
   const versions = [...new Set(props.musicData.map((elem) => elem.basic_info?.from))];
-  return versions.map((v) => ({ label: v, value: v }));
+  return versions
+    .filter((v) => typeof v === 'string' && v !== '')
+    .map((v) => ({ label: v, value: v }));
 });
 
 const genreOptions = computed(() => {
   if (!props.musicData) return [];
   const genres = [...new Set(props.musicData.map((elem) => elem.basic_info?.genre))];
-  return genres.map((g) => ({ label: g, value: g }));
+  return genres
+    .filter((g) => typeof g === 'string' && g !== '')
+    .map((g) => ({ label: g, value: g }));
 });
 
-function getLevelType(index) {
-  return levelTypes[index] || 'default';
-}
+const selectors = computed(() => [
+  { key: 'version', value: version.value, options: versionOptions.value, placeholder: '选择版本' },
+  { key: 'genre', value: genre.value, options: genreOptions.value, placeholder: '选择歌曲类别' },
+]);
 
-function toggleLevel(value) {
-  const index = levelFilter.value.indexOf(value);
-  if (index === -1) {
-    levelFilter.value.push(value);
-  } else {
-    levelFilter.value.splice(index, 1);
-  }
+function setSelector(key, value) {
+  if (key === 'version') version.value = value ?? null;
+  else genre.value = value ?? null;
 }
 
 function toggleAllLevels() {
@@ -139,3 +175,36 @@ defineExpose({
   reset,
 });
 </script>
+
+<style scoped>
+.difficulty-toggle[data-state='on'] {
+  color: var(--difficulty-color);
+  box-shadow: inset 0 0 0 1px var(--difficulty-color);
+  background-color: var(--ui-tag-bg);
+}
+
+.filter-select-content {
+  z-index: 50;
+  min-width: var(--reka-select-trigger-width);
+  max-height: var(--reka-select-content-available-height);
+  overflow: auto;
+  border: 1px solid var(--ui-border);
+  border-radius: 0.375rem;
+  background: var(--ui-surface);
+  color: var(--ui-text);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
+}
+
+.filter-select-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+}
+
+.filter-select-item[data-highlighted] {
+  outline: none;
+  background: var(--ui-tag-bg);
+}
+</style>

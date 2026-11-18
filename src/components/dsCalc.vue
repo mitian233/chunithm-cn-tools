@@ -1,23 +1,21 @@
 <template>
-  <n-flex vertical>
-    <n-form-item label="定数">
-      <n-input-number
-        v-model:value="dsInput"
-        :min="0"
-        :max="15.5"
-        :step="0.1"
-        placeholder="请输入定数"
-        class="input-focus-glow"
-        style="width: 100%"
-      />
-    </n-form-item>
-    <n-data-table :columns="columns" :data="tableData" :pagination="false" />
-  </n-flex>
+  <div class="flex flex-col gap-4">
+    <NumberInput v-model="dsInput" label="定数" placeholder="请输入定数" :max="15.5" :step="0.1" />
+    <CatalogTable label="定数计算结果" :columns="columns" :rows="tableData">
+      <template #achievements="{ value }">
+        <span class="ui-tag justify-self-start" :style="{ color: scoreColor(value) }">
+          {{ value.toLocaleString() }}
+        </span>
+      </template>
+      <template #rating="{ value }">{{ value.toFixed(2) }}</template>
+    </CatalogTable>
+  </div>
 </template>
 
 <script setup>
-import { ref, watch, h } from 'vue';
-import { NTag } from 'naive-ui';
+import { ref, watch } from 'vue';
+import CatalogTable from './CatalogTable.vue';
+import NumberInput from './NumberInput.vue';
 
 const achievementsList = [
   1010000, 1008500, 1008000, 1007750, 1007500, 1007000, 1006000, 1005000, 1003000, 1001000, 1000000,
@@ -28,30 +26,16 @@ const dsInput = ref(null);
 const tableData = ref([]);
 
 const columns = [
-  {
-    title: '定数',
-    key: 'ds',
-  },
-  {
-    title: '分数',
-    key: 'achievements',
-    render(row) {
-      const score = row.achievements;
-      let type = 'default';
-      if (score >= 1009000) type = 'success';
-      else if (score >= 1007500) type = 'info';
-      else if (score >= 1000000) type = 'warning';
-      return h(NTag, { type, size: 'small' }, { default: () => score.toLocaleString() });
-    },
-  },
-  {
-    title: 'Rating',
-    key: 'rating',
-    render(row) {
-      return row.rating.toFixed(2);
-    },
-  },
+  { label: '定数', key: 'ds' },
+  { label: '分数', key: 'achievements' },
+  { label: 'Rating', key: 'rating' },
 ];
+
+function scoreColor(score) {
+  if (score >= 1009000) return 'var(--ui-basic)';
+  if (score >= 1007500) return 'var(--ui-worlds-end)';
+  if (score >= 1000000) return 'var(--ui-advanced)';
+}
 
 const getRa = (ds, score) => {
   if (!ds) return 0;
@@ -69,6 +53,7 @@ const getRa = (ds, score) => {
 
 watch(dsInput, (val) => {
   tableData.value = achievementsList.map((score) => ({
+    id: score,
     ds: val,
     achievements: score,
     rating: getRa(val, score),

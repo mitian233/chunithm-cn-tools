@@ -1,42 +1,43 @@
 <template>
-  <n-flex vertical align="center">
-    <n-card style="max-width: 400px">
-      <n-flex vertical>
-        <n-statistic label="该乐曲总Combo数" :value="combo" />
-        <n-form-item label="输入目标分数线">
-          <n-input-number
-            v-model:value="targetScore"
-            :min="0"
-            :max="1010000"
-            placeholder="请输入分数"
-            class="input-focus-glow"
-            style="width: 100%"
-          />
-        </n-form-item>
-        <n-divider />
-        <transition name="fade">
-          <div v-if="showResult">
-            <n-statistic label="允许的最多Justice数" :value="justiceCount" />
-            <n-statistic label="等效的最多Attack数" :value="attackCount" />
-            <n-statistic label="等效的最多Miss数" :value="missCount" />
+  <div class="flex justify-center">
+    <section class="ui-card w-full max-w-[400px] space-y-4">
+      <div>
+        <p class="text-sm text-[var(--ui-muted)]">该乐曲总Combo数</p>
+        <p class="text-2xl">{{ combo }}</p>
+      </div>
+      <NumberInput
+        v-model="targetScore"
+        label="输入目标分数线"
+        placeholder="请输入分数"
+        :max="1010000"
+        :step="1"
+      />
+      <hr class="border-[var(--ui-border)]" />
+      <transition name="fade">
+        <dl v-if="showResult" class="space-y-3">
+          <div>
+            <dt class="text-sm text-[var(--ui-muted)]">允许的最多Justice数</dt>
+            <dd class="text-2xl">{{ justiceCount }}</dd>
           </div>
-        </transition>
-        <n-text v-if="!showResult" depth="3">未输入数据或数据不合法！请检查输入！</n-text>
-        <n-button
-          type="primary"
-          class="btn-hover-lift"
-          @click="$router.back()"
-          style="margin-top: 16px"
-        >
-          回到上一页
-        </n-button>
-      </n-flex>
-    </n-card>
-  </n-flex>
+          <div>
+            <dt class="text-sm text-[var(--ui-muted)]">等效的最多Attack数</dt>
+            <dd class="text-2xl">{{ attackCount }}</dd>
+          </div>
+          <div>
+            <dt class="text-sm text-[var(--ui-muted)]">等效的最多Miss数</dt>
+            <dd class="text-2xl">{{ missCount }}</dd>
+          </div>
+        </dl>
+      </transition>
+      <p v-if="!showResult" class="text-[var(--ui-muted)]">未输入数据或数据不合法！请检查输入！</p>
+      <button type="button" class="ui-button" @click="$router.back()">回到上一页</button>
+    </section>
+  </div>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue';
+import NumberInput from './NumberInput.vue';
 
 const props = defineProps({
   combo: {
@@ -61,12 +62,10 @@ const calcByCombo = (target, fullCombo) => {
   missCount.value = Math.floor(miss * 100) / 100;
 };
 
-watch(targetScore, (val) => {
-  if (val === null) {
-    showResult.value = false;
-  } else if (val >= 0 && val <= 1010000) {
+watch([targetScore, () => props.combo], ([val, combo]) => {
+  if (val !== null && val >= 0 && val <= 1010000 && combo > 0) {
     showResult.value = true;
-    calcByCombo(val, props.combo);
+    calcByCombo(val, combo);
   } else {
     showResult.value = false;
   }

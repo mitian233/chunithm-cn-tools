@@ -1,30 +1,36 @@
 <template>
-  <n-card title="中二 Rating 线计算工具">
-    <n-tabs v-model:value="ratingMode" type="line" animated>
-      <n-tab-pane name="from_achievements" tab="按分数计算">
-        <achievement-calc :ds="dsInUrl" />
-      </n-tab-pane>
-      <n-tab-pane name="from_ds" tab="按定数计算">
-        <ds-calc />
-      </n-tab-pane>
-      <n-tab-pane name="from_rating" tab="按Rating计算">
-        <ra-calc />
-      </n-tab-pane>
-      <n-tab-pane name="from_line" tab="计算分数线" :disabled="!isFromLine">
-        <div v-if="!isFromLine" style="text-align: center; padding: 40px">
-          <n-text style="font-size: 100px">⚠️</n-text>
-          <n-p>该功能必须从歌曲列表访问</n-p>
-          <n-button type="primary" @click="$router.push('/song')">点此跳转</n-button>
+  <section class="ui-card">
+    <h1 class="mb-4 text-xl font-semibold">中二 Rating 线计算工具</h1>
+    <TabsRoot v-model="ratingMode" :unmount-on-hide="false">
+      <TabsList class="ui-tabs" aria-label="Rating 计算方式">
+        <TabsTrigger class="ui-tab" value="from_achievements">按分数计算</TabsTrigger>
+        <TabsTrigger class="ui-tab" value="from_ds">按定数计算</TabsTrigger>
+        <TabsTrigger class="ui-tab" value="from_rating">按Rating计算</TabsTrigger>
+        <TabsTrigger class="ui-tab" value="from_line" :disabled="!isFromLine">
+          计算分数线
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="from_achievements" class="pt-4">
+        <AchievementCalc :ds="dsInUrl" />
+      </TabsContent>
+      <TabsContent value="from_ds" class="pt-4"><DsCalc /></TabsContent>
+      <TabsContent value="from_rating" class="pt-4"><RaCalc /></TabsContent>
+      <TabsContent value="from_line" class="pt-4">
+        <div v-if="!isFromLine" class="p-10 text-center">
+          <span class="text-8xl">⚠️</span>
+          <p>该功能必须从歌曲列表访问</p>
+          <RouterLink class="ui-button" to="/song">点此跳转</RouterLink>
         </div>
         <line-calc v-else :combo="comboInUrl" />
-      </n-tab-pane>
-    </n-tabs>
-  </n-card>
+      </TabsContent>
+    </TabsRoot>
+  </section>
 </template>
 
 <script setup>
 import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from 'reka-ui';
 import RaCalc from '../components/raCalc.vue';
 import AchievementCalc from '../components/achievementCalc.vue';
 import DsCalc from '../components/dsCalc.vue';

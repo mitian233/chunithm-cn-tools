@@ -1,58 +1,69 @@
 <template>
-  <n-card title="单曲 OVER POWER 计算器">
-    <template #header-extra>
-      <n-text depth="3" style="font-size: 12px">若分数为 1010000 自动判定为 AJC</n-text>
-    </template>
-    <n-flex vertical>
-      <n-form ref="formRef" :model="formData">
-        <n-form-item label="定数" path="ds">
-          <n-input-number
-            v-model:value="formData.ds"
-            :min="0"
-            :max="15.5"
-            :step="0.1"
-            placeholder="请输入定数"
-            class="input-focus-glow"
-            style="width: 100%"
-          />
-        </n-form-item>
-        <n-form-item label="分数" path="score">
-          <n-input-number
-            v-model:value="formData.score"
-            :min="0"
-            :max="1010000"
-            placeholder="请输入分数"
-            class="input-focus-glow"
-            style="width: 100%"
-          />
-        </n-form-item>
-        <n-form-item label="状态">
-          <n-radio-group v-model:value="formData.comboStatus">
-            <n-radio-button value="finished">已完成</n-radio-button>
-            <n-radio-button value="full_combo">FULL COMBO</n-radio-button>
-            <n-radio-button value="all_justice">ALL JUSTICE</n-radio-button>
-            <n-radio-button value="all_justice_critical" :disabled="formData.score !== 1010000">
-              AJC
-            </n-radio-button>
-          </n-radio-group>
-        </n-form-item>
-      </n-form>
-      <n-flex>
-        <n-button type="primary" class="btn-hover-lift" @click="calculateOP">计算</n-button>
-        <n-button class="btn-hover-lift" @click="clear">清空</n-button>
-      </n-flex>
-      <n-divider />
-      <n-statistic label="结果" :value="result" :class="{ 'animate-number-reveal': hasResult }">
-        <template #suffix>
-          <n-text depth="3">OP</n-text>
-        </template>
-      </n-statistic>
-    </n-flex>
-  </n-card>
+  <section class="ui-card space-y-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h1 class="text-xl font-semibold">单曲 OVER POWER 计算器</h1>
+      <p class="text-xs text-[var(--ui-muted)]">若分数为 1010000 自动判定为 AJC</p>
+    </div>
+    <form class="space-y-4" @submit.prevent="calculateOP">
+      <NumberInput
+        v-model="formData.ds"
+        label="定数"
+        placeholder="请输入定数"
+        :max="15.5"
+        :step="0.1"
+      />
+      <NumberInput
+        v-model="formData.score"
+        label="分数"
+        placeholder="请输入分数"
+        :max="1010000"
+        :step="1"
+      />
+      <fieldset class="space-y-2">
+        <legend>状态</legend>
+        <RadioGroupRoot
+          v-model="formData.comboStatus"
+          aria-label="状态"
+          class="flex flex-wrap gap-2"
+        >
+          <RadioGroupItem value="finished" class="ui-button ui-button--outline op-radio">
+            已完成
+          </RadioGroupItem>
+          <RadioGroupItem value="full_combo" class="ui-button ui-button--outline op-radio">
+            FULL COMBO
+          </RadioGroupItem>
+          <RadioGroupItem value="all_justice" class="ui-button ui-button--outline op-radio">
+            ALL JUSTICE
+          </RadioGroupItem>
+          <RadioGroupItem
+            value="all_justice_critical"
+            :disabled="formData.score !== 1010000"
+            class="ui-button ui-button--outline op-radio"
+          >
+            AJC
+          </RadioGroupItem>
+        </RadioGroupRoot>
+      </fieldset>
+      <div class="flex gap-2">
+        <button type="submit" class="ui-button">计算</button>
+        <button type="button" class="ui-button ui-button--outline" @click="clear">清空</button>
+      </div>
+    </form>
+    <hr class="border-[var(--ui-border)]" />
+    <div>
+      <p class="text-sm text-[var(--ui-muted)]">结果</p>
+      <p class="text-2xl">
+        {{ result }}
+        <span class="text-sm text-[var(--ui-muted)]">OP</span>
+      </p>
+    </div>
+  </section>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue';
+import { RadioGroupItem, RadioGroupRoot } from 'reka-ui';
+import NumberInput from '../components/NumberInput.vue';
 
 const formData = ref({
   ds: null,
@@ -61,15 +72,17 @@ const formData = ref({
 });
 
 const result = ref(0);
-const hasResult = ref(false);
 
 watch(
   () => formData.value.score,
   (newScore) => {
     if (newScore === 1010000) {
       formData.value.comboStatus = 'all_justice_critical';
+    } else if (formData.value.comboStatus === 'all_justice_critical') {
+      formData.value.comboStatus = 'finished';
     }
-  }
+  },
+  { flush: 'sync' }
 );
 
 function clear() {
@@ -108,10 +121,18 @@ function calculateOP() {
     op = raCalculate(ds, score) * 5;
   }
 
-  hasResult.value = false;
-  setTimeout(() => {
-    result.value = op.toFixed(2);
-    hasResult.value = true;
-  }, 50);
+  result.value = op.toFixed(2);
 }
 </script>
+
+<style scoped>
+.op-radio[data-state='checked'] {
+  box-shadow: inset 0 0 0 1px var(--ui-primary);
+  background-color: var(--ui-tag-bg);
+  color: var(--ui-primary);
+}
+.op-radio:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+</style>

@@ -1,106 +1,107 @@
 <template>
-  <n-card title="称号列表">
-    <template #header-extra>
-      <n-text depth="3">
+  <section class="ui-card flex min-w-0 flex-col gap-3">
+    <header class="flex flex-wrap items-baseline justify-between gap-x-3">
+      <h1 class="text-xl font-semibold">称号列表</h1>
+      <p class="text-sm text-[var(--ui-muted)]">
         数据来源：
-        <n-a href="https://space.bilibili.com/32772298/article" target="_blank">losffa</n-a>
-      </n-text>
-    </template>
-    <n-tabs v-model:value="listTab" type="line" animated @update:value="handleTabChange">
-      <n-tab-pane name="music" tab="乐曲称号">
-        <n-flex vertical>
-          <n-input v-model:value="searchKey" placeholder="查找名称" clearable>
-            <template #prefix>
-              <n-icon :component="SearchOutline" />
-            </template>
-          </n-input>
-          <title-table
-            :search="searchKey"
-            :title-list="filteredMusicList"
-            :loading="isLoading"
-            :headers="headersMusic"
-          />
-        </n-flex>
-      </n-tab-pane>
-      <n-tab-pane name="nonmusic" tab="非乐曲称号">
-        <n-flex vertical>
-          <n-input v-model:value="searchKey" placeholder="查找名称" clearable>
-            <template #prefix>
-              <n-icon :component="SearchOutline" />
-            </template>
-          </n-input>
-          <title-table
-            :search="searchKey"
-            :title-list="filteredNonMusicList"
-            :loading="isLoading"
-            :headers="headersNonMusic"
-          />
-        </n-flex>
-      </n-tab-pane>
-    </n-tabs>
-  </n-card>
+        <a
+          class="ui-link"
+          href="https://space.bilibili.com/32772298/article"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          losffa
+        </a>
+      </p>
+    </header>
+    <p v-if="loadFailed" role="alert" class="text-[var(--ui-expert)]">
+      称号资料加载失败，请刷新后重试。
+    </p>
+    <TabsRoot v-else :model-value="listTab" @update:model-value="updateQuery">
+      <TabsList class="ui-tabs mb-3" aria-label="称号类型">
+        <TabsTrigger class="ui-tab" value="music">乐曲称号</TabsTrigger>
+        <TabsTrigger class="ui-tab" value="nonmusic">非乐曲称号</TabsTrigger>
+      </TabsList>
+      <CatalogSearch
+        v-model="searchKey"
+        class="mb-3"
+        placeholder="查找名称"
+        @update:model-value="() => updateQuery(listTab)"
+      />
+      <TabsContent value="music">
+        <TitleTable :title-list="filteredMusicList" :loading="isLoading" :headers="headersMusic" />
+      </TabsContent>
+      <TabsContent value="nonmusic">
+        <TitleTable
+          :title-list="filteredNonMusicList"
+          :loading="isLoading"
+          :headers="headersNonMusic"
+        />
+      </TabsContent>
+    </TabsRoot>
+  </section>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { SearchOutline } from '@vicons/ionicons5';
-import titleTable from '../components/titleTable.vue';
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from 'reka-ui';
+import CatalogSearch from '../components/CatalogSearch.vue';
+import TitleTable from '../components/titleTable.vue';
 import { useTitleDataStore } from '../store';
 
 const router = useRouter();
 const route = useRoute();
 const store = useTitleDataStore();
-
-const listTab = ref('music');
+const listTab = computed(() => (route.query.tab === 'nonmusic' ? 'nonmusic' : 'music'));
 const searchKey = ref('');
 const isLoading = ref(true);
-
-const headersMusic = [
-  { title: '标题', value: 'title' },
-  { title: '颜色', value: 'color' },
-  { title: '关联乐曲', value: 'music' },
-  { title: '获取条件', value: 'obtain' },
-];
+const loadFailed = ref(false);
 
 const headersNonMusic = [
-  { title: '标题', value: 'title' },
-  { title: '颜色', value: 'color' },
-  { title: '获取条件', value: 'obtain' },
+  { label: '标题', key: 'title' },
+  { label: '颜色', key: 'color', width: '5rem' },
+  { label: '获取条件', key: 'obtain' },
+];
+const headersMusic = [
+  ...headersNonMusic.slice(0, 2),
+  { label: '关联乐曲', key: 'music' },
+  headersNonMusic[2],
 ];
 
-const filteredMusicList = computed(() => {
-  if (!searchKey.value || !store.listItemMusic) return store.listItemMusic;
+function filterTitles(rows, keys) {
+  if (!searchKey.value) return rows;
   const search = searchKey.value.toLowerCase();
-  return store.listItemMusic.filter(
-    (item) =>
-      item.title?.toLowerCase().includes(search) ||
-      item.obtain?.toLowerCase().includes(search) ||
-      item.music?.toLowerCase().includes(search)
-  );
-});
+  return rows.filter((item) => keys.some((key) => item[key]?.toLowerCase().includes(search)));
+}
 
-const filteredNonMusicList = computed(() => {
-  if (!searchKey.value || !store.listItemNonMusic) return store.listItemNonMusic;
-  const search = searchKey.value.toLowerCase();
-  return store.listItemNonMusic.filter(
-    (item) =>
-      item.title?.toLowerCase().includes(search) || item.obtain?.toLowerCase().includes(search)
-  );
-});
+const filteredMusicList = computed(() =>
+  filterTitles(store.listItemMusic, ['title', 'obtain', 'music'])
+);
+const filteredNonMusicList = computed(() =>
+  filterTitles(store.listItemNonMusic, ['title', 'obtain'])
+);
 
-function handleTabChange(val) {
-  router.push({ query: { tab: val, search: searchKey.value } });
+watch(
+  () => route.fullPath,
+  () => {
+    if (['/title', '/title/:search'].includes(route.matched.at(-1)?.path))
+      searchKey.value = route.query.search ?? route.params.search ?? '';
+  },
+  { immediate: true }
+);
+
+function updateQuery(tab) {
+  router.push({ query: { tab, search: searchKey.value } });
 }
 
 onMounted(async () => {
-  await store.fetchTitleData();
-  isLoading.value = false;
-  listTab.value = route.query.tab || 'music';
-  searchKey.value = route.query.search || '';
-});
-
-watch(searchKey, (val) => {
-  router.push({ query: { tab: listTab.value, search: val } });
+  try {
+    await store.fetchTitleData();
+  } catch {
+    loadFailed.value = true;
+  } finally {
+    isLoading.value = false;
+  }
 });
 </script>

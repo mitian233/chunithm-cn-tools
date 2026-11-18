@@ -1,165 +1,88 @@
 <template>
-  <n-data-table
+  <CatalogTable
+    label="歌曲谱面"
     :columns="columns"
-    :data="filteredData"
+    :rows="filteredData"
     :loading="loading"
-    :row-key="(row) => row.id"
-    :scroll-x="1200"
-    :max-height="600"
-    striped
-    virtual-scroll
-  />
+    virtual
+    :estimate-size="53"
+    :min-width="1200"
+  >
+    <template #cover="{ row }">
+      <CoverPreview :src="getImageUrl(row._id)" :title="row.title" thumbnail />
+    </template>
+    <template #title="{ value }"><CatalogText :text="value" /></template>
+    <template #level_label="{ row }">
+      <span class="ui-tag catalog-level" :style="{ color: levelColors[row.level_index] }">
+        {{ row.level_label }}
+      </span>
+    </template>
+    <template #charter="{ value }"><CatalogText :text="value" /></template>
+    <template #genre="{ value }"><CatalogText :text="value" /></template>
+    <template #from="{ value }"><CatalogText :text="value" /></template>
+    <template #action="{ row }">
+      <RouterLink class="ui-link justify-self-start" :to="'/song/id/' + row._id">
+        查看详细
+      </RouterLink>
+    </template>
+  </CatalogTable>
 </template>
 
 <script setup>
-import { h, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { NTag, NButton, NImage } from 'naive-ui';
+import { computed } from 'vue';
+import CatalogTable from './CatalogTable.vue';
+import CatalogText from './CatalogText.vue';
+import CoverPreview from './CoverPreview.vue';
 
 const props = defineProps({
-  items: {
-    type: Array,
-    default: () => [],
-  },
-  search: {
-    type: String,
-    default: '',
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  music_data_dict: {
-    type: Object,
-    default: () => ({}),
-  },
-  filterList: {
-    type: Array,
-    default: () => ['title'],
-  },
+  items: { type: Array, default: () => [] },
+  search: { type: String, default: '' },
+  loading: Boolean,
+  filterList: { type: Array, default: () => ['title'] },
 });
 
-const router = useRouter();
+const levelColors = [
+  'var(--ui-basic)',
+  'var(--ui-advanced)',
+  'var(--ui-expert)',
+  'var(--ui-master)',
+  'var(--ui-ultima)',
+  'var(--ui-worlds-end)',
+];
 
-const levelColors = {
-  0: 'success',
-  1: 'warning',
-  2: 'error',
-  3: 'default',
-  4: 'default',
-  5: 'info',
-};
-
-function getImageUrl(str) {
-  return `https://cdn.jsdelivr.net/gh/mitian233/chunicover@cached/covers/${str}.jpg`;
-}
-
-function getLevelType(index) {
-  return levelColors[index] || 'default';
+function getImageUrl(id) {
+  return 'https://cdn.jsdelivr.net/gh/mitian233/chunicover@cached/covers/' + id + '.jpg';
 }
 
 const filteredData = computed(() => {
-  if (!props.search || !props.items) return props.items || [];
-
-  const searchLower = props.search.toLowerCase();
-  const filterFields = props.filterList?.length > 0 ? props.filterList : ['title'];
-
-  return props.items.filter((item) => {
-    return filterFields.some((field) => {
-      const value = item[field];
-      if (value === undefined || value === null) return false;
-      return String(value).toLowerCase().includes(searchLower);
-    });
-  });
+  if (!props.search) return props.items;
+  const search = props.search.toLowerCase();
+  const fields = props.filterList.length ? props.filterList : ['title'];
+  return props.items.filter((item) =>
+    fields.some((field) =>
+      String(item[field] ?? '')
+        .toLowerCase()
+        .includes(search)
+    )
+  );
 });
 
 const columns = [
-  {
-    title: '封面',
-    key: '_id',
-    width: 60,
-    render(row) {
-      return h(NImage, {
-        width: 40,
-        height: 40,
-        src: getImageUrl(row._id),
-        lazy: true,
-        objectFit: 'cover',
-        style: { borderRadius: '4px' },
-      });
-    },
-  },
-  {
-    title: '乐曲ID',
-    key: '_id',
-    width: 80,
-    sorter: 'default',
-  },
-  {
-    title: '乐曲名',
-    key: 'title',
-    width: 200,
-    ellipsis: { tooltip: true },
-  },
-  {
-    title: '难度标签',
-    key: 'level_label',
-    width: 140,
-    sorter: 'default',
-    render(row) {
-      return h(
-        NTag,
-        { type: getLevelType(row.level_index), size: 'small' },
-        { default: () => row.level_label }
-      );
-    },
-  },
-  {
-    title: '定数',
-    key: 'ds',
-    width: 80,
-    sorter: 'default',
-  },
-  {
-    title: '谱面作者',
-    key: 'charter',
-    width: 120,
-    ellipsis: { tooltip: true },
-  },
-  {
-    title: 'MAX COMBO',
-    key: 'combo',
-    width: 100,
-    sorter: 'default',
-  },
-  {
-    title: '流派',
-    key: 'genre',
-    width: 100,
-    ellipsis: { tooltip: true },
-  },
-  {
-    title: '版本',
-    key: 'from',
-    width: 100,
-    ellipsis: { tooltip: true },
-  },
-  {
-    title: '操作',
-    key: 'action',
-    width: 100,
-    render(row) {
-      return h(
-        NButton,
-        {
-          size: 'small',
-          type: 'primary',
-          class: 'btn-hover-lift',
-          onClick: () => router.push(`/song/id/${row._id}`),
-        },
-        { default: () => '查看详细' }
-      );
-    },
-  },
+  { label: '封面', key: 'cover', width: '64px' },
+  { label: '乐曲ID', key: '_id', width: '96px', sortable: true },
+  { label: '乐曲名', key: 'title', width: 'minmax(200px, 2fr)' },
+  { label: '难度标签', key: 'level_label', width: '140px', sortable: true },
+  { label: '定数', key: 'ds', width: '80px', sortable: true },
+  { label: '谱面作者', key: 'charter', width: 'minmax(120px, 1fr)' },
+  { label: 'MAX COMBO', key: 'combo', width: '144px', sortable: true },
+  { label: '流派', key: 'genre', width: 'minmax(100px, 1fr)' },
+  { label: '版本', key: 'from', width: 'minmax(100px, 1fr)' },
+  { label: '操作', key: 'action', width: '100px' },
 ];
 </script>
+
+<style scoped>
+.catalog-level {
+  justify-self: start;
+}
+</style>

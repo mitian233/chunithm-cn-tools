@@ -9,6 +9,7 @@
     "format:check": "prettier --check \"src/**/*.{js,vue,css,html}\""
   },
   "dependencies": {
+    "@tanstack/vue-virtual": "^3.13.52",
     "@vicons/ionicons5": "^0.13.0",
     "autoprefixer": "^10.5.2",
     "axios": "^1.18.1",

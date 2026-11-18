@@ -1,48 +1,27 @@
 <template>
-  <n-data-table
-    :columns="columns"
-    :data="titleList || []"
+  <CatalogTable
+    label="称号"
+    :columns="headers"
+    :rows="titleList"
     :loading="loading"
-    :pagination="false"
-    striped
-  />
+    :min-width="400"
+  >
+    <template #color="{ value }">
+      <span v-if="value" class="ui-tag justify-self-start">{{ value }}</span>
+    </template>
+    <template #title="{ value }"><CatalogText :text="value" /></template>
+    <template #music="{ value }"><CatalogText :text="value" /></template>
+    <template #obtain="{ value }"><CatalogText :text="value" /></template>
+  </CatalogTable>
 </template>
 
 <script setup>
-import { h, computed } from 'vue';
-import { NTag } from 'naive-ui';
+import CatalogTable from './CatalogTable.vue';
+import CatalogText from './CatalogText.vue';
 
-const props = defineProps({
-  search: {
-    type: String,
-    default: '',
-  },
-  titleList: {
-    type: Array,
-    default: () => [],
-  },
-  loading: {
-    type: Boolean,
-    default: false,
-  },
-  headers: {
-    type: Array,
-    default: () => [],
-  },
-});
-
-const columns = computed(() => {
-  return props.headers.map((header) => ({
-    title: header.title,
-    key: header.value,
-    ellipsis: { tooltip: true },
-    render(row) {
-      const value = row[header.value];
-      if (header.value === 'color' && value) {
-        return h(NTag, { color: { color: value }, size: 'small' }, { default: () => value });
-      }
-      return value;
-    },
-  }));
+defineProps({
+  titleList: { type: Array, required: true },
+  headers: { type: Array, required: true },
+  loading: Boolean,
 });
 </script>

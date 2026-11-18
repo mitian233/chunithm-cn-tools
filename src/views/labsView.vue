@@ -1,20 +1,26 @@
 <template>
-  <n-card title="实验室">
-    <n-tabs v-model:value="labTab" type="line" animated>
-      <n-tab-pane name="randomSong" tab="随机歌曲">
-        <random-song />
-      </n-tab-pane>
-      <n-tab-pane name="more" tab="更多功能">
-        <n-flex vertical align="center" justify="center" style="height: 50vh">
-          <n-text style="font-size: 1.5em">Work in progress...</n-text>
-        </n-flex>
-      </n-tab-pane>
-    </n-tabs>
-  </n-card>
+  <section class="ui-card">
+    <h1 class="mb-4 text-xl font-semibold">实验室</h1>
+    <TabsRoot v-model="labTab" :unmount-on-hide="false">
+      <TabsList class="ui-tabs" aria-label="实验室功能">
+        <TabsTrigger class="ui-tab" value="randomSong">随机歌曲</TabsTrigger>
+        <TabsTrigger class="ui-tab" value="more">更多功能</TabsTrigger>
+      </TabsList>
+      <TabsContent value="randomSong" class="pt-4">
+        <RandomSong />
+      </TabsContent>
+      <TabsContent value="more" class="pt-4">
+        <div class="flex h-[50vh] items-center justify-center">
+          <p class="text-2xl">Work in progress...</p>
+        </div>
+      </TabsContent>
+    </TabsRoot>
+  </section>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from 'reka-ui';
 import RandomSong from '../components/randomSong.vue';
 
 const labTab = ref('randomSong');

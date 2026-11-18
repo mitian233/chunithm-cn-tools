@@ -1,5 +1,5 @@
 <template>
-  <n-card v-if="showAd" class="ad-container">
+  <div v-if="showAd" class="ui-card ad-container">
     <ins
       class="adsbygoogle"
       style="display: block"
@@ -8,7 +8,7 @@
       data-ad-format="auto"
       data-full-width-responsive="true"
     />
-  </n-card>
+  </div>
 </template>
 
 <script setup>

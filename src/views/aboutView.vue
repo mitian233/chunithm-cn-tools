@@ -1,51 +1,57 @@
 <template>
-  <n-flex vertical>
-    <n-card title="关于工具箱"">
-      <n-descriptions label-placement="left" :column="1">
-        <n-descriptions-item label="版本">
-          <n-text>0.1.21</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="更新日期">
-          <n-text>2026年3月8日</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="更新内容">
-          <n-text>优化界面和性能，升级依赖</n-text>
-        </n-descriptions-item>
-      </n-descriptions>
-    </n-card>
+  <div class="flex flex-col gap-3">
+    <section class="ui-card">
+      <h1 class="mb-4 text-xl font-semibold">关于工具箱</h1>
+      <dl class="about-details">
+        <dt>版本</dt>
+        <dd><span class="ui-tag">0.1.21</span></dd>
+        <dt>更新日期</dt>
+        <dd>2026年3月8日</dd>
+        <dt>更新内容</dt>
+        <dd>优化界面和性能，升级依赖</dd>
+      </dl>
+    </section>
 
-    <n-card title="贡献"">
-      <n-descriptions label-placement="left" :column="1">
-        <n-descriptions-item label="开发者">
-          <n-text>Mikan</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="称号数据">
-          <n-text>losffa</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="歌曲数据">
-          <n-text>Diving-Fish 查分器 API</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="还有……">
-          <n-text>您</n-text>
-        </n-descriptions-item>
-        <n-descriptions-item label="项目地址">
-          <n-a href="https://github.com/mitian233/chunithm-cn-tools" target="_blank">
+    <section class="ui-card">
+      <h2 class="mb-4 text-xl font-semibold">贡献</h2>
+      <dl class="about-details">
+        <dt>开发者</dt>
+        <dd>Mikan</dd>
+        <dt>称号数据</dt>
+        <dd>losffa</dd>
+        <dt>歌曲数据</dt>
+        <dd>Diving-Fish 查分器 API</dd>
+        <dt>还有……</dt>
+        <dd>您</dd>
+        <dt>项目地址</dt>
+        <dd>
+          <a
+            class="ui-link"
+            href="https://github.com/mitian233/chunithm-cn-tools"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             https://github.com/mitian233/chunithm-cn-tools
-          </n-a>
-        </n-descriptions-item>
-      </n-descriptions>
-    </n-card>
-  </n-flex>
+          </a>
+        </dd>
+      </dl>
+    </section>
+  </div>
 </template>
 
-<script setup>
-import { onMounted } from 'vue';
+<style scoped>
+.about-details {
+  display: grid;
+  grid-template-columns: minmax(5rem, max-content) minmax(0, 1fr);
+  gap: 0.75rem 1rem;
+}
 
-onMounted(() => {
-  setTimeout(() => {
-    document.querySelectorAll('.animate-fade-in-up').forEach((el) => {
-      el.classList.remove('opacity-0');
-    });
-  }, 50);
-});
-</script>
+.about-details dt {
+  color: var(--ui-muted);
+  font-weight: 500;
+}
+
+.about-details dd {
+  overflow-wrap: anywhere;
+}
+</style>

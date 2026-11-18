@@ -1,104 +1,111 @@
 <template>
-  <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
-    <n-loading-bar-provider>
-      <n-dialog-provider>
-        <n-notification-provider>
-          <n-message-provider>
-            <n-layout has-sider>
-              <!-- 桌面端侧边栏 -->
-              <n-layout-sider
-                v-if="!isMobile"
-                bordered
-                collapse-mode="width"
-                :collapsed-width="64"
-                :width="240"
-                :collapsed="collapsed"
-                show-trigger
-                @collapse="collapsed = true"
-                @expand="collapsed = false"
-              >
-                <div class="logo-container">
-                  <n-text v-if="!collapsed" class="logo-text">CHUNITHM CN Tools</n-text>
-                  <n-text v-else class="logo-text-mini">CN</n-text>
-                </div>
-                <n-menu
-                  :collapsed="collapsed"
+  <ConfigProvider locale="zh-CN">
+    <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
+      <n-loading-bar-provider>
+        <n-dialog-provider>
+          <n-notification-provider>
+            <n-message-provider>
+              <n-layout has-sider>
+                <!-- 桌面端侧边栏 -->
+                <n-layout-sider
+                  v-if="!isMobile"
+                  bordered
+                  collapse-mode="width"
                   :collapsed-width="64"
-                  :collapsed-icon-size="22"
-                  :options="menuOptions"
-                  :value="currentKey"
-                  @update:value="handleMenuUpdate"
-                />
-              </n-layout-sider>
-
-              <!-- 移动端抽屉 -->
-              <n-drawer v-model:show="drawerVisible" :width="240" placement="left">
-                <n-drawer-content title="CHUNITHM CN Tools" :native-scrollbar="false">
+                  :width="240"
+                  :collapsed="collapsed"
+                  show-trigger
+                  @collapse="collapsed = true"
+                  @expand="collapsed = false"
+                >
+                  <div class="logo-container">
+                    <n-text v-if="!collapsed" class="logo-text">CHUNITHM CN Tools</n-text>
+                    <n-text v-else class="logo-text-mini">CN</n-text>
+                  </div>
                   <n-menu
+                    :collapsed="collapsed"
+                    :collapsed-width="64"
+                    :collapsed-icon-size="22"
                     :options="menuOptions"
                     :value="currentKey"
-                    @update:value="handleMenuUpdateMobile"
+                    @update:value="handleMenuUpdate"
                   />
-                </n-drawer-content>
-              </n-drawer>
+                </n-layout-sider>
 
-              <n-layout>
-                <notify-bar />
-                <n-layout-header bordered class="header">
-                  <n-flex justify="space-between" align="center" style="width: 100%">
-                    <n-flex align="center">
-                      <n-button v-if="isMobile" quaternary @click="drawerVisible = true">
-                        <template #icon>
-                          <n-icon :component="MenuOutline" />
-                        </template>
-                      </n-button>
-                      <transition name="slide-fade" mode="out-in">
-                        <n-text :key="$route.fullPath" class="header-title">
-                          {{ $route.meta.title }}
-                        </n-text>
-                      </transition>
+                <!-- 移动端抽屉 -->
+                <n-drawer v-model:show="drawerVisible" :width="240" placement="left">
+                  <n-drawer-content title="CHUNITHM CN Tools" :native-scrollbar="false">
+                    <n-menu
+                      :options="menuOptions"
+                      :value="currentKey"
+                      @update:value="handleMenuUpdateMobile"
+                    />
+                  </n-drawer-content>
+                </n-drawer>
+
+                <n-layout>
+                  <notify-bar />
+                  <n-layout-header bordered class="header">
+                    <n-flex justify="space-between" align="center" style="width: 100%">
+                      <n-flex align="center">
+                        <n-button v-if="isMobile" quaternary @click="drawerVisible = true">
+                          <template #icon>
+                            <n-icon :component="MenuOutline" />
+                          </template>
+                        </n-button>
+                        <transition name="slide-fade" mode="out-in">
+                          <n-text :key="$route.fullPath" class="header-title">
+                            {{ $route.meta.title }}
+                          </n-text>
+                        </transition>
+                      </n-flex>
+                      <n-flex>
+                        <n-button text @click="jumpToProber">
+                          <template #icon>
+                            <n-icon><FishOutline /></n-icon>
+                          </template>
+                          <span v-if="!isMobile">水鱼查分器</span>
+                        </n-button>
+                        <n-button
+                          text
+                          :aria-label="isDark ? '浅色模式' : '深色模式'"
+                          @click="toggleTheme"
+                        >
+                          <template #icon>
+                            <n-icon>
+                              <MoonOutline v-if="!isDark" />
+                              <SunnyOutline v-else />
+                            </n-icon>
+                          </template>
+                          <span v-if="!isMobile">{{ isDark ? '浅色模式' : '深色模式' }}</span>
+                        </n-button>
+                      </n-flex>
                     </n-flex>
-                    <n-flex>
-                      <n-button text @click="jumpToProber">
-                        <template #icon>
-                          <n-icon><FishOutline /></n-icon>
-                        </template>
-                        <span v-if="!isMobile">水鱼查分器</span>
-                      </n-button>
-                      <n-button text @click="toggleTheme">
-                        <template #icon>
-                          <n-icon>
-                            <MoonOutline v-if="!isDark" />
-                            <SunnyOutline v-else />
-                          </n-icon>
-                        </template>
-                        <span v-if="!isMobile">{{ isDark ? '浅色模式' : '深色模式' }}</span>
-                      </n-button>
+                  </n-layout-header>
+                  <n-layout-content class="content" :class="[isMobile && 'content-mobile']">
+                    <n-flex vertical>
+                      <google-adsense />
+                      <router-view v-slot="{ Component }">
+                        <transition name="slide-fade" mode="out-in">
+                          <component :is="Component" />
+                        </transition>
+                      </router-view>
                     </n-flex>
-                  </n-flex>
-                </n-layout-header>
-                <n-layout-content class="content" :class="[isMobile && 'content-mobile']">
-                  <n-flex vertical>
-                    <google-adsense />
-                    <router-view v-slot="{ Component }">
-                      <transition name="slide-fade" mode="out-in">
-                        <component :is="Component" />
-                      </transition>
-                    </router-view>
-                  </n-flex>
-                </n-layout-content>
+                  </n-layout-content>
+                </n-layout>
               </n-layout>
-            </n-layout>
-          </n-message-provider>
-        </n-notification-provider>
-      </n-dialog-provider>
-    </n-loading-bar-provider>
-  </n-config-provider>
+            </n-message-provider>
+          </n-notification-provider>
+        </n-dialog-provider>
+      </n-loading-bar-provider>
+    </n-config-provider>
+  </ConfigProvider>
 </template>
 
 <script setup>
-import { ref, computed, h, onMounted, onUnmounted } from 'vue';
+import { ref, computed, h, onMounted, onUnmounted, watchEffect } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { ConfigProvider } from 'reka-ui';
 import { darkTheme, zhCN, dateZhCN } from 'naive-ui';
 import { NIcon } from 'naive-ui';
 import {
@@ -118,11 +125,15 @@ import NotifyBar from './components/notifyBar.vue';
 const router = useRouter();
 const route = useRoute();
 const collapsed = ref(false);
-const isDark = ref(false);
+const isDark = ref(localStorage.getItem('darkMode') === 'true');
 const isMobile = ref(false);
 const drawerVisible = ref(false);
 
 const theme = computed(() => (isDark.value ? darkTheme : null));
+
+watchEffect(() => {
+  document.documentElement.dataset.theme = isDark.value ? 'dark' : 'light';
+});
 
 const MOBILE_BREAKPOINT = 768;
 
@@ -194,11 +205,6 @@ function jumpToProber() {
 onMounted(() => {
   checkMobile();
   window.addEventListener('resize', checkMobile);
-
-  const savedDarkMode = localStorage.getItem('darkMode');
-  if (savedDarkMode === 'true') {
-    isDark.value = true;
-  }
 });
 
 onUnmounted(() => {

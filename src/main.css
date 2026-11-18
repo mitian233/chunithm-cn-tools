@@ -3,6 +3,23 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+  --ui-bg: #f5f6f7;
+  --ui-surface: #ffffff;
+  --ui-text: #23272e;
+  --ui-muted: #56616e;
+  --ui-border: #dce1e7;
+  --ui-primary: #0e6848;
+  --ui-primary-hover: #15583f;
+  --ui-on-primary: #ffffff;
+  --ui-tag-bg: #eaf2ef;
+  --ui-basic: #0e6848;
+  --ui-advanced: #875200;
+  --ui-expert: #a93635;
+  --ui-master: #6d3997;
+  --ui-ultima: #243141;
+  --ui-worlds-end: #3f556a;
+
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -13,6 +30,68 @@
   --duration-normal: 200ms;
   --duration-slow: 300ms;
   --duration-page: 500ms;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --ui-bg: #18181c;
+  --ui-surface: #242428;
+  --ui-text: #f2f3f5;
+  --ui-muted: #b5bfca;
+  --ui-border: #424650;
+  --ui-primary: #86dfb2;
+  --ui-primary-hover: #abeccc;
+  --ui-on-primary: #142b21;
+  --ui-tag-bg: #303f39;
+  --ui-basic: #86dfb2;
+  --ui-advanced: #f4c671;
+  --ui-expert: #ff9a9b;
+  --ui-master: #dbb6ff;
+  --ui-ultima: #c7d2e1;
+  --ui-worlds-end: #b1c5d8;
+}
+
+@layer base {
+  body {
+    background-color: var(--ui-bg);
+    color: var(--ui-text);
+  }
+}
+
+@layer components {
+  .ui-card {
+    @apply rounded-lg border p-4 sm:p-6;
+    background-color: var(--ui-surface);
+    border-color: var(--ui-border);
+    color: var(--ui-text);
+  }
+
+  .ui-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 font-medium;
+    background-color: var(--ui-primary);
+    color: var(--ui-on-primary);
+  }
+
+  .ui-button:hover {
+    background-color: var(--ui-primary-hover);
+  }
+
+  .ui-button:focus-visible,
+  .ui-link:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 3px;
+  }
+
+  .ui-link {
+    @apply underline underline-offset-2;
+    color: var(--ui-primary);
+  }
+
+  .ui-tag {
+    @apply inline-flex items-center rounded px-2 py-0.5 text-sm;
+    background-color: var(--ui-tag-bg);
+    color: var(--ui-text);
+  }
 }
 
 @keyframes fadeInUp {

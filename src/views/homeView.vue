@@ -1,49 +1,26 @@
 <template>
-  <n-card>
-    <n-flex vertical align="center" justify="center" style="padding: 40px 0">
-      <img
-        src="../assets/logo.png"
-        alt="logo"
-        class="animate-fade-in-scale opacity-0"
-        style="width: 300px"
-      />
-      <n-h1 class="animate-fade-in-up opacity-0 stagger-2" style="margin-top: 40px">
-        国服工具箱
-      </n-h1>
-      <n-button
-        type="primary"
-        size="large"
-        class="animate-fade-in-up opacity-0 stagger-3 btn-hover-lift"
-        style="margin-top: 30px"
-        @click="goToSong"
-      >
-        <template #icon>
-          <n-icon :component="ArrowForwardOutline" />
-        </template>
-        开始使用
-      </n-button>
-    </n-flex>
-  </n-card>
+  <section class="ui-card home-hero flex flex-col items-center py-10 text-center sm:py-12">
+    <img
+      src="../assets/logo.png"
+      alt="中二节奏"
+      width="300"
+      class="animate-fade-in-scale max-w-full"
+    />
+    <h1 class="animate-fade-in-up stagger-2 mt-10 text-3xl font-bold">国服工具箱</h1>
+    <RouterLink to="/song" class="ui-button animate-fade-in-up stagger-3 btn-hover-lift mt-8">
+      <ArrowForwardOutline aria-hidden="true" class="h-5 w-5" />
+      开始使用
+    </RouterLink>
+  </section>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import { ArrowForwardOutline } from '@vicons/ionicons5';
-
-function goToSong() {
-  window.location.href = '/song';
-}
-
-onMounted(() => {
-  setTimeout(() => {
-    const img = document.querySelector('.animate-fade-in-scale');
-    if (img) img.classList.remove('opacity-0');
-
-    const title = document.querySelector('.animate-fade-in-up.stagger-2');
-    if (title) title.classList.remove('opacity-0');
-
-    const btn = document.querySelector('.animate-fade-in-up.stagger-3');
-    if (btn) btn.classList.remove('opacity-0');
-  }, 50);
-});
+import { RouterLink } from 'vue-router';
 </script>
+
+<style scoped>
+.home-hero > * {
+  animation-fill-mode: both;
+}
+</style>

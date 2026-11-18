@@ -1,9 +1,5 @@
 <template>
-  <n-card>
-    <n-flex vertical align="center" justify="center" style="height: 50vh">
-      <n-h1>404 - Page Not Found</n-h1>
-    </n-flex>
-  </n-card>
+  <section class="ui-card grid min-h-[50vh] place-items-center text-center">
+    <h1 class="text-3xl font-bold">404 - Page Not Found</h1>
+  </section>
 </template>
-
-<script setup></script>

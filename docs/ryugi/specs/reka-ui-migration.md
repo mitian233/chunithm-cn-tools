@@ -36,3 +36,5 @@
 
 - 移除模板标签、`h()` 调用、全局注册、四个未调用的 provider 和 `--n-*` 样式引用。从 `package.json` 移除 `naive-ui`，并确认重新安装后生成的锁文件中也没有它。
 - 运行 `pnpm build`，在桌面和手机宽度下试用导航、搜索与排序、长列表、封面预览、计算器和深浅色切换。
+
+应用入口只注册 Vue Router 和 Pinia，根组件使用 Reka UI 的中文配置。深浅色仍由 `<html data-theme>` 和 `src/main.css` 的颜色变量控制。

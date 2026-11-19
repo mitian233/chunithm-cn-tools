@@ -1,106 +1,92 @@
 <template>
   <ConfigProvider locale="zh-CN">
-    <n-config-provider :theme="theme" :locale="zhCN" :date-locale="dateZhCN">
-      <n-loading-bar-provider>
-        <n-dialog-provider>
-          <n-notification-provider>
-            <n-message-provider>
-              <div class="app-shell">
-                <aside class="app-sidebar" :class="{ 'app-sidebar--collapsed': collapsed }">
-                  <div class="app-brand" :title="collapsed ? 'CHUNITHM CN Tools' : undefined">
-                    {{ collapsed ? 'CN' : 'CHUNITHM CN Tools' }}
-                  </div>
-                  <AppNavigation
-                    id="desktop-navigation"
-                    :active-path="activePath"
-                    :collapsed="collapsed"
-                    class="p-2"
-                  />
-                  <button
-                    type="button"
-                    class="sidebar-toggle"
-                    :aria-label="collapsed ? '展开侧栏' : '收起侧栏'"
-                    :aria-expanded="!collapsed"
-                    aria-controls="desktop-navigation"
-                    @click="collapsed = !collapsed"
-                  >
-                    <ChevronForwardOutline v-if="collapsed" class="h-4 w-4" aria-hidden="true" />
-                    <ChevronBackOutline v-else class="h-4 w-4" aria-hidden="true" />
-                  </button>
-                </aside>
+    <div class="app-shell">
+      <aside class="app-sidebar" :class="{ 'app-sidebar--collapsed': collapsed }">
+        <div class="app-brand" :title="collapsed ? 'CHUNITHM CN Tools' : undefined">
+          {{ collapsed ? 'CN' : 'CHUNITHM CN Tools' }}
+        </div>
+        <AppNavigation
+          id="desktop-navigation"
+          :active-path="activePath"
+          :collapsed="collapsed"
+          class="p-2"
+        />
+        <button
+          type="button"
+          class="sidebar-toggle"
+          :aria-label="collapsed ? '展开侧栏' : '收起侧栏'"
+          :aria-expanded="!collapsed"
+          aria-controls="desktop-navigation"
+          @click="collapsed = !collapsed"
+        >
+          <ChevronForwardOutline v-if="collapsed" class="h-4 w-4" aria-hidden="true" />
+          <ChevronBackOutline v-else class="h-4 w-4" aria-hidden="true" />
+        </button>
+      </aside>
 
-                <div class="app-column">
-                  <NotifyBar />
-                  <header class="header">
-                    <div class="flex min-w-0 items-center gap-2">
-                      <DialogRoot v-if="isMobile" v-model:open="drawerVisible">
-                        <DialogTrigger type="button" aria-label="打开导航" class="header-action">
-                          <MenuOutline class="h-5 w-5" aria-hidden="true" />
-                        </DialogTrigger>
-                        <DialogPortal>
-                          <DialogOverlay class="nav-overlay" />
-                          <DialogContent class="nav-drawer">
-                            <div class="drawer-heading">
-                              <DialogTitle class="font-semibold">CHUNITHM CN Tools</DialogTitle>
-                              <DialogClose
-                                type="button"
-                                class="header-action"
-                                aria-label="关闭导航"
-                              >
-                                <CloseOutline class="h-5 w-5" aria-hidden="true" />
-                              </DialogClose>
-                            </div>
-                            <DialogDescription class="sr-only">选择要打开的页面</DialogDescription>
-                            <AppNavigation
-                              :active-path="activePath"
-                              class="p-2"
-                              @navigate="drawerVisible = false"
-                            />
-                          </DialogContent>
-                        </DialogPortal>
-                      </DialogRoot>
-                      <span class="header-title">{{ route.meta.title }}</span>
-                    </div>
-                    <div class="flex shrink-0 items-center gap-1 sm:gap-2">
-                      <a
-                        class="header-action"
-                        href="https://www.diving-fish.com/maimaidx/prober/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="水鱼查分器"
-                      >
-                        <FishOutline class="h-5 w-5" aria-hidden="true" />
-                        <span class="header-action-label">水鱼查分器</span>
-                      </a>
-                      <button
-                        type="button"
-                        class="header-action"
-                        :aria-label="isDark ? '浅色模式' : '深色模式'"
-                        @click="toggleTheme"
-                      >
-                        <SunnyOutline v-if="isDark" class="h-5 w-5" aria-hidden="true" />
-                        <MoonOutline v-else class="h-5 w-5" aria-hidden="true" />
-                        <span class="header-action-label">
-                          {{ isDark ? '浅色模式' : '深色模式' }}
-                        </span>
-                      </button>
-                    </div>
-                  </header>
-                  <main class="app-content">
-                    <GoogleAdsense />
-                    <RouterView v-slot="{ Component }">
-                      <Transition name="slide-fade" mode="out-in">
-                        <component :is="Component" />
-                      </Transition>
-                    </RouterView>
-                  </main>
-                </div>
-              </div>
-            </n-message-provider>
-          </n-notification-provider>
-        </n-dialog-provider>
-      </n-loading-bar-provider>
-    </n-config-provider>
+      <div class="app-column">
+        <NotifyBar />
+        <header class="header">
+          <div class="flex min-w-0 items-center gap-2">
+            <DialogRoot v-if="isMobile" v-model:open="drawerVisible">
+              <DialogTrigger type="button" aria-label="打开导航" class="header-action">
+                <MenuOutline class="h-5 w-5" aria-hidden="true" />
+              </DialogTrigger>
+              <DialogPortal>
+                <DialogOverlay class="nav-overlay" />
+                <DialogContent class="nav-drawer">
+                  <div class="drawer-heading">
+                    <DialogTitle class="font-semibold">CHUNITHM CN Tools</DialogTitle>
+                    <DialogClose type="button" class="header-action" aria-label="关闭导航">
+                      <CloseOutline class="h-5 w-5" aria-hidden="true" />
+                    </DialogClose>
+                  </div>
+                  <DialogDescription class="sr-only">选择要打开的页面</DialogDescription>
+                  <AppNavigation
+                    :active-path="activePath"
+                    class="p-2"
+                    @navigate="drawerVisible = false"
+                  />
+                </DialogContent>
+              </DialogPortal>
+            </DialogRoot>
+            <span class="header-title">{{ route.meta.title }}</span>
+          </div>
+          <div class="flex shrink-0 items-center gap-1 sm:gap-2">
+            <a
+              class="header-action"
+              href="https://www.diving-fish.com/maimaidx/prober/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="水鱼查分器"
+            >
+              <FishOutline class="h-5 w-5" aria-hidden="true" />
+              <span class="header-action-label">水鱼查分器</span>
+            </a>
+            <button
+              type="button"
+              class="header-action"
+              :aria-label="isDark ? '浅色模式' : '深色模式'"
+              @click="toggleTheme"
+            >
+              <SunnyOutline v-if="isDark" class="h-5 w-5" aria-hidden="true" />
+              <MoonOutline v-else class="h-5 w-5" aria-hidden="true" />
+              <span class="header-action-label">
+                {{ isDark ? '浅色模式' : '深色模式' }}
+              </span>
+            </button>
+          </div>
+        </header>
+        <main class="app-content">
+          <GoogleAdsense />
+          <RouterView v-slot="{ Component }">
+            <Transition name="slide-fade" mode="out-in">
+              <component :is="Component" />
+            </Transition>
+          </RouterView>
+        </main>
+      </div>
+    </div>
   </ConfigProvider>
 </template>
 
@@ -118,7 +104,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from 'reka-ui';
-import { darkTheme, zhCN, dateZhCN } from 'naive-ui';
 import {
   ChevronBackOutline,
   ChevronForwardOutline,
@@ -138,7 +123,6 @@ const isDark = ref(localStorage.getItem('darkMode') === 'true');
 const mobileQuery = window.matchMedia('(width < 768px)');
 const isMobile = ref(mobileQuery.matches);
 const drawerVisible = ref(false);
-const theme = computed(() => (isDark.value ? darkTheme : null));
 const activePath = computed(() => (route.path.startsWith('/song/') ? '/song' : route.path));
 
 watchEffect(() => {
